@@ -116,10 +116,11 @@ namespace Rockwell_Library
 			}
 			catch(System::Exception^ e)
 			{
-				System::Double^	Value = gcnew System::Double(0);
-				if (System::Double::TryParse(source, *Value) == false)
+				IPS::Properties::Double^ Value = gcnew IPS::Properties::Double;
+				Value->Value = Value->Parse(source);
+				if (Value->ValueAsObject == nullptr)
 					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Get_Property) Invalid Identifier: " + source));
-				return Value;
+				return Value->ValueAsObject;
 			}
 		}
 		
@@ -152,9 +153,12 @@ namespace Rockwell_Library
 		
 		virtual void ReadInputs() override
 		{
-			DCS::Components::DCSComponentBase::ReadInputs();
 		}
-		
+
+		virtual void WriteOutputs() override
+		{
+		}
+
 		virtual void Execute(double p_dTimeStep)
 		{
 		}

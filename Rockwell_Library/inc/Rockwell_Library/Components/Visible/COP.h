@@ -45,7 +45,7 @@ namespace Rockwell_Library
 			
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Destination")]
-		[IPS::Properties::GridOrder(35)]
+		[IPS::Properties::GridOrder(135)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Text% Dest
 		{
@@ -57,11 +57,11 @@ namespace Rockwell_Library
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
-		[IPS::Properties::GridOrder(36)]
+		[IPS::Properties::GridOrder(136)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
-		virtual property IPS::Properties::DataReferenceProperty% Dest_Value
+		virtual property IPS::Properties::Double% Dest_Value
 		{
-			IPS::Properties::DataReferenceProperty% get()
+			IPS::Properties::Double% get()
 			{
 				return m_Dest_Value;
 			}
@@ -69,11 +69,11 @@ namespace Rockwell_Library
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Length")]
-		[IPS::Properties::GridOrder(40)]
+		[IPS::Properties::GridOrder(140)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Integer% Length
 		{
-			IPS::Properties::Integer%  get()
+			IPS::Properties::Integer% get()
 			{
 				return m_Length;
 			}
@@ -89,14 +89,13 @@ namespace Rockwell_Library
 
 	public:
 		
-		IPS::Properties::DataReferenceProperty	m_Value;
-		IPS::Properties::Text					m_Dest;
-		IPS::Properties::DataReferenceProperty	m_Dest_Value;
-		IPS::Properties::Integer				m_Length;
-		List<String^>							source_parsed;
-		List<String^>							dest_parsed;
-		IPS::Core::Component^					m_SourceComponent;
-		IPS::Core::Component^					m_DestComponent;
-		IPS::Core::Property^					m_TransferProperty;
+		IPS::Properties::Text			m_Dest;
+		IPS::Properties::Double			m_Dest_Value;
+		IPS::Properties::Integer		m_Length;
+		List<String^>					source_parsed;
+		List<String^>					dest_parsed;
+		IPS::Core::Component^			m_SourceComponent;
+		IPS::Core::Component^			m_DestComponent;
+		IPS::Core::Property^			m_TransferProperty;
 	};    
 }

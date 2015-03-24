@@ -5,5 +5,6 @@ namespace Rockwell_Library
 {
 	System::Void Rung::Execute(double p_dTimeStep)
 	{
+		Output.Value = Input.Value;
 	}
 }

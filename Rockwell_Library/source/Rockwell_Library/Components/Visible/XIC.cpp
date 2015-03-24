@@ -5,12 +5,10 @@ namespace Rockwell_Library
 {
 	void XIC::Execute(double p_dTimeStep)
 	{
-		IPS::Properties::Bool^ tempObject = dynamic_cast<IPS::Properties::Bool^>(Get_Property(Property.Value));
+		Value.Value = (bool) Get_Property(Property.Value);
 		
-		if (tempObject != nullptr)
+		if (Value.ValueAsObject != nullptr)
 		{
-			Value.Value = tempObject->Value;
-
 			if (Value.Value == true)
 				Output.Value = Input.Value;
 		}

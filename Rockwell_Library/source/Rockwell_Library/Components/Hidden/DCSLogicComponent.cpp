@@ -23,7 +23,7 @@ namespace Rockwell_Library
 	}
 	
 	void DCSLogicComponent::step()
-	{		
+	{	
 		count = 0;
 		l_Ladder = gcnew LinkedList<DCSLogicComponent^>;
 

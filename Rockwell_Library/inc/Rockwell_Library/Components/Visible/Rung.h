@@ -36,7 +36,7 @@ namespace Rockwell_Library
 			Output.Visible					= true;
 			Output.Value					= true;
 			OutputPort						= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
-			OutputPort->SetAssociatedProperty(%m_Output);
+			OutputPort->SetAssociatedProperty(%m_Input);
 
 			RungPort						= dynamic_cast<Bool::BoolOutputPort^>(PortByName("RungPort"));
 			RungPort->SetAssociatedProperty(%m_Input);
