@@ -39,14 +39,11 @@ namespace Rockwell_Library
 		{
 			l_Component = m_ExecutionQueue.First->Value;
 			m_ExecutionQueue.RemoveFirst();
-			l_Component->ReadInputs();
 			l_Component->Execute(m_Project->TimeStep);
-			l_Component->WriteOutputs();
 			Diagnostics::Debug::WriteLine(l_Component->Identifier->ToString() + " Executed: " + count.ToString());
 			count++;
 			for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
 			{
-				Diagnostics::Debug::WriteLine(l_BoolLink->Enable.ToString());
 				l_Value.ValueAsObject = l_BoolLink->GetPropertyFromPropID("From Property")->ValueAsObject;
 				if (l_Value.Value == true)
 				{

@@ -44,7 +44,7 @@ namespace Rockwell_Library
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
 		virtual property IPS::Properties::Bool%  Input
 		{
-			IPS::Properties::Bool%  get()
+			IPS::Properties::Bool% get()
 			{
 				return m_Input;
 			}
@@ -153,10 +153,7 @@ namespace Rockwell_Library
 		
 		virtual void ReadInputs() override
 		{
-		}
-
-		virtual void WriteOutputs() override
-		{
+			DCS::Components::DCSComponentBase::ReadInputs();
 		}
 
 		virtual void Execute(double p_dTimeStep)
@@ -214,12 +211,14 @@ namespace Rockwell_Library
 		{
 			l_Ladder = gcnew LinkedList<DCSLogicComponent^>;
 			l_Ladder->AddFirst(l_Component);
+
 			LinkedListNode<DCSLogicComponent^>^ l_ThisRungItem =  l_Ladder->First;
-			l_Ladder->AddLast(dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]));
-			LinkedListNode<DCSLogicComponent^>^ l_NextRung =  l_Ladder->Last;
-			
-			while (l_ThisRungItem->Next != nullptr)
-			{				
+			DCSLogicComponent^ l_NextRungItem = dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]);
+			l_Ladder->AddLast(l_NextRungItem);			
+			bool EOR = true;
+
+			do
+			{	
 				IPS::Core::ComponentList^ l_ConnectedList = l_ThisRungItem->Value->PortByName("OutputPort")->GetConnectedComponents();
 
 				if (l_ConnectedList->Count > 0)
@@ -229,19 +228,34 @@ namespace Rockwell_Library
 						if (l_Ladder->Contains(l_ConnectedComponent))
 							l_Ladder->Remove(l_ConnectedComponent);
 						
-						l_Ladder->AddBefore(l_NextRung, l_ConnectedComponent);
+						if (l_NextRungItem == nullptr)
+							l_Ladder->AddLast(l_ConnectedComponent);
+						else
+							l_Ladder->AddBefore(l_Ladder->Last, l_ConnectedComponent);
 					}						
 				}
-
-				l_ThisRungItem = l_ThisRungItem->Next;
-
-				if (l_ThisRungItem == l_NextRung)
+				
+				if (l_NextRungItem != nullptr)
 				{
-					l_Ladder->AddLast(dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]));
-					LinkedListNode<DCSLogicComponent^>^ l_NextRung =  l_Ladder->Last;
-				}
-			}
+					l_ThisRungItem = l_ThisRungItem->Next;
 
+					if (l_ThisRungItem->Value->TypeDescription == "Rung")
+					{
+
+						if (l_Component->PortByName("RungPort")->GetConnectedComponents()->Count > 0)
+						{
+							l_NextRungItem = dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]);
+							l_Ladder->AddLast(l_NextRungItem);
+						}
+						else
+							l_NextRungItem = nullptr;
+					} 
+				}
+				else
+					EOR = false;
+
+			} while (EOR);
+			
 			return l_Ladder;
 		}
 

@@ -3,6 +3,7 @@
 // but are changed infrequently
 
 #pragma once
+#include "stdafx.h"
 
 #using "../../IPS.Core.dll"
 #using "../../IPS.PluginInterface.dll"

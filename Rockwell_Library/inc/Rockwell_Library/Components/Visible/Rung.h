@@ -34,10 +34,12 @@ namespace Rockwell_Library
 			InputPort->SetAssociatedProperty(%m_Input);
 
 			Output.Visible					= true;
-			Output.Value					= true;
+			Output.Value					= false;
 			OutputPort						= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Input);
 
+			Rung_Port.Visible				= true;
+			Rung_Port.Value					= false;
 			RungPort						= dynamic_cast<Bool::BoolOutputPort^>(PortByName("RungPort"));
 			RungPort->SetAssociatedProperty(%m_Input);
 		}
@@ -53,6 +55,18 @@ namespace Rockwell_Library
 				if (InputPort != nullptr && InputPort->IsConnected)
 					m_Input = dynamic_cast<IPS::Properties::Bool^>(InputPort->AssociatedProperty);
 					
+				return m_Input;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("RungPort")]
+		[IPS::Properties::GridOrder(10)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		virtual property IPS::Properties::Bool% Rung_Port
+		{			
+			IPS::Properties::Bool% get()
+			{
 				return m_Input;
 			}
 		}
