@@ -25,7 +25,7 @@ namespace Rockwell_Library
 	void DCSLogicComponent::step()
 	{	
 		count = 0;
-		l_Ladder = gcnew LinkedList<DCSLogicComponent^>;
+		l_Ladder = gcnew LinkedList<DCSLogicComponent^>();
 
 		if (LadderPageDictionary.TryGetValue("U:2", l_Ladder))
 		{		
@@ -43,6 +43,20 @@ namespace Rockwell_Library
 			Diagnostics::Debug::WriteLine(l_Component->Identifier->ToString() + " Executed: " + count.ToString());
 			count++;
 			for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
+			{
+				l_Value.ValueAsObject = l_BoolLink->GetPropertyFromPropID("From Property")->ValueAsObject;
+				if (l_Value.Value == true)
+				{
+					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 2.0;
+					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Cyan;
+				}
+				else
+				{
+					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 1.0;
+					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Blue;
+				}
+			}
+			for each(l_BoolLink in l_Component->PortByName("RungPort")->OutLinks)
 			{
 				l_Value.ValueAsObject = l_BoolLink->GetPropertyFromPropID("From Property")->ValueAsObject;
 				if (l_Value.Value == true)

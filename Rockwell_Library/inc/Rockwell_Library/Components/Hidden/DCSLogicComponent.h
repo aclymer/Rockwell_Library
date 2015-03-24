@@ -214,7 +214,7 @@ namespace Rockwell_Library
 
 			LinkedListNode<DCSLogicComponent^>^ l_ThisRungItem =  l_Ladder->First;
 			DCSLogicComponent^ l_NextRungItem = dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]);
-			l_Ladder->AddLast(l_NextRungItem);			
+			l_Ladder->AddLast(l_NextRungItem);
 			bool EOR = true;
 
 			do
@@ -235,16 +235,15 @@ namespace Rockwell_Library
 					}						
 				}
 				
-				if (l_NextRungItem != nullptr)
-				{
-					l_ThisRungItem = l_ThisRungItem->Next;
+				l_ThisRungItem = l_ThisRungItem->Next;
 
+				if (l_ThisRungItem != nullptr)
+				{
 					if (l_ThisRungItem->Value->TypeDescription == "Rung")
 					{
-
-						if (l_Component->PortByName("RungPort")->GetConnectedComponents()->Count > 0)
+						if (l_ThisRungItem->Value->Ports->PortByName("RungPort")->GetConnectedComponents()->Count > 0)
 						{
-							l_NextRungItem = dynamic_cast<DCSLogicComponent^>(l_Component->PortByName("RungPort")->GetConnectedComponents()[0]);
+							l_NextRungItem = dynamic_cast<DCSLogicComponent^>(l_ThisRungItem->Value->Ports->PortByName("RungPort")->GetConnectedComponents()[0]);
 							l_Ladder->AddLast(l_NextRungItem);
 						}
 						else
@@ -254,8 +253,15 @@ namespace Rockwell_Library
 				else
 					EOR = false;
 
-			} while (EOR);
+			} while (EOR == true);
 			
+			for each (DCSLogicComponent^ nothing in l_Ladder)
+			{
+				Diagnostics::Debug::WriteLine(nothing->Identifier->Value);
+			}
+				
+			Diagnostics::Debug::WriteLine("");
+
 			return l_Ladder;
 		}
 
