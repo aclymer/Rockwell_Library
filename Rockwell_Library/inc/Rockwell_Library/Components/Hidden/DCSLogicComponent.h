@@ -116,11 +116,11 @@ namespace Rockwell_Library
 			}
 			catch(System::Exception^ e)
 			{
-				IPS::Properties::Double^ Value = gcnew IPS::Properties::Double;
-				Value->Value = Value->Parse(source);
-				if (Value->ValueAsObject == nullptr)
+				IPS::Properties::Double Value;
+				Value.Value = Value.Parse(source);
+				if (Value.ValueAsObject == nullptr)
 					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Get_Property) Invalid Identifier: " + source));
-				return Value->ValueAsObject;
+				return Value.ValueAsObject;
 			}
 		}
 		

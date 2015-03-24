@@ -37,12 +37,10 @@ namespace Rockwell_Library
 
 		while (m_ExecutionQueue.Count > 0)
 		{
-			l_Component = m_ExecutionQueue.First->Value;
-			m_ExecutionQueue.RemoveFirst();
-			l_Component->Execute(m_Project->TimeStep);
-			Diagnostics::Debug::WriteLine(l_Component->Identifier->ToString() + " Executed: " + count.ToString());
+			m_ExecutionQueue.First->Value->Execute(m_Project->TimeStep);
+			Diagnostics::Debug::WriteLine(m_ExecutionQueue.First->Value->Identifier->ToString() + " Executed: " + count.ToString());
 			count++;
-			for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
+			for each(l_BoolLink in m_ExecutionQueue.First->Value->PortByName("OutputPort")->OutLinks)
 			{
 				l_Value.ValueAsObject = l_BoolLink->GetPropertyFromPropID("From Property")->ValueAsObject;
 				if (l_Value.Value == true)
@@ -56,20 +54,7 @@ namespace Rockwell_Library
 					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Blue;
 				}
 			}
-			for each(l_BoolLink in l_Component->PortByName("RungPort")->OutLinks)
-			{
-				l_Value.ValueAsObject = l_BoolLink->GetPropertyFromPropID("From Property")->ValueAsObject;
-				if (l_Value.Value == true)
-				{
-					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 2.0;
-					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Cyan;
-				}
-				else
-				{
-					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 1.0;
-					l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Blue;
-				}
-			}
+			m_ExecutionQueue.RemoveFirst();
 		}		
 	}
 }
