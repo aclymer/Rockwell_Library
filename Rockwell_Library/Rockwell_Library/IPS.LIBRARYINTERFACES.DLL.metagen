@@ -1,0 +1,389 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.LibraryInterfaces, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Collections, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Interface IPS.LibraryInterfaces.ILibraryItem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String WritableGlobalConfigPath 'get ' : 
+    System.String WritableGlobalConfigBasePath 'get ' : 
+    System.String GlobalConfigPath 'get ' : 
+    System.String GlobalConfigBasePath 'get ' : 
+    System.String ConfigPath 'get ' : 
+    System.String ConfigBasePath 'get ' : 
+    Int32 Order 'get ' : 
+    System.String HelpTopicID 'get ' : 
+    System.String Configuration 'get set' : 
+    System.String SecondLevelCategory 'get ' : 
+    System.String FirstLevelCategory 'get ' : 
+    System.String Description 'get ' : 
+    System.String Name 'get ' : 
+  Methods:
+    GetLibraryItemType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Initialise(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Description(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FirstLevelCategory(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SecondLevelCategory(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Configuration(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Configuration(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HelpTopicID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Order(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ConfigBasePath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ConfigPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GlobalConfigBasePath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GlobalConfigPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_WritableGlobalConfigBasePath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_WritableGlobalConfigPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    CreateConfigPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.Collections.LibraryItemList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetLibraryItemList(): PrivateScope, Public, HideBySig
+    GetLibraryItem(String): PrivateScope, Public, HideBySig
+    GetTypes(): PrivateScope, Public, HideBySig
+    Sort(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Sort(): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.IDataReferenceLibraryItem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.LibraryInterfaces.ILibraryItem
+  Properties:
+    System.String FolderName 'get ' : 
+    System.String FileExtension 'get ' : 
+    System.String ItemName 'get ' : 
+  Methods:
+    get_ItemName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FileExtension(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FolderName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.LibraryInterfaces.Collections.LibraryDataReferenceItemList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetLibraryDataReferenceItemList(): PrivateScope, Public, HideBySig
+    GetTypes(): PrivateScope, Public, HideBySig
+    Sort(): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.ILibrarySettings: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String LibraryName 'get ' : 
+    IPS.Core.TypeIdentifier TypeID 'get ' : 
+  Methods:
+    get_TypeID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.LibraryInterfaces.ILibraryPictureItem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.LibraryInterfaces.ILibraryItem
+  Properties:
+    Boolean RelativeSize 'get ' : 
+    System.Drawing.SizeF DefaultSize 'get ' : 
+    System.String DefaultPicture 'get ' : 
+    System.String DefaultSearchPath 'get ' : 
+  Methods:
+    get_DefaultSearchPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultPicture(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RelativeSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.LibraryInterfaces.ICompoundItem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.LibraryInterfaces.ILibraryItem
+    IPS.LibraryInterfaces.ILibraryPictureItem
+    IPS.Core.Blueprint
+  Properties:
+    System.String DefaultPicture 'get set' : 
+    System.Drawing.SizeF DefaultSize 'get set' : 
+    System.String SecondLevelCategory 'get set' : 
+    System.String FirstLevelCategory 'get set' : 
+    IPS.LibraryInterfaces.ILibrary Library 'get set' : 
+    Boolean IsGlobal 'get ' : 
+  Methods:
+    get_IsGlobal(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Library(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Library(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FirstLevelCategory(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FirstLevelCategory(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SecondLevelCategory(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SecondLevelCategory(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DefaultSize(SizeF): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultPicture(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DefaultPicture(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Save(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewInstance(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ContainsInstance(Compound): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveInstance(Compound): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddInstance(Compound): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RefreshCompositeProps(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.CompoundItemList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.LibraryInterfaces.ICompoundItem]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface IPS.LibraryInterfaces.ILibrary: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.Collections.Generic.List`1[IPS.LibraryInterfaces.ILibrarySettings] LibrarySettings 'get ' : 
+    System.Collections.Generic.List`1[System.Type] LinkTypes 'get ' : 
+    System.Collections.Generic.List`1[System.Type] VisibleComponentTypes 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryDataReferenceItemList DataReferences 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList InvisibleComponents 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList Links 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList Ports 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList VisibleTasks 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList Tasks 'get ' : 
+    Boolean VisibleInTaskView 'get ' : 
+    Boolean VisibleInDataReferenceView 'get ' : 
+    Boolean VisibleInComponentView 'get ' : 
+    Boolean Sealed 'get ' : 
+    System.String DisplayName 'get ' : 
+    System.String Image 'get ' : 
+    System.String SolutionName 'get ' : 
+    System.String GlobalPath 'get ' : 
+    System.String LocalPath 'get ' : 
+    System.Reflection.Assembly Assembly 'get ' : 
+    System.Version AssemblyVersion 'get ' : 
+    System.String AssemblyName 'get ' : 
+    IPS.LibraryInterfaces.Collections.LibraryItemList VisibleComponents 'get ' : 
+  Methods:
+    InitialiseLibraryItems(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_VisibleComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AssemblyName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AssemblyVersion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Assembly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LocalPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GlobalPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SolutionName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Image(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Sealed(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleInComponentView(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleInDataReferenceView(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleInTaskView(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Tasks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleTasks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Ports(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Links(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InvisibleComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DataReferences(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleComponentTypes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LinkTypes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibrarySettings(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AddVisibleComponentType(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLinkType(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Sort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.CompoundItemAddedHandler: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface IPS.LibraryInterfaces.ICompositeProvider: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Events:
+    IPS.LibraryInterfaces.CompoundItemAddedHandler CompoundItemAdded: SpecialName
+  Methods:
+    LoadCompoundItems(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UnloadCompoundItems(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCompoundItem(String, ILibrary, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCompoundItem(String, ILibrary, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCompoundItem(String, ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCompoundItem(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompoundItems(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompoundItem(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompoundItem(ILibrary, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComposites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompositePages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RenameCompoundItem(ICompoundItem, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCompoundItem(ICompoundItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    LoadAllComposites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SynchronizeAllComposites(ICompoundItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SynchronizeAllComposites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaiseCompoundItemAdded(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    add_CompoundItemAdded(CompoundItemAddedHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_CompoundItemAdded(CompoundItemAddedHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.LibraryInterfaces.IConnectionValidator: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    CanConnect(Port, Port, Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CanConnect(Port, Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CanChangeStartConnection(Port, Port, Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CanChangeEndConnection(Port, Port, Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkType(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.LibraryInterfaces.IImageCache: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    GetIcon32(ILibrary, ILibraryItem, IComponentConfiguration): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon32(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon(ILibrary, ILibraryItem, String, Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon(ILibrary, ILibraryItem, Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon(ILibrary, Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon32RelativeSize(ILibrary, ILibraryItem, IComponentConfiguration): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon32RelativeSize(ILibrary, ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, Component, IComponentConfiguration): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, ILibraryItem, IComponentConfiguration): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, ILibraryItem, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary, ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetBitmap(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCachedImages(ILibrary, ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCachedImages(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCachedImage(ILibrary, ILibraryItem, IComponentConfiguration): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.LibraryInterfaces.IImageCacheItem: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    GetBitmap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIcon(Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetRelativeIcon(Size, Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveBitmap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.Collections.ILibraryList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetLibraryList(): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.Configurations.ILibraryConfigurationManager: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    NewComponentConfiguration(ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewTooltipConfiguration(PropertyIdentity): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompConfig(ILibraryItem, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompConfigList(ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveCompConfigList(IComponentConfigurationList, ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompTooltipConfigList(ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveCompTooltipConfigList(ITooltipConfigurationList, ILibraryItem): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLibConfigs(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetSelectedConfig(ILibrary, ILibraryItem, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveLibrary(ILibrary): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveLibraryConfiguration(ILibrary, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.LibraryInterfaces.ILibraryProvider: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Fields:
+    Boolean BuildingLibrary : Public, Static
+  Properties:
+    IPS.LibraryInterfaces.ICompositeProvider CompositeProvider 'get ' : 
+  Methods:
+    get_CompositeProvider(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetLibrary(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetTaskFromLibItemName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLibraryComponentItem(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLibraryTaskItem(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLibraries(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLibConfigManager(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    BuildComponentLibrary(List`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetImageCache(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetType(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.LibraryInterfaces.ILibraryView: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.LibraryInterfaces.ILibraryItem SelectedComponent 'get ' : 
+  Methods:
+    get_SelectedComponent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.LibraryInterfaces.Collections.IPortConfigurationList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.LibraryInterfaces.Configurations.IPortConfiguration]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    FindConfiguration(String): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.Configurations.IComponentConfiguration: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.ICloneable
+  Properties:
+    Boolean ReadOnly 'get set' : 
+    System.String ImageFile 'get set' : 
+    IPS.LibraryInterfaces.Collections.IPortConfigurationList PortConfigurations 'get set' : 
+    System.String ConfigurationName 'get set' : 
+    System.String ComponentName 'get set' : 
+  Methods:
+    get_ComponentName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ComponentName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ConfigurationName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ConfigurationName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PortConfigurations(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_PortConfigurations(IPortConfigurationList): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ImageFile(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ImageFile(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ReadOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ReadOnly(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ToString(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.Collections.IComponentConfigurationList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Collections.Generic.List`1[IPS.LibraryInterfaces.Configurations.IComponentConfiguration] ConfigList 'get ' : 
+  Methods:
+    get_ConfigList(): PrivateScope, Public, HideBySig, SpecialName
+    GetDefaultConfiguration(): PrivateScope, Public, HideBySig
+    SetDefaultConfiguration(IComponentConfiguration): PrivateScope, Public, HideBySig
+    Clone(): PrivateScope, Public, HideBySig
+    FindConfiguration(String): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.Configurations.IPortConfiguration: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.ICloneable
+  Properties:
+    System.Drawing.Size HitArea 'get set' : 
+    Boolean Visible 'get set' : 
+    System.Drawing.Point Location 'get set' : 
+    System.String PortName 'get set' : 
+  Methods:
+    get_PortName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_PortName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Location(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Location(Point): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Visible(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HitArea(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_HitArea(Size): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.LibraryInterfaces.Configurations.ITooltipConfiguration: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.ICloneable
+  Properties:
+    System.String CustomName 'get set' : 
+    Boolean UseCustomName 'get set' : 
+    Boolean UseShortDefaultCaption 'get set' : 
+    IPS.Core.PropertyIdentity PropID 'get ' : 
+  Methods:
+    get_PropID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_UseShortDefaultCaption(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_UseShortDefaultCaption(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_UseCustomName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_UseCustomName(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CustomName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_CustomName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.LibraryInterfaces.Collections.ITooltipConfigurationList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.ComponentModel.BindingList`1[IPS.LibraryInterfaces.Configurations.ITooltipConfiguration]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface IPS.LibraryInterfaces.Configurations.ILibraryConfiguration: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.Collections.Generic.List`1[IPS.LibraryInterfaces.Configurations.IConfigurationSelection] Configurations 'get set' : 
+    System.String Name 'get set' : 
+    Boolean ReadOnly 'get set' : 
+  Methods:
+    get_ReadOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ReadOnly(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Name(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Configurations(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Configurations(List`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    RenameComponent(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConfiguration(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetConfiguration(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.LibraryInterfaces.Collections.LibraryConfigurationList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String DefaultConfigName = (Default) : Public, Static, Literal, HasDefault
+  Properties:
+    System.Collections.Generic.List`1[IPS.LibraryInterfaces.Configurations.ILibraryConfiguration] LibraryConfigurations 'get set' : 
+  Methods:
+    get_LibraryConfigurations(): PrivateScope, Public, HideBySig, SpecialName
+    set_LibraryConfigurations(List`1): PrivateScope, Public, HideBySig, SpecialName
+    GetConfig(String): PrivateScope, Public, HideBySig
+    GetSelectedConfig(): PrivateScope, Public, HideBySig
+    RemoveConfig(String): PrivateScope, Public, HideBySig
+    RenameComponent(String, String): PrivateScope, Public, HideBySig
+Interface IPS.LibraryInterfaces.Configurations.IConfigurationSelection: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String ComponentConfigurationName 'get set' : 
+    System.String ComponentName 'get set' : 
+  Methods:
+    get_ComponentName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ComponentName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ComponentConfigurationName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ComponentConfigurationName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName

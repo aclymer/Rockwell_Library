@@ -1,0 +1,365 @@
+  IPS.Help.dll.licenses - Embedded, ContainedInManifestFile, 
+  IPSHelp.HelpMapEditor.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.Help, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly Infralution.Common, Version=3.10.3.0, Culture=neutral, PublicKeyToken=3e7e8e3744a5c13f: 
+	hash=None, flags=None
+Assembly Infralution.Controls, Version=3.10.3.0, Culture=neutral, PublicKeyToken=3e7e8e3744a5c13f: 
+	hash=None, flags=None
+Assembly Infralution.Controls.VirtualTree, Version=3.10.3.0, Culture=neutral, PublicKeyToken=3e7e8e3744a5c13f: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.PluginInterface, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Persistence, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class IPS.Help.CategoryMap: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String HelpTopicId 'get set' : 
+    System.String CategoryName 'get set' : 
+  Methods:
+    get_CategoryName(): PrivateScope, Public, HideBySig, SpecialName
+    set_CategoryName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_HelpTopicId(): PrivateScope, Public, HideBySig, SpecialName
+    set_HelpTopicId(String): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Help.ClassMap: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String ClassDisplayName 'get set' : 
+    System.String ClassDisplayCategory 'get set' : 
+    System.Collections.Generic.List`1[IPS.Help.PropertyMap] PropertyMaps 'get set' : 
+    System.String HelpTopicId 'get set' : 
+    System.String ClassName 'get set' : 
+  Methods:
+    get_ClassName(): PrivateScope, Public, HideBySig, SpecialName
+    set_ClassName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_HelpTopicId(): PrivateScope, Public, HideBySig, SpecialName
+    set_HelpTopicId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_PropertyMaps(): PrivateScope, Public, HideBySig, SpecialName
+    set_PropertyMaps(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_ClassDisplayCategory(): PrivateScope, Public, HideBySig, SpecialName
+    set_ClassDisplayCategory(String): PrivateScope, Public, HideBySig, SpecialName
+    get_ClassDisplayName(): PrivateScope, Public, HideBySig, SpecialName
+    set_ClassDisplayName(String): PrivateScope, Public, HideBySig, SpecialName
+    GetHelpTopicID(String): PrivateScope, Public, HideBySig
+Class IPS.Help.PropertyMap: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Enum PropertyType 'get set' UseProperty IsBoxed : 
+    System.String DisplayName 'get set' : 
+    System.String DisplayCategory 'get set' : 
+    System.String HelpTopicID 'get set' : 
+    System.String PropertyName 'get set' : 
+  Methods:
+    get_PropertyName(): PrivateScope, Public, HideBySig, SpecialName
+    set_PropertyName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_HelpTopicID(): PrivateScope, Public, HideBySig, SpecialName
+    set_HelpTopicID(String): PrivateScope, Public, HideBySig, SpecialName
+    get_DisplayCategory(): PrivateScope, Public, HideBySig, SpecialName
+    set_DisplayCategory(String): PrivateScope, Public, HideBySig, SpecialName
+    get_DisplayName(): PrivateScope, Public, HideBySig, SpecialName
+    set_DisplayName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_PropertyType(): PrivateScope, Public, HideBySig, SpecialName
+    set_PropertyType(Enum UseProperty IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Help.FileMap: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Collections.Generic.List`1[IPS.Help.CategoryMap] CategoryMaps 'get set' : 
+    System.Collections.Generic.List`1[IPS.Help.ClassMap] ClassMaps 'get set' : 
+  Methods:
+    get_ClassMaps(): PrivateScope, Public, HideBySig, SpecialName
+    set_ClassMaps(List`1): PrivateScope, Public, HideBySig, SpecialName
+    get_CategoryMaps(): PrivateScope, Public, HideBySig, SpecialName
+    set_CategoryMaps(List`1): PrivateScope, Public, HideBySig, SpecialName
+    GetClassHelpTopicID(String): PrivateScope, Public, HideBySig
+    GetCategoryHelpTopicID(String): PrivateScope, Public, HideBySig
+    GetPropertyHelpTopicID(String, String): PrivateScope, Public, HideBySig
+Class IPS.Help.HelpInterop: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 HH_DISPLAY_TOPIC = 0 : Public, Static, Literal, HasDefault
+    Int32 HH_DISPLAY_TOC = 1 : Public, Static, Literal, HasDefault
+    Int32 HH_DISPLAY_INDEX = 2 : Public, Static, Literal, HasDefault
+    Int32 HH_DISPLAY_SEARCH = 3 : Public, Static, Literal, HasDefault
+    Int32 HH_SET_WIN_TYPE = 4 : Public, Static, Literal, HasDefault
+    Int32 HH_GET_WIN_TYPE = 5 : Public, Static, Literal, HasDefault
+    Int32 HH_GET_WIN_HANDLE = 6 : Public, Static, Literal, HasDefault
+    Int32 HH_SYNC = 9 : Public, Static, Literal, HasDefault
+    Int32 HH_KEYWORD_LOOKUP = 13 : Public, Static, Literal, HasDefault
+    Int32 HH_DISPLAY_TEXT_POPUP = 14 : Public, Static, Literal, HasDefault
+    Int32 HH_HELP_CONTEXT = 15 : Public, Static, Literal, HasDefault
+    Int32 HH_CLOSE_ALL = 18 : Public, Static, Literal, HasDefault
+    Int32 HH_ALINK_LOOKUP = 19 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_PROPERTIES = 2 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_STYLES = 4 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_EXSTYLES = 8 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_RECT = 16 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_NAV_WIDTH = 32 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_SHOWSTATE = 64 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_INFOTYPES = 128 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_TB_FLAGS = 256 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_EXPANSION = 512 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_TABPOS = 1024 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_TABORDER = 2048 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_HISTORY_COUNT = 4096 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PARAM_CUR_TAB = 8192 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_AUTOHIDESHOW = 1 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_ONTOP = 2 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NOTITLEBAR = 4 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NODEF_STYLES = 8 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NODEF_EXSTYLES = 16 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TRI_PANE = 32 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NOTB_TEXT = 64 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_POST_QUIT = 128 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_AUTO_SYNC = 256 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TRACKING = 512 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_SEARCH = 1024 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_HISTORY = 2048 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_FAVORITES = 4096 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_CHANGE_TITLE = 8192 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NAV_ONLY_WIN = 16384 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_NO_TOOLBAR = 32768 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_MENU = 65536 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_ADVSEARCH = 131072 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_USER_POS = 262144 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM1 = 524288 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM2 = 1048576 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM3 = 2097152 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM4 = 4194304 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM5 = 8388608 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM6 = 16777216 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM7 = 33554432 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM8 = 67108864 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_PROP_TAB_CUSTOM9 = 134217728 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_TB_MARGIN = 268435456 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_EXPAND = 2 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_BACK = 4 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_FORWARD = 8 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_STOP = 16 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_REFRESH = 32 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_HOME = 64 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_SYNC = 2048 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_OPTIONS = 4096 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_PRINT = 8192 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_JUMP1 = 262144 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_JUMP2 = 524288 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_ZOOM = 1048576 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_TOC_NEXT = 2097152 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_BUTTON_TOC_PREV = 4194304 : Public, Static, Literal, HasDefault
+    Int32 HHWIN_DEF_BUTTONS = 12294 : Public, Static, Literal, HasDefault
+    Int32 IDTB_EXPAND = 200 : Public, Static, Literal, HasDefault
+    Int32 IDTB_CONTRACT = 201 : Public, Static, Literal, HasDefault
+    Int32 IDTB_STOP = 202 : Public, Static, Literal, HasDefault
+    Int32 IDTB_REFRESH = 203 : Public, Static, Literal, HasDefault
+    Int32 IDTB_BACK = 204 : Public, Static, Literal, HasDefault
+    Int32 IDTB_HOME = 205 : Public, Static, Literal, HasDefault
+    Int32 IDTB_SYNC = 206 : Public, Static, Literal, HasDefault
+    Int32 IDTB_PRINT = 207 : Public, Static, Literal, HasDefault
+    Int32 IDTB_OPTIONS = 208 : Public, Static, Literal, HasDefault
+    Int32 IDTB_FORWARD = 209 : Public, Static, Literal, HasDefault
+    Int32 IDTB_BROWSE_FWD = 211 : Public, Static, Literal, HasDefault
+    Int32 IDTB_BROWSE_BACK = 212 : Public, Static, Literal, HasDefault
+    Int32 IDTB_JUMP1 = 218 : Public, Static, Literal, HasDefault
+    Int32 IDTB_JUMP2 = 219 : Public, Static, Literal, HasDefault
+    Int32 IDTB_CUSTOMIZE = 221 : Public, Static, Literal, HasDefault
+    Int32 IDTB_ZOOM = 222 : Public, Static, Literal, HasDefault
+    Int32 IDTB_TOC_NEXT = 223 : Public, Static, Literal, HasDefault
+    Int32 IDTB_TOC_PREV = 224 : Public, Static, Literal, HasDefault
+  Methods:
+    HtmlHelp_IntPtr_Helper(Int32, String, UInt32, IntPtr&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp_UIntRef_Helper(Int32, String, UInt32, UInt32&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp_SetWinType_Helper(Int32, String, UInt32, HH_WINTYPE&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp_Popup_Helper(Int32, String, UInt32, HH_POPUP&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp_FTS_Helper(Int32, String, UInt32, HH_FTS_QUERY&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp_AKLookup_Helper(Int32, String(HasFieldMarshal), UInt32, HH_AKLINK&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp(Int32, String, UInt32, String): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    HtmlHelp(Int32, String, UInt32, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Struct IPS.Help.HelpInterop+NavTypes: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    NavTypes HHWIN_NAVTYPE_TOC = 0 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_INDEX = 1 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_SEARCH = 2 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_FAVORITES = 3 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_HISTORY = 4 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_AUTHOR = 5 : Public, Static, Literal, HasDefault
+    NavTypes HHWIN_NAVTYPE_CUSTOM_FIRST = 11 : Public, Static, Literal, HasDefault
+Struct IPS.Help.HelpInterop+NavTabs: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    NavTabs HHWIN_NAVTAB_TOP = 0 : Public, Static, Literal, HasDefault
+    NavTabs HHWIN_NAVTAB_LEFT = 1 : Public, Static, Literal, HasDefault
+    NavTabs HHWIN_NAVTAB_BOTTOM = 2 : Public, Static, Literal, HasDefault
+Struct IPS.Help.HelpInterop+TabIDs: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    TabIDs HH_TAB_CONTENTS = 0 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_INDEX = 1 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_SEARCH = 2 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_FAVORITES = 3 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_HISTORY = 4 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_AUTHOR = 5 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_CUSTOM_FIRST = 11 : Public, Static, Literal, HasDefault
+    TabIDs HH_TAB_CUSTOM_LAST = 19 : Public, Static, Literal, HasDefault
+    TabIDs HH_MAX_TABS_CUSTOM = 9 : Public, Static, Literal, HasDefault
+Struct IPS.Help.HelpInterop+Point: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 x : Public
+    Int32 y : Public
+Struct IPS.Help.HelpInterop+Rect: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 left : Public
+    Int32 top : Public
+    Int32 right : Public
+    Int32 bottom : Public
+Struct IPS.Help.HelpInterop+HH_WINTYPE: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 cbStruct : Public
+    Boolean fUniCodeStrings : Public, HasFieldMarshal
+    System.String pszType : Public, HasFieldMarshal
+    UInt32 fsValidMembers : Public
+    UInt32 fsWinProperties : Public
+    System.String pszCaption : Public, HasFieldMarshal
+    UInt32 dwStyles : Public
+    UInt32 dwExStyles : Public
+    System.ValueType rcWindowPos Rect IsBoxed : Public
+    Int32 nShowState : Public
+    Int32 hwndHelp : Public
+    Int32 hwndCaller : Public
+    Int32 paInfoTypes : Public
+    Int32 hwndToolBar : Public
+    Int32 hwndNavigation : Public
+    Int32 hwndHTML : Public
+    Int32 iNavWidth : Public
+    System.ValueType rcHTML Rect IsBoxed : Public
+    System.String pszToc : Public, HasFieldMarshal
+    System.String pszIndex : Public, HasFieldMarshal
+    System.String pszFile : Public, HasFieldMarshal
+    System.String pszHome : Public, HasFieldMarshal
+    UInt32 fsToolBarFlags : Public
+    Boolean fNotExpanded : Public, HasFieldMarshal
+    Int32 curNavType : Public
+    Int32 tabpos : Public
+    Int32 idNotify : Public
+    Byte[] tabOrder : Public, HasFieldMarshal
+    Int32 cHistory : Public
+    System.String pszJump1 : Public, HasFieldMarshal
+    System.String pszJump2 : Public, HasFieldMarshal
+    System.String pszUrlJump1 : Public, HasFieldMarshal
+    System.String pszUrlJump2 : Public, HasFieldMarshal
+    System.ValueType rcMinSize Rect IsBoxed : Public
+    Int32 cbInfoTypes : Public
+    Int32 pszCustomTabs : Public
+Struct IPS.Help.HelpInterop+HH_POPUP: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 cbStruct : Public
+    Int32 hinst : Public
+    UInt32 idString : Public
+    System.String pszText : Public, HasFieldMarshal
+    Point pt : Public
+    Int32 clrForeground : Public
+    Int32 clrBackground : Public
+    Rect rcMargins : Public
+    System.String pszFont : Public, HasFieldMarshal
+Struct IPS.Help.HelpInterop+HH_FTS_QUERY: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 cbStruct : Public
+    Boolean fUniCodeStrings : Public, HasFieldMarshal
+    System.String pszSearchQuery : Public, HasFieldMarshal
+    Int32 iProximity : Public
+    Boolean fStemmedSearch : Public, HasFieldMarshal
+    Boolean fTitleOnly : Public, HasFieldMarshal
+    Boolean fExecute : Public, HasFieldMarshal
+    System.String pszWindow : Public, HasFieldMarshal
+Struct IPS.Help.HelpInterop+HH_AKLINK: AutoLayout, AnsiClass, Class, NestedPublic, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 cbStruct : Public
+    Boolean fReserved : Public, HasFieldMarshal
+    System.String pszKeywords : Public, HasFieldMarshal
+    System.String pszUrl : Public, HasFieldMarshal
+    System.String pszMsgText : Public, HasFieldMarshal
+    System.String pszMsgTitle : Public, HasFieldMarshal
+    System.String pszWindow : Public, HasFieldMarshal
+    Boolean fIndexOnFail : Public, HasFieldMarshal
+Class IPS.Help.HelpManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    AddHelpSource(String, String, String, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ClearHelpSources(): PrivateScope, Public, HideBySig
+    GetHelpSource(String): PrivateScope, Public, HideBySig
+    GetAllHelpSources(): PrivateScope, Public, HideBySig
+    GetCategoryHelpTopicID(Assembly, String): PrivateScope, Public, HideBySig
+    GetClassHelpTopicID(Assembly, String): PrivateScope, Public, HideBySig
+    GetPropertyHelpTopicID(Assembly, String, String): PrivateScope, Public, HideBySig
+    GetPropertyHelpTopicID(PropertyDescriptor): PrivateScope, Public, HideBySig
+    GetFileMap(Assembly): PrivateScope, Public, HideBySig
+    GetFileMapWithDisplayNames(Assembly): PrivateScope, Public, HideBySig
+    SaveFileMap(Assembly): PrivateScope, Public, HideBySig
+    RefreshFileMap(Assembly): PrivateScope, Public, HideBySig
+    GenerateFileMap(Assembly, String, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    GetInstance(): PrivateScope, Public, Static, HideBySig
+Class IPS.Help.HelpSource: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Fields:
+    System.String DefaultPopupTopicsFile = Popup_topics.txt : Public, Static, Literal, HasDefault
+  Properties:
+    Boolean MainFile 'get set' : 
+    System.String Description 'get set' : 
+    System.String PopupTopicsFile 'get set' : 
+    System.String CHMFile 'get set' : 
+  Methods:
+    get_CHMFile(): PrivateScope, Public, HideBySig, SpecialName
+    set_CHMFile(String): PrivateScope, Public, HideBySig, SpecialName
+    get_PopupTopicsFile(): PrivateScope, Public, HideBySig, SpecialName
+    set_PopupTopicsFile(String): PrivateScope, Public, HideBySig, SpecialName
+    get_Description(): PrivateScope, Public, HideBySig, SpecialName
+    set_Description(String): PrivateScope, Public, HideBySig, SpecialName
+    get_MainFile(): PrivateScope, Public, HideBySig, SpecialName
+    set_MainFile(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    ShowHelp(): PrivateScope, Public, HideBySig
+    ShowTOC(): PrivateScope, Public, HideBySig
+    ShowSearch(): PrivateScope, Public, HideBySig
+    ShowIndex(String): PrivateScope, Public, HideBySig
+    ShowTopicLink(String): PrivateScope, Public, HideBySig
+    ShowTopicKeyword(String): PrivateScope, Public, HideBySig
+    ShowTopicALink(String): PrivateScope, Public, HideBySig
+    ShowPopup(UInt32, Control): PrivateScope, Public, HideBySig
+    ShowPopup(UInt32, Int32, Int32): PrivateScope, Public, HideBySig
+    CloseHelp(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.Help.HelpMapEditor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(System.Reflection.Assembly): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

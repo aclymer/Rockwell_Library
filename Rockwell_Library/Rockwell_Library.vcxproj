@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Rockwell_Library</ProjectName>
+    <ProjectGuid>{F8610126-1401-43C4-AF89-05EABCCAB840}</ProjectGuid>
+    <RootNamespace>Rockwell_Library</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>Pure</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>Pure</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>Pure</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>Pure</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\$(ConfigurationName)</OutDir>
+    <IntDir>$(OutDir)$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\$(ConfigurationName)</OutDir>
+    <IntDir>$(OutDir)$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>.\$(ConfigurationName)</OutDir>
+    <IntDir>$(OutDir)$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>.\$(ConfigurationName)</OutDir>
+    <IntDir>$(OutDir)$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;PROJECTTEMPLATE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>erase ..\..\LibraryReload\$(SolutionName)*.* /q
+rd ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+md ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+copy $(OutDir)\$(TargetFileName) ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(TargetFileName)
+copy $(OutDir)\$(ProjectName).pdb ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(ProjectName).pdb
+copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./inc;../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;PROJECTTEMPLATE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies />
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>No</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>erase ..\..\LibraryReload\$(SolutionName)*.* /q
+rd ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+md ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+copy $(OutDir)\$(TargetFileName) ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(TargetFileName)
+copy $(OutDir)\$(ProjectName).pdb ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(ProjectName).pdb
+copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;PROJECTTEMPLATE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>erase ..\..\LibraryReload\$(SolutionName)*.* /q
+rd ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+md ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+copy $(OutDir)\$(TargetFileName) ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(TargetFileName)
+copy $(OutDir)\$(ProjectName).pdb ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(ProjectName).pdb
+copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./inc;../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;PROJECTTEMPLATE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies />
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>No</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>erase ..\..\LibraryReload\$(SolutionName)*.* /q
+rd ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+md ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+copy $(OutDir)\$(TargetFileName) ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(TargetFileName)
+copy $(OutDir)\$(ProjectName).pdb ..\..\LibraryReload\$(SolutionName)\$(ProjectName)\$(ProjectName).pdb
+copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="DCS">
+      <HintPath>..\..\..\Library\DCS\DCS\DCS.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\PID.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\LIM.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\ABS.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Hidden\DCSLogicComponent.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Hidden\MathBase.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\CPT.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\SUB.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\ADD.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Hidden\ITimer.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\RET.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\Node.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Hidden\Timer.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\JSR.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\OTU.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\OTL.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\GEQ.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\LEQ.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\NEQ.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\TON.h" />
+    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundProperty.h" />
+    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundStringProperty.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\Rung.h" />
+    <ClInclude Include="inc\Rockwell_Library\Tasks\DCSLogicTask.h" />
+    <ClInclude Include="inc\Ports.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\MOV.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\XIO.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\OTE.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\OSR.h" />
+    <ClInclude Include="inc\Rockwell_Library\Tasks\DCSLogicTaskDrawingTextProvider.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\EQU.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\LES.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\GRT.h" />
+    <ClInclude Include="inc\Stdafx.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\COP.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\XIC.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\PID.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\LIM.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\ABS.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\ADD.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\CPT.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\SUB.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\RET.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\Node.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\JSR.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\COP.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Hidden\DCSLogicComponent.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\OTU.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\OTL.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\Rung.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\GEQ.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\LEQ.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\NEQ.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\TON.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Tasks\DCSLogicTask.cpp" />
+    <ClCompile Include="source\AssemblyInfo.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\MOV.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\XIO.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\OTE.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\OSR.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Tasks\DCSLogicTaskDrawingTextProvider.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\EQU.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\LES.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\GRT.cpp" />
+    <ClCompile Include="source\Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\XIC.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rockwell_Library.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,49 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.Collections, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Struct IPS.Collections.DoublePair: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Double Y   'get set' : 
+    Double X   'get set' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Double): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Collections.IntCollection: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[System.Int32]
+    Void .ctor(IPS.Collections.IntCollection): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    op_Assign(IntCollection IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    ToString(): PrivateScope, Public, Virtual, HideBySig
+Class IPS.Collections.ObjectCollection: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.List`1[System.Object]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String Name 'get set' : 
+  Methods:
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    set_Name(String): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Collections.StringCollection: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[System.String]
+    Void .ctor(IPS.Collections.StringCollection): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    op_Assign(StringCollection IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    SingleString(Int32, String): PrivateScope, Public, HideBySig
+    SingleString(Int32): PrivateScope, Public, HideBySig
+Class IPS.Collections.TypeDictionary: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.Dictionary`2[System.String,System.Type]
+    Void .ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

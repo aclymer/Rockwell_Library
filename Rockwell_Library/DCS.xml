@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<IPS>
+  <Library Name="IPS" Version="8.1.0.2387" />
+  <Library Name="DCS" Version="8.0.14.0" />
+  <Library Name="Library" Version="1.0.5540.0" />
+  <Library Name="Rockwell_Library" Version="1.0.5541.0" />
+  <Library Name="Flownex" Version="8.1.0.0" />
+  <Library Name="Flownex" Version="8.1.0.0" />
+  <Library Name="MemoryMap" Version="1.0.5511.0" />
+  <Library Name="IPS.Actions" Version="8.1.0.0" />
+  <Library Name="IPS.Alarms" Version="8.1.0.0" />
+  <Library Name="IPS.Backtracking" Version="8.1.0.0" />
+  <Library Name="IPS.DataTransfer" Version="8.1.0.0" />
+  <Library Name="IPS.Designer" Version="8.1.0.0" />
+  <Library Name="IPS.Excel" Version="8.1.0.0" />
+  <Library Name="IPS.ExcelReporting" Version="8.1.0.0" />
+  <Library Name="IPS.Exposers" Version="8.1.0.0" />
+  <Library Name="IPS.Logger" Version="8.1.0.0" />
+  <Library Name="IPS.Scheduler" Version="8.1.0.0" />
+  <Library Name="IPS.Scripting" Version="8.1.0.0" />
+  <Library Name="IPS.Tools" Version="8.1.0.0" />
+  <Library Name="IPS.TrainingEvaluation" Version="8.1.0.0" />
+  <Library Name="IPS.Visualisation" Version="8.1.0.0" />
+  <IPS.LibraryInterfaces.Collections.LibraryConfigurationList>
+    <List Name="LibraryConfigurations">
+      <System.Collections.Generic.List_HEX60_1>
+        <ListItems>
+          <IPS.LibraryProvider.Configurations.LibraryConfiguration>
+            <Properties>Name </Properties>
+            <Item Index="0">
+              <Values>  "(Default)" </Values>
+              <List Name="Configurations">
+                <System.Collections.Generic.List_HEX60_1>
+                  <ListItems>
+                    <IPS.LibraryProvider.Configurations.ConfigurationSelection>
+                      <Properties>ComponentConfigurationName ComponentName </Properties>
+                      <Item Index="0">
+                        <Values>  "Rockwell_Config" "On Delay Timer" </Values>
+                      </Item>
+                    </IPS.LibraryProvider.Configurations.ConfigurationSelection>
+                  </ListItems>
+                </System.Collections.Generic.List_HEX60_1>
+              </List>
+            </Item>
+          </IPS.LibraryProvider.Configurations.LibraryConfiguration>
+        </ListItems>
+      </System.Collections.Generic.List_HEX60_1>
+    </List>
+  </IPS.LibraryInterfaces.Collections.LibraryConfigurationList>
+</IPS>

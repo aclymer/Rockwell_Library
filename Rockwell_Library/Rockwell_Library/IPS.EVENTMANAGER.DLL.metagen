@@ -1,0 +1,71 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.EventManager, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Interface IPS.EventManager.Observe.IObservable: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    UpdateObservers(Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RegisterObserverManager(ObserverManager): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UnRegisterObserverManager(ObserverManager): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UnRegisterObserver(IObserver): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.EventManager.Observe.IObserver: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    OnUpdate(IObservable, Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UnRegisterObservable(IObservable): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RegisterObservable(IObservable): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.EventManager.EventSupressor: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    IsSignalled(): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.EventManager.ObserverManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    Register(IObservable, IObserver): PrivateScope, Public, HideBySig
+    RegisterMultipleObservers(IObservable, List`1): PrivateScope, Public, HideBySig
+    NotifyManager(IObservable, Object): PrivateScope, Public, HideBySig
+    UnRegister(IObservable): PrivateScope, Public, HideBySig
+    UnRegister(IObservable, IObserver): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.EventManager.ObserverManagerList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetObserverManagerList(): PrivateScope, Public, HideBySig
+Class IPS.EventManager.Observe.Observer<System::Object>: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.EventManager.Observe.IObserver
+    System.IDisposable
+  Methods:
+    OnUpdate(IObservable, Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RegisterObservable(IObservable): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnRegisterObservable(IObservable): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.EventManager.Observe.ObserverConcrete: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.EventManager.Observe.Observer<System::Object>
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class IPS.EventManager.Observe.Observable<System::Object>: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.EventManager.Observe.IObservable
+    System.IDisposable
+  Methods:
+    UpdateObservers(Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RegisterObserverManager(ObserverManager): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnRegisterObserverManager(ObserverManager): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnRegisterObserver(IObserver): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.EventManager.Observe.ObservableConcrete: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.EventManager.Observe.Observable<System::Object>
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

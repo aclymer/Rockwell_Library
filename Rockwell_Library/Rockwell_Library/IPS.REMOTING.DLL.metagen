@@ -1,0 +1,316 @@
+  IPS.Remoting.ConnectForm.resources - Embedded, ContainedInManifestFile, 
+  IPS.Remoting.SimulatorButtons.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.Remoting, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Errors, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.PluginInterface, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Utilities, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Users, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.EventManager, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Properties, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.LibraryInterfaces, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly IPS.Persistence, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Class IPS.Remoting.ConnectForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Int32 ServerPort 'get ' : 
+    System.String ServerIP 'get ' : 
+  Methods:
+    get_ServerIP(): PrivateScope, Public, HideBySig, SpecialName
+    get_ServerPort(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.ConnectForm+ServerConnection: AutoLayout, AnsiClass, Class, NestedPublic, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String RemotingPath 'get set' : 
+    Int32 ServerPort 'get set' : 
+    System.String ServerIP 'get set' : 
+  Methods:
+    get_ServerIP(): PrivateScope, Public, HideBySig, SpecialName
+    set_ServerIP(String): PrivateScope, Public, HideBySig, SpecialName
+    get_ServerPort(): PrivateScope, Public, HideBySig, SpecialName
+    set_ServerPort(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RemotingPath(): PrivateScope, Public, HideBySig, SpecialName
+    set_RemotingPath(String): PrivateScope, Public, HideBySig, SpecialName
+    ToString(): PrivateScope, Public, Virtual, HideBySig
+Class IPS.Remoting.Settings: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Fields:
+    System.String ProjectFilesChannel = IPSRemotingProjectFiles : Public, Static, Literal, HasDefault
+    System.String ProjectChannel = IPSRemotingProject : Public, Static, Literal, HasDefault
+  Properties:
+    Boolean FinishedLoading 'get set' : 
+    System.String RemoteProjectPath 'get set' : 
+    Int32 ServerPort 'get set' : 
+    System.String ServerIP 'get set' : 
+  Methods:
+    get_ServerIP(): PrivateScope, Public, HideBySig, SpecialName
+    set_ServerIP(String): PrivateScope, Public, HideBySig, SpecialName
+    get_ServerPort(): PrivateScope, Public, HideBySig, SpecialName
+    set_ServerPort(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RemoteProjectPath(): PrivateScope, Public, HideBySig, SpecialName
+    set_RemoteProjectPath(String): PrivateScope, Public, HideBySig, SpecialName
+    get_FinishedLoading(): PrivateScope, Public, HideBySig, SpecialName
+    set_FinishedLoading(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    GetInstance(): PrivateScope, Public, Static, HideBySig
+Class IPS.Remoting.ProjectFiles: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EnhancedMarshalByRefObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean FinishedCopying 'get ' : 
+  Methods:
+    GetProjectFileName(): PrivateScope, Public, HideBySig
+    get_FinishedCopying(): PrivateScope, Public, HideBySig, SpecialName
+    GetNextProjectFilesBatch(): PrivateScope, Public, HideBySig
+    GetProjectRevision(): PrivateScope, Public, HideBySig
+    Reset(): PrivateScope, Public, HideBySig
+    InitializeLifetimeService(): PrivateScope, Public, Virtual, HideBySig
+    GetErrors(): PrivateScope, Public, HideBySig
+Struct IPS.Remoting.SubscriptionIdentifier: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, Serializable, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    IPS.Core.PropertyTypes PropType : Public
+    Int32 Index : Public
+    IPS.Properties.IProperty Property : Public
+Class IPS.Remoting.SimulatorButtons: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.ToolStrip
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.ToolStripButton SolveSteadyStateButton : Public
+    System.Windows.Forms.ToolStripButton RunButton : Public
+    System.Windows.Forms.ToolStripButton PauseButton : Public
+    System.Windows.Forms.ToolStripButton StepButton : Public
+    System.Windows.Forms.ToolStripButton ActivateButton : Public
+    System.Windows.Forms.ToolStripButton DeactivateButton : Public
+    System.Windows.Forms.ToolStripButton ResetTimeButton : Public
+    System.Windows.Forms.ToolStripButton FindDialogButton : Public
+  Events:
+    System.EventHandler FindDialog: SpecialName
+    System.EventHandler ResetTime: SpecialName
+    System.EventHandler StepSim: SpecialName
+    System.EventHandler SolveSteadyState: SpecialName
+    System.EventHandler PauseSim: SpecialName
+    System.EventHandler RunSim: SpecialName
+    System.EventHandler DeactivateSim: SpecialName
+    System.EventHandler ActivateSim: SpecialName
+  Methods:
+    add_ActivateSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_ActivateSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_DeactivateSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_DeactivateSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_RunSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_RunSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_PauseSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_PauseSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_SolveSteadyState(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_SolveSteadyState(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_StepSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_StepSim(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_ResetTime(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_ResetTime(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    add_FindDialog(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_FindDialog(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.SubscribedProperties: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(IPS.Core.Component, IPS.Properties.IProperty, System.EventHandler): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.EventHandler Ev 'get set' : 
+    IPS.Core.Component Comp 'get set' : 
+    IPS.Properties.IProperty Prop 'get set' : 
+  Methods:
+    get_Prop(): PrivateScope, Public, HideBySig, SpecialName
+    set_Prop(IProperty): PrivateScope, Public, HideBySig, SpecialName
+    get_Comp(): PrivateScope, Public, HideBySig, SpecialName
+    set_Comp(Component): PrivateScope, Public, HideBySig, SpecialName
+    get_Ev(): PrivateScope, Public, HideBySig, SpecialName
+    set_Ev(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.RemoteObjects.AfterRemoteUpdatedDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface IPS.Remoting.RemoteObjects.RemotelySynchable: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    BeforeRemoteUpdate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AfterRemoteUpdated(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SyncInGUIThread(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.Remoting.Messaging.ServerMessage: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(IPS.Server.ServerMessagesEnum, System.Object): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(IPS.Server.ServerMessagesEnum): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Object Data 'get set' : 
+    IPS.Server.ServerMessagesEnum MessageType 'get set' : 
+  Methods:
+    get_MessageType(): PrivateScope, Public, HideBySig, SpecialName
+    set_MessageType(ServerMessagesEnum): PrivateScope, Public, HideBySig, SpecialName
+    get_Data(): PrivateScope, Public, HideBySig, SpecialName
+    set_Data(Object): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.Messaging.SaveSnapMessageData: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.String, Boolean, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean Threaded 'get set' : 
+    Boolean AutoSave 'get set' : 
+    System.String FileName 'get set' : 
+  Methods:
+    get_FileName(): PrivateScope, Public, HideBySig, SpecialName
+    set_FileName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_AutoSave(): PrivateScope, Public, HideBySig, SpecialName
+    set_AutoSave(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_Threaded(): PrivateScope, Public, HideBySig, SpecialName
+    set_Threaded(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.Messaging.LoadSnapMessageData: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.String, IPS.Properties.SnapPropertyLoadingModes): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Properties.SnapPropertyLoadingModes PropertyLoadingMode 'get set' : 
+    System.String FileName 'get set' : 
+  Methods:
+    get_FileName(): PrivateScope, Public, HideBySig, SpecialName
+    set_FileName(String): PrivateScope, Public, HideBySig, SpecialName
+    get_PropertyLoadingMode(): PrivateScope, Public, HideBySig, SpecialName
+    set_PropertyLoadingMode(SnapPropertyLoadingModes): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.Messaging.LoadSerializedDataDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(RemotelySynchable): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(RemotelySynchable, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Remoting.Messaging.RefreshCopyObjectMessageData: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.String, IPS.Remoting.RemoteObjects.RemotelySynchable): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String MessageSource 'get set' : 
+    System.String SerializedData 'get set' : 
+    System.String Identifier 'get set' : 
+  Methods:
+    get_Identifier(): PrivateScope, Public, HideBySig, SpecialName
+    set_Identifier(String): PrivateScope, Public, HideBySig, SpecialName
+    get_SerializedData(): PrivateScope, Public, HideBySig, SpecialName
+    set_SerializedData(String): PrivateScope, Public, HideBySig, SpecialName
+    get_MessageSource(): PrivateScope, Public, HideBySig, SpecialName
+    set_MessageSource(String): PrivateScope, Public, HideBySig, SpecialName
+    LoadSerializedData(RemotelySynchable): PrivateScope, Public, HideBySig
+Class IPS.Remoting.Messaging.LoadedSnapMessageData: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String FileName 'get set' : 
+    System.String Message 'get set' : 
+  Methods:
+    get_Message(): PrivateScope, Public, HideBySig, SpecialName
+    set_Message(String): PrivateScope, Public, HideBySig, SpecialName
+    get_FileName(): PrivateScope, Public, HideBySig, SpecialName
+    set_FileName(String): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.Messaging.SavedSnapMessageData: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String FileName 'get set' : 
+    System.String Message 'get set' : 
+  Methods:
+    get_Message(): PrivateScope, Public, HideBySig, SpecialName
+    set_Message(String): PrivateScope, Public, HideBySig, SpecialName
+    get_FileName(): PrivateScope, Public, HideBySig, SpecialName
+    set_FileName(String): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Remoting.RemotingClient: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.String ClientGUID 'get ' : 
+    Boolean IsConnected 'get ' : 
+    System.String FullRemoteProjectPath 'get ' : 
+    System.String CopiedProjectFileName 'get ' : 
+  Events:
+    System.EventHandler ServerProjectChanged: SpecialName
+  Methods:
+    GetInstance(): PrivateScope, Public, Static, HideBySig
+    DestroyInstance(): PrivateScope, Public, Static, HideBySig
+    get_CopiedProjectFileName(): PrivateScope, Public, HideBySig, SpecialName
+    get_FullRemoteProjectPath(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsConnected(): PrivateScope, Public, HideBySig, SpecialName
+    get_ClientGUID(): PrivateScope, Public, HideBySig, SpecialName
+    add_ServerProjectChanged(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_ServerProjectChanged(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    CopyProjectFromServer(): PrivateScope, Public, HideBySig
+    SaveCopiedRevision(): PrivateScope, Public, HideBySig
+    Connect(String, Int32): PrivateScope, Public, HideBySig
+    Disconnect(): PrivateScope, Public, HideBySig
+    SyncSimulationStateToServer(): PrivateScope, Public, HideBySig
+    SubscribeComponents(ComponentList): PrivateScope, Public, HideBySig
+    UnsubscribeComponents(ComponentList): PrivateScope, Public, HideBySig
+    GetSimulatorButtons(): PrivateScope, Public, HideBySig
+    DispatchMessageToServer(IRemotingMessage): PrivateScope, Public, HideBySig
+    GetServerObject(String, Type): PrivateScope, Public, HideBySig
+    SyncSimulationTime(): PrivateScope, Public, HideBySig
+    OnServerProjectChanged(EventArgs): PrivateScope, Public, HideBySig
+    UpdateProperties(): PrivateScope, Public, HideBySig
+    UpdatePropertiesIfDataChanged(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.Remoting.Messaging.Message: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+    Void .ctor(System.Enum, System.Type, System.Object): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.Type, System.Object): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(IPS.Core.Identifier, System.Object): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Remoting.IRemotingMessage
+  Properties:
+    System.Object MessageContents 'get set' : 
+    System.Type TargetType 'get set' : 
+    System.Enum TargetIdType 'get set' IdentifierType IsBoxed : 
+    IPS.Core.Identifier Target 'get set' : 
+  Methods:
+    get_Target(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Target(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_TargetIdType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_TargetIdType(Enum IdentifierType IsBoxed): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_TargetType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_TargetType(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_MessageContents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_MessageContents(Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Class IPS.Remoting.RemotingServer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EnhancedMarshalByRefObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Remoting.IRemotingServer
+  Methods:
+    StartListen(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    StopListen(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    DispatchMessageToClients(IRemotingMessage): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetNewMessages(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RegisterClient(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    UnregisterClient(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+Class IPS.Remoting.RemoteObjects.RemoteObjectsManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    GetInstance(): PrivateScope, Public, Static, HideBySig
+    DestroyIntance(): PrivateScope, Public, Static, HideBySig
+    RegisterRemotingObject(String, Object): PrivateScope, Public, HideBySig
+    UnregisterRemotingObject(String, Object): PrivateScope, Public, HideBySig
+    RegisterRemotingCopyObject(String, RemotelySynchable): PrivateScope, Public, HideBySig
+    RefreshCopyObject(String): PrivateScope, Public, HideBySig
+    UpdateLocalCopyObject(RefreshCopyObjectMessageData): PrivateScope, Public, HideBySig
+    UnregisterRemotingCopyObject(String): PrivateScope, Public, HideBySig

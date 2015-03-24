@@ -1,0 +1,1810 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly IPS.Core, Version=8.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class IPS.Core.IPSVersion: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Version Version : Public, Static
+    System.String VersionString = 8.1.0.2387 : Public, Static, Literal, HasDefault
+  Properties:
+    System.String VersionStringWithSP 'get ' : 
+  Methods:
+    get_VersionStringWithSP(): PrivateScope, Public, Static, HideBySig, SpecialName
+Interface IPS.Core.Application: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.Project Project 'get ' : 
+    Boolean Visible 'get set' : 
+  Methods:
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Visible(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Project(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ConnectAsRemoteStation(String, Int32, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    OpenProject(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    OpenProject(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewProject(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CloseProject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveProject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetGUIController(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Exit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.Blueprint: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 RevisionNumber 'get set' : 
+    IPS.Core.ExposedPropertyList ExposedProperties 'get ' : 
+    IPS.Core.CompositePage Page 'get ' : 
+  Methods:
+    get_Page(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ExposedProperties(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RevisionNumber(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_RevisionNumber(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Property: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.PropertyTypes PropertyType 'get ' : 
+    Boolean Visible 'get set' : 
+    Boolean Enabled 'get set' : 
+    System.Object ValueAsObject 'get set' : 
+  Methods:
+    get_ValueAsObject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ValueAsObject(Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Enabled(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Enabled(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Visible(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PropertyType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Bool: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Property
+  Properties:
+    Boolean Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Struct IPS.Core.PropertyTypes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.PropertyTypes Double = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.PropertyTypes Integer = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.PropertyTypes Boolean = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.PropertyTypes String = 3 : Public, Static, Literal, HasDefault
+    IPS.Core.PropertyTypes Object = 4 : Public, Static, Literal, HasDefault
+    IPS.Core.PropertyTypes ComplexDouble = 5 : Public, Static, Literal, HasDefault
+Struct IPS.Core.ComplexDoubleValue: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, Serializable, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(Double, Double, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Double, Double): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Double Arg 'get set' : 
+    Double Mod 'get set' : 
+    Double Img 'get set' : 
+    Double Re  'get set' : 
+  Methods:
+    get_Re(): PrivateScope, Public, HideBySig, SpecialName
+    set_Re(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Img(): PrivateScope, Public, HideBySig, SpecialName
+    set_Img(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Mod(): PrivateScope, Public, HideBySig, SpecialName
+    set_Mod(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_Arg(): PrivateScope, Public, HideBySig, SpecialName
+    set_Arg(Double): PrivateScope, Public, HideBySig, SpecialName
+    Parse(String): PrivateScope, Public, Static, HideBySig
+    ToString(String): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+    ToString(): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Equality(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_Inequality(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_Inequality(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_GreaterThan(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_GreaterThan(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_LessThan(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_LessThan(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_AdditionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Addition(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_SubtractionAssignment(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_SubtractionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Subtraction(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Subtraction(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_MultiplicationAssignment(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_MultiplicationAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_Multiply(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_DivisionAssignment(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    op_DivisionAssignment(Double): PrivateScope, Public, HideBySig, SpecialName
+    op_Division(Int32, ComplexDoubleValue&): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(ComplexDoubleValue&, Double): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(Double, ComplexDoubleValue&): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(ComplexDoubleValue&): PrivateScope, Public, HideBySig, SpecialName
+    Sqrt(ComplexDoubleValue&): PrivateScope, Public, Static, HideBySig
+    Conjugate(): PrivateScope, Public, HideBySig
+    Reciprocal(): PrivateScope, Public, HideBySig
+    SetCartesian(Double, Double): PrivateScope, Public, HideBySig
+    SetPolar(Double, Double): PrivateScope, Public, HideBySig
+Interface IPS.Core.ComplexDouble: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Property
+  Properties:
+    Double Arg 'get set' : 
+    Double Mod 'get set' : 
+    Double Img 'get set' : 
+    Double Re  'get set' : 
+    System.String DisplayUnitText 'get ' : 
+    IPS.Core.ComplexDoubleValue DisplayUnitValue 'get set' : 
+    IPS.Core.ComplexDoubleValue Value 'get set' : 
+  Methods:
+    set_Value(ComplexDoubleValue): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DisplayUnitValue(ComplexDoubleValue): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayUnitValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayUnitText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Re(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Re(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Img(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Img(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Mod(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Mod(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Arg(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Arg(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Identifiable: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.Identifier Identifier 'get ' : 
+  Methods:
+    get_Identifier(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Identifier: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.IEquatable`1[IPS.Core.Identifier]
+  Properties:
+    IPS.Core.IdentifierType IDType 'get set' : 
+    System.String Value 'get set' : 
+  Events:
+    System.EventHandler ValueChanged: SpecialName
+  Methods:
+    Equals(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    add_ValueChanged(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_ValueChanged(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    FireValueChanged(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IDType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IDType(IdentifierType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.UserDescription: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.DrawingDataList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.DrawingData]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    AddRange(GroupDrawingDataList): PrivateScope, Public, HideBySig
+    AddRange(LinkDrawingDataList): PrivateScope, Public, HideBySig
+    AddRange(ComponentDrawingDataList): PrivateScope, Public, HideBySig
+    GetComponentDrawingDatas(): PrivateScope, Public, HideBySig
+    GetLinkDrawingDatas(): PrivateScope, Public, HideBySig
+    GetGroupDrawingDatas(): PrivateScope, Public, HideBySig
+    RemoveDrawingDatas(Type): PrivateScope, Public, HideBySig
+Interface IPS.Core.Element: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Identifiable
+  Properties:
+    IPS.Core.DrawingDataList DrawingDatas 'get ' : 
+    IPS.Core.UserDescription UserDescription 'get set' : 
+  Methods:
+    get_UserDescription(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_UserDescription(UserDescription): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetPropertyFromPropID(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromDisplayName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromFullDisplayName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetProperties(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyIdentifiers(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyDisplayData(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFullDisplayName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetIdentiferAndDescription(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_DrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Component: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    Boolean MultiViewSupport 'get ' : 
+    System.String TypeName 'get ' : 
+    System.String AssemblyFullName 'get ' : 
+    System.String LibraryHelpTopicID 'get ' : 
+    System.String LibraryDescription 'get ' : 
+    System.String LibraryName 'get ' : 
+    Int32 Order 'get ' : 
+    System.String DefaultImageName 'get ' : 
+    Boolean RelativeSize 'get ' : 
+    System.Drawing.SizeF DefaultSize 'get ' : 
+    IPS.Core.PortList Ports 'get ' : 
+  Methods:
+    get_Ports(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RelativeSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DefaultImageName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Order(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryDescription(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryHelpTopicID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AssemblyFullName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TypeName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_MultiViewSupport(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    PortByName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponents(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponentsByType(Type, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponentsByType(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDrawingData(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDrawingData(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Struct IPS.Core.IdentifierType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.IdentifierType COMPONENT = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.IdentifierType LINK = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.IdentifierType TASK = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.IdentifierType DATAREFERENCE = 3 : Public, Static, Literal, HasDefault
+    IPS.Core.IdentifierType UNKNOWN = 4 : Public, Static, Literal, HasDefault
+Interface IPS.Core.DrawingData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 zOrder 'get set' : 
+    IPS.Core.Element Element 'get ' : 
+  Methods:
+    get_Element(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_zOrder(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_zOrder(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.ComponentDrawingData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.DrawingData
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    System.String ConfigName 'get set' : 
+    Boolean FlipY 'get set' : 
+    Boolean FlipX 'get set' : 
+    Single Rotation 'get set' : 
+    System.Drawing.PointF CenterPoint 'get set' : 
+    System.Drawing.SizeF Center 'get set' : 
+    System.Drawing.SizeF Size 'get set' : 
+    IPS.Core.Component Component 'get ' : 
+  Methods:
+    get_Component(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Size(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Size(SizeF): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Center(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Center(SizeF): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CenterPoint(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_CenterPoint(PointF): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Rotation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Rotation(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FlipX(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FlipX(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FlipY(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FlipY(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ConfigName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ConfigName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    IsFlipped(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetComponentWithNoEvents(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetComponentWithChangedEventOnly(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.DrawingDataCollection: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    IPS.Core.DrawingData Item [Int32] 'get set' : 
+  Methods:
+    get_Item(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Item(Int32, DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.ComponentDrawingDataList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.ComponentDrawingData]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.DrawingDataCollection
+  Methods:
+    GetComponentDrawingDatas(Identifier): PrivateScope, Public, HideBySig
+Class IPS.Core.Debug: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Assert(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Assert(Boolean(HasFieldMarshal), String): PrivateScope, Public, Static, HideBySig
+Interface IPS.Core.ElementList: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    IPS.Core.Element Item [Int32] 'get set' : 
+  Methods:
+    AddElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetElement(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Item(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Item(Int32, Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.ComponentList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Component]
+    Void .ctor(System.Collections.Generic.IEnumerable`1[IPS.Core.Component]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.ElementList
+  Methods:
+    AddElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetElement(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddComponent(Component): PrivateScope, Public, HideBySig
+    GetComponent(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Class IPS.Core.ExposedPropertiesMap: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.Dictionary`2[System.String,System.Collections.Generic.Dictionary`2[IPS.Core.PropertyIdentity,System.Object]]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface IPS.Core.Composite: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Component
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    Boolean RefreshProps 'get set' : 
+    Int32 RevisionNumber 'get set' : 
+    IPS.Core.ComponentDrawingDataList InternalCompositeDrawingDatas 'get ' : 
+    System.Collections.Generic.List`1[System.String] InnerCompositeTypes 'get ' : 
+    IPS.Core.LinkList InnerLinks 'get ' : 
+    IPS.Core.ComponentList InnerComponents 'get ' : 
+    System.Collections.Generic.Dictionary`2[System.String,System.String] LinkNamesMap 'get ' : 
+    System.Collections.Generic.Dictionary`2[System.String,System.String] ComponentNamesMap 'get ' : 
+    IPS.Core.Blueprint Blueprint 'get ' : 
+  Methods:
+    get_Blueprint(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ComponentNamesMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LinkNamesMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InnerComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InnerLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InnerCompositeTypes(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InternalCompositeDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RevisionNumber(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_RevisionNumber(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RefreshProps(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_RefreshProps(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Load(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Synchronize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CreateExposedPorts(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    PortByName(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    PortByInnerPort(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    HasInnerComponent(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    BuildExposedPropertiesMap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SyncExposedPropertiesMap(ExposedPropertiesMap): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CreateInternalComposites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ClearInternalComposites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetCompositeProperties(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.Page: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    Boolean FloatOnly 'get set' : 
+    Boolean OperatorFloatByDefault 'get set' : 
+    Boolean InstructorFloatByDefault 'get set' : 
+    Boolean FloatByDefault 'get set' : 
+    Boolean IsManaged 'get ' : 
+    Boolean IsReadOnly 'get set' : 
+    Boolean PersistInSnap 'get ' : 
+    Boolean IsModified 'get set' : 
+    System.String FullPath 'get ' : 
+  Methods:
+    get_FullPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsModified(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsModified(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PersistInSnap(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsReadOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsReadOnly(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsManaged(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FloatByDefault(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FloatByDefault(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InstructorFloatByDefault(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_InstructorFloatByDefault(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OperatorFloatByDefault(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_OperatorFloatByDefault(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FloatOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FloatOnly(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    LoadFinished(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Closing(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Save(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Save(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Rename(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.DrawingDataContainer: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    AddDrawingData(DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDrawingDataOnly(DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDrawingData(DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ContainsDrawingData(DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.DrawingPage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Page
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    IPS.Core.DrawingDataContainer
+  Properties:
+    System.String SystemName 'get set' : 
+    Single Width 'get set' : 
+    Single Height 'get set' : 
+    System.Drawing.SizeF Size 'get set' : 
+    Single ScaleY 'get set' : 
+    Single ScaleX 'get set' : 
+    System.Drawing.Point ViewPortOrigin 'get set' : 
+    IPS.Core.LinkList PortExposerLinks 'get ' : 
+    IPS.Core.LinkList InnerLinks 'get ' : 
+    IPS.Core.LinkList Links 'get ' : 
+    IPS.Core.ComponentList Composites 'get ' : 
+    IPS.Core.ComponentList InnerComponents 'get ' : 
+    IPS.Core.ComponentList Components 'get ' : 
+    IPS.Core.LayerDrawingData ActiveLayer 'get set' : 
+    IPS.Core.LayerDrawingDataList LayerDrawingDatas 'get ' : 
+    System.String NameOnly 'get ' : 
+  Methods:
+    get_NameOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LayerDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ActiveLayer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ActiveLayer(LayerDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Components(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InnerComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Composites(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Links(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InnerLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PortExposerLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ViewPortOrigin(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ViewPortOrigin(Point): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ScaleX(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ScaleX(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ScaleY(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ScaleY(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Size(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Size(SizeF): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Height(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Height(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Width(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AddLayerDrawingData(LayerDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLayerDrawingData(LayerDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDatasFromId(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkDrawingDataFromId(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetGroupDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetGroupDrawingDataFromId(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_SystemName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SystemName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    HasInclude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    HasExclude(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.CompositePage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.DrawingPage
+    IPS.Core.Page
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    IPS.Core.DrawingDataContainer
+  Properties:
+    System.Windows.Forms.FormBorderStyle BorderStyle 'get set' : 
+    Int32 yPosition 'get set' : 
+    Int32 xPosition 'get set' : 
+    Boolean ShouldPosition 'get set' : 
+    Boolean AutoFit 'get set' : 
+    System.Collections.Generic.Dictionary`2[IPS.Core.PortExposerLink,System.String] OriginalPortNames 'get ' : 
+    IPS.Core.GroupDrawingDataList GroupDrawingDatas 'get ' : 
+    IPS.Core.LinkDrawingDataList LinkDrawingDatas 'get ' : 
+    IPS.Core.ComponentDrawingDataList ComponentDrawingDatas 'get ' : 
+  Methods:
+    get_ComponentDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LinkDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GroupDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OriginalPortNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AutoFit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_AutoFit(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ShouldPosition(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ShouldPosition(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_xPosition(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_xPosition(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_yPosition(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_yPosition(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_BorderStyle(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_BorderStyle(FormBorderStyle): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Leaving(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveAllDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.CompositeProperty: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.ExposedProperty ExposedProp 'get ' : 
+    System.String ParentName 'get ' : 
+  Methods:
+    get_ParentName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ExposedProp(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetParentNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.Core.CompositePropertyList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.ComponentModel.BindingList`1[IPS.Core.CompositeProperty]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface IPS.Core.Compound: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Composite
+    IPS.Core.Component
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    IPS.Core.LinkList DirectlyUnderlyingLinks 'get ' : 
+    IPS.Core.ComponentList DirectlyUnderlyingComponents 'get ' : 
+  Methods:
+    get_DirectlyUnderlyingComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DirectlyUnderlyingLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.CompoundPage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.CompositePage
+    IPS.Core.DrawingPage
+    IPS.Core.Page
+    IPS.Core.Element
+    IPS.Core.Identifiable
+    IPS.Core.DrawingDataContainer
+  Properties:
+    System.String LibraryItemName 'get ' : 
+    System.String LibraryName 'get ' : 
+  Methods:
+    get_LibraryName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryItemName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.DataReference: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    Int32 Order 'get ' : 
+    System.String Description 'get set' : 
+    System.String Category 'get set' : 
+  Methods:
+    get_Category(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Category(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Description(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Description(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Order(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Load(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Edit(String, Project): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Save(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ParseName(String, String&, String&, String&): PrivateScope, Public, Static, HideBySig
+    FullName(String, String, String): PrivateScope, Public, Static, HideBySig
+Interface IPS.Core.DataReferenceProvider: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    GetDataReference(Type, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetDataReference(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCategory(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDescription(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CopyDescription(String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    MoveDescription(String, String, String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    MoveCategory(String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RenameDataReference(String, String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RenameDataReferenceCategory(String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeleteDataReference(String, String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeleteDataReferenceCategory(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDataReferenceCategory(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDataReference(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.List: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    System.Object Item [Int32] 'get set' : 
+  Methods:
+    get_Item(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Item(Int32, Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.PageList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Page]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.List
+Class IPS.Core.DirectoryList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Directory]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class IPS.Core.Directory: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.PageList Pages 'get ' : 
+    IPS.Core.DirectoryList Directories 'get ' : 
+    System.String Name 'get set' : 
+  Methods:
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    set_Name(String): PrivateScope, Public, HideBySig, SpecialName
+    get_Directories(): PrivateScope, Public, HideBySig, SpecialName
+    get_Pages(): PrivateScope, Public, HideBySig, SpecialName
+    GetComponentDrawingDatas(): PrivateScope, Public, HideBySig
+    GetLinkDrawingDatas(): PrivateScope, Public, HideBySig
+Interface IPS.Core.GraphPage: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Page
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    IPS.Core.ComponentDrawingData GraphDrawingData 'get ' : 
+  Methods:
+    get_GraphDrawingData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.LinkDrawingDataList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.LinkDrawingData]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.DrawingDataCollection
+  Methods:
+    GetLinkDrawingData(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Interface IPS.Core.Double: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Property
+  Properties:
+    System.String DisplayUnitText 'get ' : 
+    Double DisplayUnitValue 'get set' : 
+    Double Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DisplayUnitValue(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayUnitValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayUnitText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.GroupDrawingDataList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.GroupDrawingData]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.DrawingDataCollection
+  Methods:
+    GetGroupDrawingData(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Interface IPS.Core.LinkDrawingData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.DrawingData
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    Boolean IsCompoundLink 'get set' : 
+    Single FadeWidth 'get set' : 
+    Single ShadowScale 'get set' : 
+    Single ShadowYOffset 'get set' : 
+    Single ShadowXOffset 'get set' : 
+    System.Drawing.Color ShadowColor 'get set' : 
+    IPS.Core.ShadowType Shadow 'get set' : 
+    IPS.Core.ArrowHeadShape EndShape 'get set' : 
+    IPS.Core.ArrowHeadShape StartShape 'get set' : 
+    Single ArrowSize 'get set' : 
+    IPS.Core.LinkType LinkType 'get set' : 
+    System.Collections.Generic.List`1[System.Drawing.SizeF] Points 'get set' : 
+    System.Drawing.Drawing2D.DashStyle Pattern 'get set' : 
+    System.Drawing.Color Color 'get set' : 
+    Single Width 'get set' : 
+    Boolean IsAcrossPages 'get set' : 
+    Boolean IsOnStartPage 'get set' : 
+    IPS.Core.ComponentDrawingData ViewTo 'get set' : 
+    IPS.Core.ComponentDrawingData ViewFrom 'get set' : 
+    IPS.Core.Link Link 'get set' : 
+  Methods:
+    get_Link(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Link(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ViewFrom(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ViewFrom(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ViewTo(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ViewTo(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsOnStartPage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsOnStartPage(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsAcrossPages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsAcrossPages(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Width(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Color(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Color(Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Pattern(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Pattern(DashStyle): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Points(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Points(List`1): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LinkType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_LinkType(LinkType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ArrowSize(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ArrowSize(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_StartShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_StartShape(ArrowHeadShape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_EndShape(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_EndShape(ArrowHeadShape): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Shadow(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Shadow(ShadowType): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ShadowColor(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ShadowColor(Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ShadowXOffset(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ShadowXOffset(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ShadowYOffset(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ShadowYOffset(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ShadowScale(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ShadowScale(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FadeWidth(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FadeWidth(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsCompoundLink(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsCompoundLink(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.GroupDrawingData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.DrawingData
+    IPS.Core.DrawingDataContainer
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    IPS.Core.GroupDrawingDataList GroupDrawingDatas 'get ' : 
+    IPS.Core.LinkDrawingDataList LinkDrawingDatas 'get ' : 
+    IPS.Core.ComponentDrawingDataList ComponentDrawingDatas 'get ' : 
+    IPS.Core.Page ParentPage 'get set' : 
+  Methods:
+    get_ParentPage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ParentPage(Page): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ComponentDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LinkDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GroupDrawingDatas(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    AddComponentDrawingData(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddComponentDrawingDataOnly(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponentDrawingData(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLinkDrawingData(LinkDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLinkDrawingData(LinkDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddGroupDrawingData(GroupDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveGroupDrawingData(GroupDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDatas(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDatasFromId(Identifier, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkDrawingDatas(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkDrawingDataFromId(Identifier, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetGroupDrawingDatas(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetGroupDrawingDataFromId(Identifier, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Struct IPS.Core.ShadowType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.ShadowType NONE = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.ShadowType SOLID = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.ShadowType BLUR = 2 : Public, Static, Literal, HasDefault
+Struct IPS.Core.LinkType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.LinkType HV = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.LinkType POLY = 1 : Public, Static, Literal, HasDefault
+Struct IPS.Core.ArrowHeadShape: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.ArrowHeadShape None = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape Arrow = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape Circle = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape ClosedFork = 3 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape DoubleArrow = 4 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape Fork = 5 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape Losangle = 6 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape Many = 7 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape ManyOptional = 8 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape One = 9 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape OneOptional = 10 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape OneOrMany = 11 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape OpenedArrow = 12 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape QuillArrow = 13 : Public, Static, Literal, HasDefault
+    IPS.Core.ArrowHeadShape SunkenArrow = 14 : Public, Static, Literal, HasDefault
+Class IPS.Core.EnhancedMarshalByRefObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.MarshalByRefObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    InitializeLifetimeService(): PrivateScope, Public, Virtual, HideBySig
+    StopRenew(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.Core.EventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.EventArgs
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String CancelMessage 'get set' : 
+    Boolean Cancel 'get set' : 
+  Methods:
+    get_Cancel(): PrivateScope, Public, HideBySig, SpecialName
+    set_Cancel(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CancelMessage(): PrivateScope, Public, HideBySig, SpecialName
+    set_CancelMessage(String): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.ComponentEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.Component): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.Component Component 'get ' : 
+  Methods:
+    get_Component(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.LinkEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.Link): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.Link Link 'get ' : 
+  Methods:
+    get_Link(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.SnapEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String, Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String ExportImportFolder 'get ' : 
+    Boolean ProjectLoading 'get ' : 
+    System.String SnapFile 'get ' : 
+  Methods:
+    get_SnapFile(): PrivateScope, Public, HideBySig, SpecialName
+    get_ProjectLoading(): PrivateScope, Public, HideBySig, SpecialName
+    get_ExportImportFolder(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.LinkConnectionEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.LinkEventArgs
+    Void .ctor(IPS.Core.Link, IPS.Core.Port, IPS.Core.Port): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.Port NewEndPort 'get ' : 
+    IPS.Core.Port NewStartPort 'get ' : 
+  Methods:
+    get_NewStartPort(): PrivateScope, Public, HideBySig, SpecialName
+    get_NewEndPort(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.TaskEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.Task): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.Task Task 'get ' : 
+  Methods:
+    get_Task(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.DrawingDataEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.DrawingDataContainer, IPS.Core.DrawingData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.DrawingData DrawingData 'get ' : 
+    IPS.Core.DrawingDataContainer Parent 'get ' : 
+  Methods:
+    get_Parent(): PrivateScope, Public, HideBySig, SpecialName
+    get_DrawingData(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.DataReferenceEvantArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.DataReference): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.DataReference DataReference 'get ' : 
+  Methods:
+    get_DataReference(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.PropertyChangedEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(System.Object): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.Object NewValue 'get ' : 
+  Methods:
+    get_NewValue(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.ApplicationIdleEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean IntervalUpdate 'get ' : 
+  Methods:
+    get_IntervalUpdate(): PrivateScope, Public, HideBySig, SpecialName
+Class IPS.Core.ForceUpdateEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Interface IPS.Core.Task: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    Double PreviousTime 'get set' : 
+  Methods:
+    get_PreviousTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_PreviousTime(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.Callback: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Object, Exception): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Object, Exception, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.EventFunction: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.ComponentEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(ComponentEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(ComponentEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.ComponentDoubleClickedEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(ComponentEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(ComponentEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.ComponentLinkEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Object, LinkEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Object, LinkEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.LinkEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(LinkEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(LinkEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.LinkConnectionEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(LinkConnectionEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(LinkConnectionEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.TaskEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(TaskEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(TaskEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.DrawingDataEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(DrawingDataEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(DrawingDataEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.SnapEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(SnapEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(SnapEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.DataReferenceEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(DataReferenceEvantArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(DataReferenceEvantArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.SettingsEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface IPS.Core.Events: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    AddActivateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveActivateEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDeactivateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDeactivateEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddResetTimeEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveResetTimeEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPreSteadyStateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemovePreSteadyStateEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSolveSteadyStateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSolveSteadyStateEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSteadyStateCompletedEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSteadyStateCompletedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddRunEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveRunEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPreStepEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemovePreStepEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddStepEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveStepEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddStepCompletedEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveStepCompletedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPauseEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemovePauseEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSaveEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSaveEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSnapLoadedEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSnapLoadedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSnapExportedEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSnapExportedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSnapImportedEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSnapImportedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPreSnapLoadEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemovePreSnapLoadEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSnapSaveEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSnapSaveEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSnapDeletedEvent(Task, SnapEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSnapDeletedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddConstantsLoadedEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveConstantsLoadedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddConstantsSaveEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveConstantsSaveEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanAddComponentEvent(Task, ComponentEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanAddComponentEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddComponentAddedEvent(Task, ComponentEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponentAddedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanRemoveComponentEvent(Task, ComponentEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanRemoveComponentEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddComponentRemovedEvent(Task, ComponentEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponentRemovedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanAddLinkEvent(Task, LinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanAddLinkEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLinkAddedEvent(Task, LinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLinkAddedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanRemoveLinkEvent(Task, LinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanRemoveLinkEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLinkRemovedEvent(Task, LinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLinkRemovedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanChangeLinkConnectionEvent(Task, LinkConnectionEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanChangeLinkConnectionEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLinkConnectionChangedEvent(Task, LinkConnectionEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLinkConnectionChangedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanAddTaskEvent(Task, TaskEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanAddTaskEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddTaskAddedEvent(Task, TaskEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveTaskAddedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanRemoveTaskEvent(Task, TaskEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanRemoveTaskEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddTaskRemovedEvent(Task, TaskEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveTaskRemovedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanAddDrawingDataEvent(Task, DrawingDataEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanAddDrawingDataEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDrawingDataAddedEvent(Task, DrawingDataEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDrawingDataAddedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddCanRemoveDrawingDataEvent(Task, DrawingDataEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveCanRemoveDrawingDataEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDrawingDataRemovedEvent(Task, DrawingDataEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDrawingDataRemovedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddComponentDoubleClickedEvent(Task, ComponentDoubleClickedEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponentDoubleClickedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDataReferenceChangedEvent(Task, DataReferenceEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDataReferenceChangedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddSettingsChangedEvent(Task, SettingsEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveSettingsChangedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.Port: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.ICloneable
+  Properties:
+    System.String AssemblyFullName 'get ' : 
+    Boolean IsGluedToBounds 'get ' : 
+    System.Drawing.Color HighlightColor 'get ' : 
+    System.Drawing.Size HitArea 'get ' : 
+    System.String ImageFile 'get ' : 
+    Boolean Visible 'get ' : 
+    Int32 YPercent 'get ' : 
+    Int32 XPercent 'get ' : 
+    Boolean OutLinkSlotsLeft 'get ' : 
+    Boolean InLinkSlotsLeft 'get ' : 
+    Int32 TotalLinkCount 'get ' : 
+    Int32 OutLinkCount 'get ' : 
+    Int32 InLinkCount 'get ' : 
+    IPS.Core.LinkList OutLinks 'get ' : 
+    IPS.Core.LinkList InLinks 'get ' : 
+    IPS.Core.LinkList Links 'get ' : 
+    IPS.Core.Component Parent 'get ' : 
+    System.String Name 'get ' : 
+  Events:
+    IPS.Core.ComponentLinkEvent Disconnected: SpecialName
+    IPS.Core.ComponentLinkEvent Connected: SpecialName
+  Methods:
+    get_Name(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Parent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Links(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OutLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InLinkCount(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OutLinkCount(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TotalLinkCount(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_InLinkSlotsLeft(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OutLinkSlotsLeft(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_XPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_YPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ImageFile(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HitArea(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HighlightColor(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsGluedToBounds(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AssemblyFullName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_Connected(ComponentLinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_Connected(ComponentLinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_Disconnected(ComponentLinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_Disconnected(ComponentLinkEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Connect(Link, Direction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Disconnect(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DisconnectAll(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponents(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponentsByType(Type, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetConnectedComponentsByType(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.ExposedPort: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Port
+    System.ICloneable
+  Properties:
+    IPS.Core.Port InnerPort 'get ' : 
+  Methods:
+    get_InnerPort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Struct IPS.Core.Direction: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.Direction IN = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.Direction OUT = 1 : Public, Static, Literal, HasDefault
+Interface IPS.Core.ExposedProperty: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Order 'get ' : 
+    System.String Category 'get ' : 
+    System.String DisplayName 'get ' : 
+    IPS.Core.PropertyIdentity PropId 'get ' : 
+    System.String ComponentName 'get ' : 
+  Methods:
+    get_ComponentName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PropId(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DisplayName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Category(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Order(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    GetComponentNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.Core.ExposedPropertyList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.ComponentModel.BindingList`1[IPS.Core.ExposedProperty]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ComponentHasProperty(String): PrivateScope, Public, HideBySig
+    DeletePropertiesOfComponent(String): PrivateScope, Public, HideBySig
+Interface IPS.Core.PropertyIdentity: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.StringDel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.ThreeStringDel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String, String, String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, String, String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.ConnectDel: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String, Int32, String, String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, Int32, String, String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.FlownexSE: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Runtime.InteropServices.StandardOleMarshalObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.Application
+    System.IDisposable
+  Properties:
+    IPS.Core.Project Project 'get ' : 
+    Boolean Visible 'get set' : 
+  Methods:
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Visible(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Project(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ConnectAsRemoteStation(String, Int32, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OpenProject(String, String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OpenProject(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    NewProject(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    CloseProject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SaveProject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetGUIController(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Exit(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    SetApplicationImpl(Application): PrivateScope, Public, Static, HideBySig
+    IsRunningAutomated(): PrivateScope, Public, Static, HideBySig
+    InitializeLifetimeService(): PrivateScope, Public, Virtual, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Interface IPS.Core.GUIController: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Fields:
+    IPS.Core.GUIController Instance : Public, Static
+  Methods:
+    FocusComponent(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    FocusComponent(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    OpenPage(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    FocusApplication(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RerouteAllLinksOnPage(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    OpenWindow(String, Boolean(HasFieldMarshal), String, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    OpenWindow(eWindowOptions, Boolean(HasFieldMarshal), String, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetMainWindow(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Struct IPS.Core.eWindowOptions: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.eWindowOptions Properties = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Views = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions TasksOutput = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions ErrorFeedback = 3 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Snaps = 4 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Project = 5 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Libraries = 6 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Externals = 7 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions PanZoom = 8 : Public, Static, Literal, HasDefault
+    IPS.Core.eWindowOptions Find = 9 : Public, Static, Literal, HasDefault
+Struct IPS.Core.TypeIdentifier: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, Serializable, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String TypeNamespace 'get ' : 
+    System.String TypeClassName 'get ' : 
+    System.String TypeName 'get ' : 
+  Methods:
+    get_TypeName(): PrivateScope, Public, HideBySig, SpecialName
+    get_TypeClassName(): PrivateScope, Public, HideBySig, SpecialName
+    get_TypeNamespace(): PrivateScope, Public, HideBySig, SpecialName
+    ToString(): PrivateScope, Public, Final, Virtual, HideBySig
+Class IPS.Core.ActivityCompletedCallback: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Interface IPS.Core.SimulationEvents: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    ActivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SteadyStateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StepCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeactivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    PauseCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RunCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.SimulationEventsSource: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Events:
+    IPS.Core.ActivityCompletedCallback RunCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback PauseCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback DeactivateCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback StepCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback SteadyStateCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback ActivateCompletedCallback: SpecialName
+  Methods:
+    RaiseActivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaiseSteadyStateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaiseStepCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaiseDeactivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaisePauseCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RaiseRunCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    add_ActivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_ActivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_SteadyStateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_SteadyStateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_StepCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_StepCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_DeactivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_DeactivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_PauseCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_PauseCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_RunCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_RunCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.SimulationEventsCallbacks: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EnhancedMarshalByRefObject
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.SimulationEventsSource
+  Events:
+    IPS.Core.ActivityCompletedCallback RunCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback PauseCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback DeactivateCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback StepCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback SteadyStateCompletedCallback: SpecialName
+    IPS.Core.ActivityCompletedCallback ActivateCompletedCallback: SpecialName
+  Methods:
+    RaiseActivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RaiseSteadyStateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RaiseStepCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RaiseDeactivateCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RaisePauseCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RaiseRunCompletedCallback(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    add_ActivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_ActivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_SteadyStateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_SteadyStateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_StepCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_StepCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_DeactivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_DeactivateCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_PauseCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_PauseCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_RunCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    remove_RunCompletedCallback(ActivityCompletedCallback): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+Interface IPS.Core.PropertyDisplayData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String HelpTopicID 'get ' : 
+    IPS.Properties.UseProperty Usage 'get ' : 
+    System.String[] Category 'get set' : 
+    System.String DisplayName 'get set' : 
+  Methods:
+    get_DisplayName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DisplayName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Category(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Category(String[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Usage(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HelpTopicID(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.PropertyDisplayDataList: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    System.Collections.Generic.IList`1[IPS.Core.PropertyDisplayData]
+    System.Collections.Generic.ICollection`1[IPS.Core.PropertyDisplayData]
+    System.Collections.Generic.IEnumerable`1[IPS.Core.PropertyDisplayData]
+    System.Collections.IEnumerable
+Interface IPS.Core.Project: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Fields:
+    System.String DrawingPagesSubFolder = Pages\ : Public, Static, Literal, HasDefault
+    System.String GraphsPagesSubFolder = Graphs\ : Public, Static, Literal, HasDefault
+    System.String ImagesSubFolder = Images\ : Public, Static, Literal, HasDefault
+    System.String SnapsSubFolder = Snaps\ : Public, Static, Literal, HasDefault
+    System.String TasksSubFolder = Tasks\ : Public, Static, Literal, HasDefault
+    System.String LibrarySubFolder = Library\ : Public, Static, Literal, HasDefault
+    System.String SolutionsSubFolder = Solutions\ : Public, Static, Literal, HasDefault
+    System.String LibraryReloadSubFolder = LibraryReload\ : Public, Static, Literal, HasDefault
+    System.String DataReferencesSubFolder = DRefs\ : Public, Static, Literal, HasDefault
+    System.String ProjectFileName = Project.xml : Public, Static, Literal, HasDefault
+    System.String DockLayoutConfigFileName = DockLayout.config : Public, Static, Literal, HasDefault
+    System.String ConstantsFileName = Constants.txt : Public, Static, Literal, HasDefault
+    System.String ErrorManagerFileName = IgnoredWarnings.xml : Public, Static, Literal, HasDefault
+  Properties:
+    IPS.Core.SimulationEventsSource Callbacks 'get ' : 
+    IPS.Core.PageList Pages 'get ' : 
+    IPS.Core.Events Events 'get ' : 
+    IPS.Core.DataReferenceProvider DataReferences 'get ' : 
+    System.String UserDefinedText 'get set' : 
+    System.String LastOperationText 'get set' : 
+    System.String SimulationTimeText 'get ' : 
+    System.String ExecutingEventsText 'get set' : 
+    System.String SimulationStateText 'get ' : 
+    IPS.Core.SimulationState State 'get set' : 
+    Boolean IsRunningBatches 'get set' : 
+    Double TimeStep 'get set' : 
+    Int32 RunNumber 'get set' : 
+    Double SimulationTime 'get set' : 
+    IPS.Core.PropertyProvider PropertyProvider 'get ' : 
+    Boolean IsModified 'get ' : 
+    System.String OpenProjectFilename 'get ' : 
+    System.String TasksPath 'get ' : 
+    System.String DatareferencesPath 'get ' : 
+    System.String LibraryReloadPath 'get ' : 
+    System.String SolutionsPath 'get ' : 
+    System.String ImagesPath 'get ' : 
+    System.Collections.Generic.List`1[System.String] GraphPageExtensions 'get ' : 
+    System.String DrawingPageExtension 'get ' : 
+    System.String GraphPagesPath 'get ' : 
+    System.String DrawingPagesPath 'get ' : 
+    System.String SnapsPath 'get ' : 
+    System.String LibraryPath 'get ' : 
+    System.String ProjectRootPath 'get ' : 
+  Methods:
+    NewLink(Port, Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewPortExposerLink(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddLink(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddUnmanagedLink(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ReconnectLink(Link, Port, Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLink(Link, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveLink(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLink(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLink(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllLinks(LinkList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllUnmanagedLinks(LinkList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewTask(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddTask(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveTask(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetTask(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllTasks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllTasks(TaskList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    MergeComponents(ComponentDrawingDataList, Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewComponentDrawingData(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewComponentDrawingDataClone(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewLinkDrawingData(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewLinkDrawingDataClone(LinkDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewGroupDrawingData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllComponentDrawingDatas(ComponentDrawingDataList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDatas(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponentDrawingDataPage(ComponentDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllLinkDrawingDatas(LinkDrawingDataList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetLinkDrawingData(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetElement(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetElement(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    FindPagesWithLink(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    FindPagesWithComponent(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetFolderInfo(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Callbacks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ProjectRootPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SnapsPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DrawingPagesPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GraphPagesPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DrawingPageExtension(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_GraphPageExtensions(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ImagesPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SolutionsPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LibraryReloadPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DatareferencesPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TasksPath(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OpenProjectFilename(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsModified(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PropertyProvider(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SimulationTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SimulationTime(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RunNumber(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_RunNumber(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TimeStep(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_TimeStep(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsRunningBatches(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsRunningBatches(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_State(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_State(SimulationState): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SimulationStateText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ExecutingEventsText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ExecutingEventsText(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SimulationTimeText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_LastOperationText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_LastOperationText(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_UserDefinedText(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_UserDefinedText(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DataReferences(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Events(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    ActivateSimulation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SolveSteadyState(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeactivateSimulation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ResetTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RunSimulation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    PauseSimulation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StepSimulation(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RefreshLastRewind(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RewindSimulation(Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    UpdateTimeDisplay(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    LoadSnap(String, SnapPropertyLoadingModes): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveSnap(String, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveSnap(String, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeleteSnap(String, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetSnapNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    LoadConstants(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    LoadConstants(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveConstants(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SaveConstants(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ReplaceConstantValue(Property, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ReplaceConstantValue(Property): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetScenarioNames(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetRunningScenario(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPredefinedSpecifics(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StartPredefinesSpecifcAction(String, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetTPRVariables(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StartTPRRecording(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StopTPRRecording(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Pages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    NewPage(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPage(Page): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPage(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SavePage(Page): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RenamePage(Page, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DeletePage(Page): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewComponent(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewComponent(TypeIdentifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewComponentClone(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddComponent(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddUnmanagedComponent(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponent(Component): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponent(Component, Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveComponentsAndDrawingdatas(ComponentList): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponent(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetComponent(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllComponents(ComponentList IsImplicitlyDereferenced, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllComponents(ComponentList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllUnmanagedComponents(ComponentList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    NewLink(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.Core.FlownexSEDotNet: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    LaunchFlownexSE(String): PrivateScope, Public, Static, HideBySig
+    LaunchFlownexSE(): PrivateScope, Public, Static, HideBySig
+    ConnectProjectEvents(Project, SimulationEvents): PrivateScope, Public, Static, HideBySig
+Struct IPS.Properties.UseProperty: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Properties.UseProperty NONE = 0 : Public, Static, Literal, HasDefault
+    IPS.Properties.UseProperty STATIC = 1 : Public, Static, Literal, HasDefault
+    IPS.Properties.UseProperty DYNAMIC = 2 : Public, Static, Literal, HasDefault
+    IPS.Properties.UseProperty RESULT = 4 : Public, Static, Literal, HasDefault
+    IPS.Properties.UseProperty CONSTANT = 8 : Public, Static, Literal, HasDefault
+    IPS.Properties.UseProperty ALL = 15 : Public, Static, Literal, HasDefault
+Struct IPS.Properties.SnapPropertyLoadingModes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Properties.SnapPropertyLoadingModes AllData = 0 : Public, Static, Literal, HasDefault
+    IPS.Properties.SnapPropertyLoadingModes OnlyConstantsAndStatics = 1 : Public, Static, Literal, HasDefault
+    IPS.Properties.SnapPropertyLoadingModes OnlyDynamicsAndResulta = 2 : Public, Static, Literal, HasDefault
+Struct IPS.Core.SimulationState: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.SimulationState ACTIVE = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.SimulationState INACTIVE = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.SimulationState RUNNING = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.SimulationState PAUSED = 3 : Public, Static, Literal, HasDefault
+    IPS.Core.SimulationState SOLVINGSTEADYSTATE = 4 : Public, Static, Literal, HasDefault
+Interface IPS.Core.FolderInfo: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    System.String SystemName 'get set' : 
+  Methods:
+    get_SystemName(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SystemName(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Integer: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Property
+  Properties:
+    Int32 Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.LayerDrawingData: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.GroupDrawingData
+    IPS.Core.DrawingData
+    IPS.Core.DrawingDataContainer
+    IPS.Core.Identifiable
+    System.ICloneable
+  Properties:
+    Boolean VisibleToEngineersOnly 'get set' : 
+    IPS.Core.Bool Active 'get ' : 
+    IPS.Core.Bool Visible 'get ' : 
+  Methods:
+    get_Visible(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Active(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_VisibleToEngineersOnly(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_VisibleToEngineersOnly(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.LayerDrawingDataList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.LayerDrawingData]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.DrawingDataCollection
+  Methods:
+    GetLayerDrawingData(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Interface IPS.Core.Link: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    IPS.Core.Port EndPort 'get set' : 
+    IPS.Core.Port StartPort 'get set' : 
+    System.Type SecondPortType 'get ' : 
+    System.Type FirstPortType 'get ' : 
+  Methods:
+    get_FirstPortType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SecondPortType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_StartPort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_StartPort(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_EndPort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_EndPort(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    Disconnect(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ConnectStartPort(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    ConnectEndPort(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddDrawingData(LinkDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemoveDrawingData(LinkDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class IPS.Core.LinkList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Link]
+    Void .ctor(System.Collections.Generic.IEnumerable`1[IPS.Core.Link]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.ElementList
+  Methods:
+    AddElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetElement(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddLink(Link): PrivateScope, Public, HideBySig
+    GetLink(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Interface IPS.Core.PortExposerLink: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Link
+    IPS.Core.Element
+    IPS.Core.Identifiable
+  Properties:
+    Boolean IsGluedToBounds 'get set' : 
+    System.Drawing.Color HighlightColor 'get set' : 
+    Int32 HeightPercent 'get set' : 
+    Int32 WidthPercent 'get set' : 
+    Int32 YPercent 'get set' : 
+    Int32 XPercent 'get set' : 
+  Methods:
+    get_XPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_XPercent(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_YPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_YPercent(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_WidthPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_WidthPercent(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HeightPercent(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_HeightPercent(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HighlightColor(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_HighlightColor(Color): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsGluedToBounds(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsGluedToBounds(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.PortList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Port]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.List
+  Methods:
+    PortByName(String): PrivateScope, Public, HideBySig
+Interface IPS.Core.Product: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Fields:
+    System.String ExecutableName = SimuPact.exe : Public, Static, Literal, HasDefault
+    System.String ConsoleExecutableName = SimuPactConsole : Public, Static, Literal, HasDefault
+    System.String ShortAppplicationName = SimuPact : Public, Static, Literal, HasDefault
+    System.String LongApplicationName = SimuPact Training Simulator : Public, Static, Literal, HasDefault
+    System.String AboutDialogPictureResource = SimuPactAbout : Public, Static, Literal, HasDefault
+    System.String IconResource = SimuPactIcon : Public, Static, Literal, HasDefault
+    System.String APIHelpFileName = SimuPact_API.chm : Public, Static, Literal, HasDefault
+    System.String HelpFileName = SimuPact_Manual.chm : Public, Static, Literal, HasDefault
+Struct IPS.Core.PropertyBatchData: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, Serializable, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Double[] DoubleData : Public
+    IPS.Core.ComplexDoubleValue[] ComplexDoubleData : Public
+    Boolean[] BoolData : Public
+    Int32[] IntegerData : Public
+    System.String[] StringData : Public
+    System.Object[] ObjectData : Public
+    Double SimulationTime : Public
+  Methods:
+    Clone(): PrivateScope, Public, Final, Virtual, HideBySig, VtableLayoutMask
+Interface IPS.Core.PropertyBatchSetup: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Methods:
+    AddProperty(Element, PropertyIdentity): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddProperty(Element, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddProperty(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPropertiesGetIndexes(String[], String[]): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetData(PropertyBatchData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetProperties(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyIndexInBatchData(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyType(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    HasDataChanged(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Interface IPS.Core.PropertyHistory: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 SampleRate 'get ' : 
+    Int32 NumberOfSamples 'get ' : 
+    Double SampleTime 'get ' : 
+    Double TimeSpan 'get ' : 
+    Double DeadBand 'get ' : 
+    Double PercentageChange 'get ' : 
+    Double EndTime 'get ' : 
+    Double StartTime 'get ' : 
+    Int32 Capacity 'get ' : 
+    Int32 Count 'get ' : 
+    IPS.Core.HistoryTypes HistoryType 'get ' : 
+    IPS.Core.Property Prop 'get ' : 
+    IPS.Core.Element Entity 'get ' : 
+    System.String Description 'get ' : 
+  Methods:
+    get_Description(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Entity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Prop(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_HistoryType(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Capacity(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_StartTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_EndTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_PercentageChange(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DeadBand(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TimeSpan(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SampleTime(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_NumberOfSamples(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SampleRate(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.PropertyHistoryList: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    IPS.Core.PropertyHistory PropertyHistoryItem [Int32] 'get set' : 
+  Methods:
+    get_PropertyHistoryItem(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_PropertyHistoryItem(Int32, PropertyHistory): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Struct IPS.Core.HistoryTypes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    IPS.Core.HistoryTypes ChangesOnlyPercentage = 0 : Public, Static, Literal, HasDefault
+    IPS.Core.HistoryTypes ChangesOnlyAbsolute = 1 : Public, Static, Literal, HasDefault
+    IPS.Core.HistoryTypes TimeBased = 2 : Public, Static, Literal, HasDefault
+    IPS.Core.HistoryTypes SampleBased = 3 : Public, Static, Literal, HasDefault
+Interface IPS.Core.PropertyIdentityList: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    IPS.Core.PropertyIdentity Item [Int32] 'get set' : 
+  Methods:
+    get_Item(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Item(Int32, PropertyIdentity): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.PropertyList: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Count 'get ' : 
+    IPS.Core.Property Item [Int32] 'get set' : 
+  Methods:
+    get_Item(Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Item(Int32, Property): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Count(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.PropertyProvider: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.PropertyHistoryList RecordingPropertyHistories 'get ' : 
+  Events:
+    System.EventHandler PropertyHistoryRemoved: SpecialName
+    System.EventHandler PropertyHistoryAdded: SpecialName
+  Methods:
+    GetPropertyIdentifier(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromPropID(Element, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromPropID(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromFullDisplayName(Element, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFromFullDisplayName(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetProperty(Element, PropertyIdentity): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    CreateNewPropertyBatch(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    DestroyPropertyBatch(PropertyBatchSetup): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyDisplayData(Element, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyDisplayData(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    SetProperty(String, String, Object): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFullDisplayName(Element, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetPropertyFullDisplayName(String, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RecordPropertyChangesAbsolute(Element, PropertyIdentity, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RecordPropertyChangesPercentage(Element, PropertyIdentity, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RecordPropertyHistory(Element, PropertyIdentity, Int32, Int32): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RecordPropertyHistory(Element, PropertyIdentity, Double, Double): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    StopPropertyHistoryRecording(PropertyHistory): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_RecordingPropertyHistories(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_PropertyHistoryAdded(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_PropertyHistoryAdded(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    add_PropertyHistoryRemoved(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    remove_PropertyHistoryRemoved(EventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.TaskList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Task]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    IPS.Core.ElementList
+  Methods:
+    AddElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    RemoveElement(Element): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    GetElement(Identifier): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    AddTask(Task): PrivateScope, Public, HideBySig
+    GetTask(Identifier): PrivateScope, Public, HideBySig
+    FoundDuplicateID(Identifier): PrivateScope, Public, HideBySig
+Interface IPS.Core.Text: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Interfaces:
+    IPS.Core.Property
+  Properties:
+    System.String Value 'get set' : 
+  Methods:
+    get_Value(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Value(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface IPS.Core.Tool: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    IPS.Core.Project CurrentProject 'get set' : 
+  Methods:
+    get_CurrentProject(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_CurrentProject(Project): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class IPS.Core.ToolList: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.Tool]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class IPS.Core.TypeIdentifierCollection: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Collections.Generic.List`1[IPS.Core.TypeIdentifier]
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ToString(): PrivateScope, Public, Virtual, HideBySig
+Class IPS.Core.ZorderComparer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.Collections.Generic.IComparer`1[IPS.Core.DrawingData]
+  Methods:
+    Compare(DrawingData, DrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+Class IPS.Core.ZorderComparer2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.Collections.Generic.IComparer`1[IPS.Core.LayerDrawingData]
+  Methods:
+    Compare(LayerDrawingData, LayerDrawingData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
