@@ -9,17 +9,21 @@ namespace Rockwell_Library
 	
 	void DCSLogicComponent::JumpToSubroutine(String^ ladderPage)
 	{
-		l_Ladder = gcnew LinkedList<DCSLogicComponent^>;
+		l_Ladder = gcnew LinkedList<DCSLogicComponent^>();
+		m_ExecutionQueue.RemoveFirst();
 
 		if (LadderPageDictionary.TryGetValue(ladderPage, l_Ladder))
 		{		
-			LinkedListNode<DCSLogicComponent^>^ l_NextNode = m_ExecutionQueue.First;
+			LinkedListNode<DCSLogicComponent^>^ l_NextNode = gcnew LinkedListNode<DCSLogicComponent^>(m_ExecutionQueue.First->Value);
 
 			for each (l_Component in l_Ladder)
 			{
 				m_ExecutionQueue.AddBefore(l_NextNode, l_Component);
 			}
 		}
+
+		Diagnostics::Debug::WriteLine(m_ExecutionQueue.First->Value->Identifier->ToString() + "->Execute() " + count.ToString());
+		m_ExecutionQueue.First->Value->Execute(m_Project->TimeStep);
 	}
 	
 	void DCSLogicComponent::step()
@@ -37,8 +41,8 @@ namespace Rockwell_Library
 
 		while (m_ExecutionQueue.Count > 0)
 		{
+			Diagnostics::Debug::WriteLine(m_ExecutionQueue.First->Value->Identifier->ToString() + "->Execute() " + count.ToString());
 			m_ExecutionQueue.First->Value->Execute(m_Project->TimeStep);
-			Diagnostics::Debug::WriteLine(m_ExecutionQueue.First->Value->Identifier->ToString() + " Executed: " + count.ToString());
 			count++;
 			for each(l_BoolLink in m_ExecutionQueue.First->Value->PortByName("OutputPort")->OutLinks)
 			{
