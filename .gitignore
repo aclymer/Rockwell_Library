@@ -1,0 +1,11 @@
+*.obj
+*.dll
+*.pbd
+*.tlog
+*.opensdf
+*.sdf
+*.suo
+*.sdf
+*.ipch
+ipch/rockwell_library-8ec58fa3/rockwell_library-c8f890bd.ipch
+*.ipch

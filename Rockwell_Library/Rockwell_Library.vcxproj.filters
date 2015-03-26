@@ -91,6 +91,13 @@
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\ABS.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\LIM.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\PID.h" />
+    <ClInclude Include="inc\Rockwell_Library\Links\DCSLogicLink.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\SVC.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\END.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\CLR.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\FLL.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\DIV.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\MUL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AssemblyInfo.cpp">
@@ -139,6 +146,13 @@
     <ClCompile Include="source\Rockwell_Library\Components\Visible\ABS.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\LIM.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\PID.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Links\DCSLogicLink.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\SVC.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\END.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\CLR.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\FLL.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\DIV.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\MUL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rockwell_Library.rc" />
