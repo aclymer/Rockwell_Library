@@ -5,13 +5,13 @@
 
 namespace Rockwell_Library
 {
-	[IPS::Plugin::LibraryInfo("LEQ", IPS::Plugin::Visibility::VISIBLE, "Less Than")]
+	[IPS::Plugin::LibraryInfo("LEQ", IPS::Plugin::Visibility::VISIBLE, "Less Than or Equal To")]
 	[IPS::Plugin::LibraryImage("LEQ.png")]
 	[IPS::Plugin::LibrarySizeAttribute(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Comparison Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", false)]
 		
 	public ref class LEQ : public MathBase
 	{
@@ -22,7 +22,7 @@ namespace Rockwell_Library
 		{
 			TypeDescription			= "LEQ";
 			Name					= "LEQ";
-			Descriptor				= "Less Than";
+			Descriptor				= "Less Than or Equal To";
 			
 			Input.Visible			= true;
 			Input.Value				= false;

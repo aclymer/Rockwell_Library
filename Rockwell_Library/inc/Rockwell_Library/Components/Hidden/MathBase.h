@@ -19,6 +19,14 @@ namespace Rockwell_Library
 			TypeDescription			= "MathBase";
 			Name					= "MathBase";
 			Descriptor				= "MathBase";
+
+			Source_A.Visible		= false;
+
+			Source_B.Visible		= false;
+
+			Value_A.Visible			= false;
+
+			Value_B.Visible			= false;
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]

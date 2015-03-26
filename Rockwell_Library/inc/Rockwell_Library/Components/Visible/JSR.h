@@ -16,8 +16,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySize(200,75)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Control Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 33, 13, 100, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 33, 13, 100, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 33, 13, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 33, 13, 100, "Red", false)]
 		
 	public ref class JSR : public DCSLogicComponent
 	{
@@ -39,12 +39,8 @@ namespace Rockwell_Library
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
-			Value.Visible			= true;
-			Value.Value				= false;
-
 			Property.Visible		= true;
-
-			Value.Value					= "U:2";
+			Property.Value			= "U:2";
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]

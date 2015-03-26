@@ -12,8 +12,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySize(200,50)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Control Instructions")]
-	[IPS::Plugin::Port("InputPort",  Bool::BoolInputPort::typeid, -1,  0, -1, 0,   50, 6, 100, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 13, 100, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort",  Bool::BoolInputPort::typeid, -1,  0, -1, 0,   50, 6, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 13, 100, "Red", false)]
 		
 	public ref class RET : public DCSLogicComponent
 	{

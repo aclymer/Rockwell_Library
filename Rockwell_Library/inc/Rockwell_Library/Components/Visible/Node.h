@@ -14,8 +14,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySizeAttribute(50,50)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Branching Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1, 50, 50, 100, 100, "Green", false, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 50, 50, 100, 100, "Red", false, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1, 50, 50, 100, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 50, 50, 100, 100, "Red", false)]
 		
 	public ref class Node : public DCSLogicComponent
 	{

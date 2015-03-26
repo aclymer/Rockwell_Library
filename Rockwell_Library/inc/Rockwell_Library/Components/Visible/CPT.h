@@ -10,8 +10,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySizeAttribute(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Advanced Math Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", false)]
 		
 	public ref class CPT : public MathBase
 	{

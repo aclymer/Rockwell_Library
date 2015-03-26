@@ -10,8 +10,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySizeAttribute(250,150)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "PID Control")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 17, 10, 17, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 90, 17, 10, 17, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 17, 10, 17, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 90, 17, 10, 17, "Red", false)]
 		
 	public ref class PID : public MathBase
 	{
@@ -33,14 +33,8 @@ namespace Rockwell_Library
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
-			Value.Visible			= true;
-			Value.Value				= false;
-
 			Property.Visible		= true;
 			Property.Value			= "Address";
-
-			Value_A.Visible			= true;
-			Value_A.Value			= 0;
 
 			Source_A.Visible		= true;
 			Source_A.Value			= "Address";
@@ -50,6 +44,9 @@ namespace Rockwell_Library
 
 			Value_B.Visible			= true;
 			Value_B.Value			= 0;
+
+			Length.Visible			= true;
+			Length.Value			= 0;
 		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]

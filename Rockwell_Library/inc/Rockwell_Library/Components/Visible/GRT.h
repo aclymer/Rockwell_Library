@@ -5,13 +5,13 @@
 
 namespace Rockwell_Library
 {
-	[IPS::Plugin::LibraryInfo("GRT", IPS::Plugin::Visibility::VISIBLE, "Equal")]
+	[IPS::Plugin::LibraryInfo("GRT", IPS::Plugin::Visibility::VISIBLE, "Greater Than")]
 	[IPS::Plugin::LibraryImage("GRT.png")]
 	[IPS::Plugin::LibrarySizeAttribute(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Comparison Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", true, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", true, "")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", false)]
 		
 	public ref class GRT : public MathBase
 	{
@@ -21,7 +21,7 @@ namespace Rockwell_Library
 		{
 			TypeDescription			= "GRT";
 			Name					= "GRT";
-			Descriptor				= "Equal";
+			Descriptor				= "Greater Than";
 			
 			Input.Visible			= true;
 			Input.Value				= false;

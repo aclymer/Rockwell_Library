@@ -5,23 +5,23 @@
 
 namespace Rockwell_Library
 {
-	[IPS::Plugin::LibraryInfo("LIM", IPS::Plugin::Visibility::VISIBLE, "Limit Test")]
-	[IPS::Plugin::LibraryImage("LIM.png")]
+	[IPS::Plugin::LibraryInfo("MUL", IPS::Plugin::Visibility::VISIBLE, "Multiply")]
+	[IPS::Plugin::LibraryImage("MUL.png")]
 	[IPS::Plugin::LibrarySizeAttribute(200,150)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
-	[IPS::Plugin::LibraryCategory("Ladder Logic", "Comparison Instructions")]
+	[IPS::Plugin::LibraryCategory("Ladder Logic", "Math Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 17, 13, 17, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 17, 13, 17, "Red", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 17, 25, 17, "Red", false)]
 		
-	public ref class LIM : public MathBase
+	public ref class MUL : public MathBase
 	{
 	public:
 		
-		Rockwell_Library::LIM()
+		Rockwell_Library::MUL()
 		{
-			TypeDescription			= "LIM";
-			Name					= "LIM";
-			Descriptor				= "Limit Test";
+			TypeDescription			= "MUL";
+			Name					= "MUL";
+			Descriptor				= "Multiply";
 			
 			Input.Visible			= true;
 			Input.Value				= false;
@@ -32,41 +32,29 @@ namespace Rockwell_Library
 			Output.Value			= false;
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
+			
+			Value.Visible			= true;
+			Value.Value				= false;
 
 			Property.Visible		= true;
 			Property.Value			= "Address";
 
-			Value.Visible			= true;
-			Value.Value				= 0.0;
-			
+			Value_A.Visible			= true;
+			Value_A.Value			= 0;
+
 			Source_A.Visible		= true;
 			Source_A.Value			= "Address";
-
-			Value_A.Visible			= true;
-			Value_A.Value			= 0.0;
 
 			Source_B.Visible		= true;
 			Source_B.Value			= "Address";
 
 			Value_B.Visible			= true;
-			Value_B.Value			= 0.0;
+			Value_B.Value			= 0;
 		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Low Lim")]
-		[IPS::Properties::GridOrder(0)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
-		virtual property IPS::Properties::Text% Source_A
-		{
-			IPS::Properties::Text% get() override
-			{
-				return m_Source_A;
-			}
-		}
-		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Test")]
-		[IPS::Properties::GridOrder(25)]
+		[IPS::Properties::DisplayName("Destination")]
+		[IPS::Properties::GridOrder(166)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Text% Property
 		{
@@ -78,25 +66,13 @@ namespace Rockwell_Library
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
-		[IPS::Properties::GridOrder(26)]
+		[IPS::Properties::GridOrder(200)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Double% Value
 		{
 			IPS::Properties::Double% get() new
 			{
 				return m_Value;
-			}
-		}
-		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("High Lim")]
-		[IPS::Properties::GridOrder(30)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
-		virtual property IPS::Properties::Text% Source_B
-		{
-			IPS::Properties::Text% get() override
-			{
-				return m_Source_B;
 			}
 		}
 		
@@ -108,6 +84,9 @@ namespace Rockwell_Library
 
 	public:
 
+		IPS::Properties::Text		m_Source_A;
 		IPS::Properties::Double		m_Value;
+		IPS::Properties::Double		m_Value_A;
+		IPS::Properties::Double		m_Value_B;
 	};
 }

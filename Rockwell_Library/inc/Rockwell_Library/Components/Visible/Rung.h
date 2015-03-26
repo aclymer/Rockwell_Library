@@ -15,9 +15,9 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryImage("Rung.png")]
 	[IPS::Plugin::LibrarySize(100,50)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic")]
-	[IPS::Plugin::Port("InputPort",	 Bool::BoolInputPort::typeid,  1,  0,  1, 50,   0, 50,  25, "Green", false, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 25, 100, "Red",   false, "")]
-	[IPS::Plugin::Port("RungPort",	 Bool::BoolOutputPort::typeid, 0,  1,  1, 50, 100, 50,  50, "Red",   false, "")]
+	[IPS::Plugin::Port("InputPort",	 Bool::BoolInputPort::typeid,  1,  0,  1, 50,   0, 50,  25, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 25, 100, "Red",   false)]
+	[IPS::Plugin::Port("RungPort",	 Bool::BoolOutputPort::typeid, 0,  1,  1, 50, 100, 50,  50, "Red",   false)]
 		
 	public ref class Rung : public DCSLogicComponent
 	{

@@ -17,6 +17,20 @@ namespace Rockwell_Library
 			{
 				if (Value_A.Value <= Value.Value && Value.Value <= Value_B.Value)
 					Output.Value = true;
+				else
+					Output.Value = false;
+
+				Set_Property(Property.Value, Value.ValueAsObject);
+			}
+		}
+		else if (Value_A.Value > Value_B.Value)
+		{
+			if (Input.Value == true)
+			{
+				if (Value_A.Value < Value.Value && Value.Value < Value_B.Value)
+					Output.Value = false;
+				else
+					Output.Value = true;
 
 				Set_Property(Property.Value, Value.ValueAsObject);
 			}

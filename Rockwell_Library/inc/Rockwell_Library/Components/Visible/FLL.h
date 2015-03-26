@@ -5,23 +5,23 @@
 
 namespace Rockwell_Library
 {    
-	[IPS::Plugin::LibraryInfo("COP", IPS::Plugin::Visibility::VISIBLE, "Copy File")]
-	[IPS::Plugin::LibraryImage("COP.png")]
+	[IPS::Plugin::LibraryInfo("FLL", IPS::Plugin::Visibility::VISIBLE, "Fill File")]
+	[IPS::Plugin::LibraryImage("FLL.png")]
 	[IPS::Plugin::LibrarySizeAttribute(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "File Manipulation Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1,   0, 20, 13, 25, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 25, 25, "Red",  false)]
 	
-	public ref class COP : public DCSLogicComponent
+	public ref class FLL : public DCSLogicComponent
 	{	
 	public:
 
-		Rockwell_Library::COP()
+		Rockwell_Library::FLL()
 		{
-			TypeDescription			= "COP";
-			Name					= "COP";
-			Descriptor				= "Copy File";
+			TypeDescription			= "FLL";
+			Name					= "FLL";
+			Descriptor				= "Fill File";
 				
 			Input.Visible			= true;
 			Input.Value				= false;
@@ -33,18 +33,30 @@ namespace Rockwell_Library
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
-			Value.Visible			= true;
-			Value.Value				= false;
-
 			Property.Visible		= true;
+			Property.Value			= "Address";
 
 			Length.Visible			= true;
+			Length.Value			= 0;
+
 			Dest.Visible			= true;
-			Dest_Value.Visible		= true;
+			Dest.Value				= "Address";
 		}
 			
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Destination")]
+		[IPS::Properties::DisplayName("Value")]
+		[IPS::Properties::GridOrder(101)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
+		virtual property IPS::Properties::Double% Value
+		{
+			IPS::Properties::Double% get() new
+			{
+				return m_Value;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Dest")]
 		[IPS::Properties::GridOrder(135)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Text% Dest
@@ -52,18 +64,6 @@ namespace Rockwell_Library
 			IPS::Properties::Text% get()
 			{
 				return m_Dest;
-			}
-		}
-		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Value")]
-		[IPS::Properties::GridOrder(136)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
-		virtual property IPS::Properties::Double% Dest_Value
-		{
-			IPS::Properties::Double% get()
-			{
-				return m_Dest_Value;
 			}
 		}
 		
@@ -90,12 +90,8 @@ namespace Rockwell_Library
 	public:
 		
 		IPS::Properties::Text			m_Dest;
-		IPS::Properties::Double			m_Dest_Value;
 		IPS::Properties::Integer		m_Length;
-		List<String^>					source_parsed;
+		IPS::Properties::Double			m_Value;
 		List<String^>					dest_parsed;
-		IPS::Core::Component^			m_SourceComponent;
-		IPS::Core::Component^			m_DestComponent;
-		IPS::Core::Property^			m_TransferProperty;
 	};    
 }

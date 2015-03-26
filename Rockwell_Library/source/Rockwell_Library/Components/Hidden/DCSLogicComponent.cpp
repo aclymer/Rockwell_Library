@@ -5,6 +5,12 @@ namespace Rockwell_Library
 {    
 	void DCSLogicComponent::ReturnFromSubroutine()
 	{
+		while (m_ExecutionQueue.Count > 1 && m_ExecutionQueue.First->Value->TypeDescription != "END")
+		{
+			m_ExecutionQueue.RemoveFirst();
+		}		
+			
+		m_ExecutionQueue.RemoveFirst();		
 	}
 	
 	void DCSLogicComponent::JumpToSubroutine(String^ ladderPage)
@@ -14,12 +20,13 @@ namespace Rockwell_Library
 
 		if (LadderPageDictionary.TryGetValue(ladderPage, l_Ladder))
 		{		
-			LinkedListNode<DCSLogicComponent^>^ l_NextNode = gcnew LinkedListNode<DCSLogicComponent^>(m_ExecutionQueue.First->Value);
+			LinkedListNode<DCSLogicComponent^>^ l_NextNode = m_ExecutionQueue.First;
 
 			for each (l_Component in l_Ladder)
 			{
 				m_ExecutionQueue.AddBefore(l_NextNode, l_Component);
 			}
+	
 		}
 
 		Diagnostics::Debug::WriteLine(m_ExecutionQueue.First->Value->Identifier->ToString() + "->Execute() " + count.ToString());

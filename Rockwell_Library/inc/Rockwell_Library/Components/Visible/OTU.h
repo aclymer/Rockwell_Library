@@ -10,8 +10,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySize(50,50)]
 	[IPS::Plugin::LibraryRelativeSize(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Relay Type Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false, "")]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 50, 25, 100, "Green", false, "Component")]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 50, 25, 100, "Green", false)]
 		
 	public ref class OTU : public DCSLogicComponent
 	{

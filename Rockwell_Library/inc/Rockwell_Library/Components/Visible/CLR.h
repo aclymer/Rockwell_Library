@@ -1,28 +1,28 @@
 #pragma once
 #include "Ports.h"
-#include "Rockwell_Library/Components/Hidden/MathBase.h"
+#include "Rockwell_Library/Components/Hidden/DCSLogicComponent.h"
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
 
 namespace Rockwell_Library
-{
-	[IPS::Plugin::LibraryInfo("ADD", IPS::Plugin::Visibility::VISIBLE, "Add")]
-	[IPS::Plugin::LibraryImage("ADD.png")]
-	[IPS::Plugin::LibrarySizeAttribute(200,150)]
+{    
+	[IPS::Plugin::LibraryInfo("CLR", IPS::Plugin::Visibility::VISIBLE, "Clear")]
+	[IPS::Plugin::LibraryImage("CLR.png")]
+	[IPS::Plugin::LibrarySizeAttribute(200,100)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Math Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 17, 13, 17, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 17, 25, 17, "Red", false)]
-		
-	public ref class ADD : public MathBase
-	{
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 25, 13, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 25, 25, 100, "Red", false)]
+	
+	public ref class CLR : public DCSLogicComponent
+	{	
 	public:
-		
-		Rockwell_Library::ADD()
+
+		Rockwell_Library::CLR()
 		{
-			TypeDescription			= "ADD";
-			Name					= "ADD";
-			Descriptor				= "Add";
-			
+			TypeDescription			= "CLR";
+			Name					= "CLR";
+			Descriptor				= "Clear";
+				
 			Input.Visible			= true;
 			Input.Value				= false;
 			InputPort				= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
@@ -34,27 +34,15 @@ namespace Rockwell_Library
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
 			Value.Visible			= true;
-			Value.Value				= false;
+			Value.Value				= 0;
 
 			Property.Visible		= true;
 			Property.Value			= "Address";
-
-			Value_A.Visible			= true;
-			Value_A.Value			= 0;
-
-			Source_A.Visible		= true;
-			Source_A.Value			= "Address";
-
-			Source_B.Visible		= true;
-			Source_B.Value			= "Address";
-
-			Value_B.Visible			= true;
-			Value_B.Value			= 0;
 		}
-		
+			
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Destination")]
-		[IPS::Properties::GridOrder(166)]
+		[IPS::Properties::DisplayName("Dest")]
+		[IPS::Properties::GridOrder(100)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
 		virtual property IPS::Properties::Text% Property
 		{
@@ -66,27 +54,26 @@ namespace Rockwell_Library
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
-		[IPS::Properties::GridOrder(200)]
+		[IPS::Properties::GridOrder(140)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
-		virtual property IPS::Properties::Double% Value
+		virtual property IPS::Properties::Integer% Value
 		{
-			IPS::Properties::Double% get() new
+			IPS::Properties::Integer% get() new
 			{
 				return m_Value;
 			}
 		}
 		
-		virtual void Execute(double) override;		
+	public:			
+				
+		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override
 		{
 		}
 
 	public:
-
-		IPS::Properties::Text		m_Source_A;
-		IPS::Properties::Double		m_Value;
-		IPS::Properties::Double		m_Value_A;
-		IPS::Properties::Double		m_Value_B;
-	};
+		
+		IPS::Properties::Integer		m_Value;
+	};    
 }
