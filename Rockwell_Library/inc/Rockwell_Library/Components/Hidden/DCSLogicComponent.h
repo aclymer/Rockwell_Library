@@ -184,33 +184,45 @@ namespace Rockwell_Library
 			LadderPageDictionary.Clear();
 			l_LinkList.Clear();
 
-			try
+			for each (IPS::Core::DrawingPage^ l_Page in m_Project->Pages)
 			{
-				for each (IPS::Core::DrawingPage^ l_Page in m_Project->Pages)
+				if (l_Page != nullptr && l_Page->UserDescription->Value->StartsWith("U:"))
 				{
-					if (l_Page != nullptr && l_Page->UserDescription->Value->StartsWith("U:"))
+					for each (IPS::Core::Component^ r_Component in l_Page->Components)
 					{
-						for each (IPS::Core::Component^ r_Component in l_Page->Components)
+						try
 						{
 							l_Component = dynamic_cast<DCSLogicComponent^>(r_Component);
 							
 							if (l_Component != nullptr && l_Component->TypeDescription == "Rung" && l_Component->InputPort->IsConnected == false)
 								LadderPageDictionary.Add(l_Page->UserDescription->Value, gcnew LinkedList<DCSLogicComponent^>(PopulateRungList(l_Component)));
+						
 						}
-														
-						// Add Drawing Page Links to LinkList
-						for each (IPS::Core::Link^ l_Link in l_Page->Links)
+						catch (Exception^ ex)
+						{
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", r_Component->Identifier, ex->Source + ex->Message));
+						}
+					}				
+					// Add Drawing Page Links to LinkList
+					for each (IPS::Core::Link^ l_Link in l_Page->Links)
+					{
+						try
 						{
 							l_BoolLink = dynamic_cast<DCS::Links::Bool_BoolLink^>(l_Link);
 							if (l_BoolLink != nullptr)
-								l_LinkList.AddLink(l_Link);
+							{
+								l_LinkList.AddLink(l_BoolLink);
+							}
 						}
-					}
+						catch(Exception^ ex)
+						{
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", l_Link->Identifier, ex->Source + ex->Message + "Error adding Link to LinkList."));
+						}
+					}					
 				}
-
-				m_ExecutionQueue.Clear();
-
-			} catch (Exception^ ex) { IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::GeneralError("Activate event.", ex->Source, ex->Message)); }
+			}
+				
+			m_ExecutionQueue.Clear();
 		}
 		
 	private:
@@ -264,13 +276,6 @@ namespace Rockwell_Library
 				
 				l_ThisRungItem = l_ThisRungItem->Next;				
 			}
-
-			for each (DCSLogicComponent^ nothing in l_Ladder)
-			{
-				Diagnostics::Debug::WriteLine(nothing->Identifier->Value);
-			}
-				
-			Diagnostics::Debug::WriteLine("");
 
 			return l_Ladder;
 		}
