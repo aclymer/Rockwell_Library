@@ -30,9 +30,10 @@ namespace Rockwell_Library
 
 				if (dest_parsed[1] == "ST")
 					this->m_Project->GetComponent(Dest.Value)->UserDescription->Value = m_SourceComponent->UserDescription->Value;
-
+				/*
 				else if (dest_parsed[1] != "C")
-					Set_Property(Dest.Value, Get_Property(Property.Value));	
+					Set_Property(Dest.Value, dynamic_cast<IPS::Properties::Bool^>(Get_Property(Property.Value)));	
+					*/
 			}
 		}
 

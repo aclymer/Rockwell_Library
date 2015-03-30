@@ -13,7 +13,7 @@ namespace Rockwell_Library
 		if (Input.Value)
 		{
 			ParseAddress(dest_parsed, Dest.Value);
-			Value.ValueAsObject = Get_Property(Property.Value);
+			Value.Value = dynamic_cast<IPS::Properties::Double^>(Get_Property(Property.Value));
 			for (int i = 0; i < Length.Value; i++)
 			{
 				int j = 1;

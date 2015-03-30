@@ -5,8 +5,8 @@ namespace Rockwell_Library
 {
 	void XIC::Execute(double p_dTimeStep)
 	{
-		Value.Value = (bool) Get_Property(Property.Value);
-		
+		Value.Value = dynamic_cast<IPS::Properties::Bool^>(l_Object);
+
 		if (Value.ValueAsObject != nullptr)
 		{
 			if (Value.Value == true)
@@ -14,7 +14,11 @@ namespace Rockwell_Library
 		}
 		else
 			Output.Value = false;
+	}
 
-		CloneRemoteDescription(Property.Value);
+	void XIC::Activate_Compound()
+	{		
+		l_Object = Get_Property(Property.Value);
+		CloneRemoteDescription(Property.Value);	
 	}
 }

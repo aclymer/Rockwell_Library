@@ -5,8 +5,8 @@ namespace Rockwell_Library
 {
 	void TON::Execute(double p_dTimeStep)
 	{
-		Timebase.ValueAsObject	= Get_Property(m_Timebase_Source.Value);
-		Preset.ValueAsObject	= Get_Property(m_Preset_Source.Value);
+		Timebase.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(m_Timebase_Source.Value));
+		Preset.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(m_Preset_Source.Value));
 
 		TON::Set_Property(m_TT_Dest.Value,  TT.Value);
 		TON::Set_Property(m_EN_Dest.Value,  Output.Value);
