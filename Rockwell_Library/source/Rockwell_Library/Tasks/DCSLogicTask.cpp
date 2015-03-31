@@ -49,7 +49,8 @@ namespace Rockwell_Library {
 	System::Void DCSLogicTask::Activate(System::Void )
 	{
 		try
-		{				
+		{		
+			DCS::DCSPropertyTextProvider::DCSPropertyTextProvider();		
 			m_DCSLogicComponents.Clear();
 			this->FilterComponents(DCSLogicComponent::typeid, m_DCSLogicComponents);
 			for each (DCSLogicComponent^ l_DCSLogicComponent in m_DCSLogicComponents)
@@ -76,13 +77,11 @@ namespace Rockwell_Library {
 
 	System::Void DCSLogicTask::Step(System::Void)
 	{
-		try
-		{
-			DCSLogicComponent::step();
-		}
+			DCSLogicComponent::step(AnimateLinks.Value);
+		/*
 		catch (Exception^ ex)
 		{
 			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", this->Identifier, "Unknown exception occured during DCSLogicTask::step event : " + ex->Message));
-		}
+		}*/
 	}
 }

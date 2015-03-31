@@ -5,7 +5,14 @@ namespace Rockwell_Library
 {
 	void XIC::Execute(double p_dTimeStep)
 	{
-		Value.Value = dynamic_cast<IPS::Properties::Bool^>(l_Object);
+		try
+		{
+			Value.ValueAsObject = Get_Property(Property.Value);
+		}
+		catch(Exception^ ex)
+		{
+			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
+		}
 
 		if (Value.ValueAsObject != nullptr)
 		{
@@ -18,7 +25,6 @@ namespace Rockwell_Library
 
 	void XIC::Activate_Compound()
 	{		
-		l_Object = Get_Property(Property.Value);
-		CloneRemoteDescription(Property.Value);	
+		CloneRemoteDescription(Property.Value);
 	}
 }

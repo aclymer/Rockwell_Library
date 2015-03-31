@@ -5,7 +5,14 @@ namespace Rockwell_Library
 {
 	void CLR::Execute(double p_dTimeStep)
 	{
-		Value.Value = dynamic_cast<IPS::Properties::Integer^>(Get_Property(Property.Value));
+		try
+		{
+			Value.ValueAsObject = Get_Property(Property.Value);
+		}
+		catch(Exception^ ex)
+		{
+			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
+		}
 
 		if (Input.Value)
 		{

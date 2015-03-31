@@ -5,8 +5,8 @@ namespace Rockwell_Library
 {
 	void ABS::Execute(double p_dTimeStep)
 	{
-		Value_A.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(Source_A.Value));
-		Value_B.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(Source_B.Value));
+		Value_A.ValueAsObject	= Get_Property(Source_A.Value);
+		Value_B.ValueAsObject	= Get_Property(Source_B.Value);
 
 		if (Input.Value == true)
 		{

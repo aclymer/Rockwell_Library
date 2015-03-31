@@ -5,14 +5,21 @@ namespace Rockwell_Library
 {
 	void TON::Execute(double p_dTimeStep)
 	{
-		Timebase.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(m_Timebase_Source.Value));
-		Preset.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(m_Preset_Source.Value));
+		try
+		{
+			Timebase.ValueAsObject	= Get_Property(Property.Value + ".BASE");
+			Preset.ValueAsObject	= Get_Property(Property.Value + ".PRE");
+		}
+		catch(Exception^ ex)
+		{
+			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
+		}
 
-		TON::Set_Property(m_TT_Dest.Value,  TT.Value);
-		TON::Set_Property(m_EN_Dest.Value,  Output.Value);
-		TON::Set_Property(m_DN_Dest.Value,  DN.Value);
-		TON::Set_Property(m_ACC_Dest.Value, ACC.ValueAsObject);
-
+		TON::Set_Property(Property.Value + "/TT",  TT.Value);
+		TON::Set_Property(Property.Value + "/EN",  Output.Value);
+		TON::Set_Property(Property.Value + "/DN",  DN.Value);
+		TON::Set_Property(Property.Value + ".ACC", ACC.ValueAsObject);
+		
 		Output.Value = Input.Value;
 	}
 }

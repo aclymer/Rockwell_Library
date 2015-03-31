@@ -7,8 +7,6 @@ namespace Rockwell_Library
 	{					
 		Set_Property(Property.Value, Input.Value);
 
-		Value.Value = dynamic_cast<IPS::Properties::Bool^>(Get_Property(Property.Value));
-
 		Output.Value		= Input.Value;
 	}
 }
