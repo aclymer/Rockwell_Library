@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::DIV()
 		{
-			TypeDescription			= "DIV";
+			TypeDescription			= "Math Instructions";
 			Name					= "DIV";
 			Descriptor				= "Divide";
 			
@@ -76,6 +76,10 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override

@@ -20,7 +20,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::LEQ()
 		{
-			TypeDescription			= "LEQ";
+			TypeDescription			= "Comparison Instructions";
 			Name					= "LEQ";
 			Descriptor				= "Less Than or Equal To";
 			
@@ -46,7 +46,11 @@ namespace Rockwell_Library
 			Value_B.Visible			= true;
 			Value_B.Value			= 0;
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

@@ -2,6 +2,7 @@
 #include "Ports.h"
 #include "Rockwell_Library/Components/Hidden/DCSLogicComponent.h"
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
+#include "Rockwell_Library/Links/DCSLogicLink.h"
 
 using namespace System;
 using namespace IPS::Server;
@@ -23,7 +24,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::END()
 		{
-			TypeDescription			= "END";
+			TypeDescription			= "End Instruction";
 			Name					= "END";
 			Descriptor				= "End Instruction";
 			
@@ -42,11 +43,56 @@ namespace Rockwell_Library
 		// Methods
 		//
 				
+		virtual void Activate_Compound() override
+		{	
+			IPS::Core::DrawingPage^ l_Page = dynamic_cast<IPS::Core::DrawingPage^>(m_Project->FindPagesWithComponent(this->Identifier)[0]);
+
+			for each (IPS::Core::Component^ r_Component in l_Page->Components)
+			{
+				l_Component = dynamic_cast<DCSLogicComponent^>(r_Component);
+							
+				if (l_Component != nullptr && l_Component->Name == "Rung" && l_Component->InputPort->IsConnected == false)
+				{
+					if (LadderPageDictionary.ContainsKey(l_Page->UserDescription->Value))
+						LadderPageDictionary.Remove(l_Page->UserDescription->Value);
+					
+					LadderPageDictionary.Add(l_Page->UserDescription->Value, gcnew LinkedList<DCSLogicComponent^>(PopulateRungList(l_Component)));											
+				}
+			}				
+
+			// Add Drawing Page Links to LinkList
+			for each (IPS::Core::Link^ l_Link in l_Page->Links)
+			{
+				try
+				{
+					l_BoolLink = dynamic_cast<DCSLogicLink^>(l_Link);
+					if (l_BoolLink != nullptr)
+					{
+						if (l_BoolLink->FromProperty == nullptr)
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Dangling Link", l_BoolLink->Identifier, "Link StartPort is not connected."));
+						else if (l_BoolLink->ToProperty == nullptr)
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Dangling Link", l_BoolLink->Identifier, "Link StartPort is not connected."));
+						else
+							l_LinkList.AddLink(l_BoolLink);
+					}
+				}
+				// Catch any dangling links
+				catch(Exception^ ex)
+				{
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, ((ElementImpl^) ex->Data)->Identifier, "Unknown Link Error occurred."));
+				}
+			}
+		}
+	
 		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override
 		{
 		}
 
+	private:
+		
+		DCSLogicComponent^						l_Component;
+		DCSLogicLink^							l_BoolLink;
 	};
 }

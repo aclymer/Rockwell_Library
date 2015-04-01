@@ -25,7 +25,7 @@ namespace Rockwell_Library
 				if (Int16::TryParse(dest_parsed[++j], currentWord))
 				{
 					dest_parsed[0] += (currentWord + i).ToString();
-					Set_Property(dest_parsed[0], Value.Value);
+					Set_Property(dest_parsed[0], Value);
 				}
 			}
 

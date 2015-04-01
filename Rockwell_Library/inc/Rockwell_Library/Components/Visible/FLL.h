@@ -12,14 +12,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "File Manipulation Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1,   0, 20, 13, 25, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 25, 25, "Red",  false)]
-	
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
 	public ref class FLL : public DCSLogicComponent
 	{	
 	public:
 
 		Rockwell_Library::FLL()
 		{
-			TypeDescription			= "FLL";
+			TypeDescription			= "File Manipulation Instructions";
 			Name					= "FLL";
 			Descriptor				= "Fill File";
 				
@@ -80,7 +80,11 @@ namespace Rockwell_Library
 		}
 		
 	public:			
-				
+			
+		virtual void Activate_Compound() override
+		{			
+		}
+		
 		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override

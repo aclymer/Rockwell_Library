@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::ABS()
 		{
-			TypeDescription			= "ABS";
+			TypeDescription			= "Advanced Math Instructions";
 			Name					= "ABS";
 			Descriptor				= "Absolute Value";
 			
@@ -82,6 +82,10 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 
 		virtual void Step(double dDt) override

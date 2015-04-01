@@ -70,12 +70,11 @@ namespace Rockwell_Library
 				return m_Input;
 			}
 		}
-
-		virtual System::Void InitProperties() override
-		{
-			IPS::Plugin::ComponentBase::InitProperties();
+		
+		virtual void Activate_Compound() override
+		{			
 		}
-
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override

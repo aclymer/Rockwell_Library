@@ -12,14 +12,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "File Manipulation Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1,   0, 20, 13, 25, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 25, 25, "Red",  false)]
-	
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
 	public ref class COP : public DCSLogicComponent
 	{	
 	public:
 
 		Rockwell_Library::COP()
 		{
-			TypeDescription			= "COP";
+			TypeDescription			= "File Manipulation Instructions";
 			Name					= "COP";
 			Descriptor				= "Copy File";
 				
@@ -33,14 +33,13 @@ namespace Rockwell_Library
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
-			Value.Visible			= true;
-			Value.Value				= false;
-
 			Property.Visible		= true;
 
 			Length.Visible			= true;
+			Length.Value			= 1;
+
 			Dest.Visible			= true;
-			Dest_Value.Visible		= true;
+			Dest_Value.Visible		= false;
 		}
 			
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -81,6 +80,10 @@ namespace Rockwell_Library
 		
 	public:			
 				
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override

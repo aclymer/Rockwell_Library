@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::LIM()
 		{
-			TypeDescription			= "LIM";
+			TypeDescription			= "Comparison Instructions";
 			Name					= "LIM";
 			Descriptor				= "Limit Test";
 			
@@ -100,6 +100,10 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override

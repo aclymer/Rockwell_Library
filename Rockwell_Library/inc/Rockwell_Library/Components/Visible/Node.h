@@ -23,7 +23,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::Node()
 		{
-			TypeDescription			= "Node";
+			TypeDescription			= "Branching Instructions";
 			Name					= "Node";
 			Descriptor				= "Branch End";
 			
@@ -41,7 +41,11 @@ namespace Rockwell_Library
 		//
 		// Methods
 		//
-				
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+			
 		virtual void Execute(double p_dTimeStep) override
 		{
 		}

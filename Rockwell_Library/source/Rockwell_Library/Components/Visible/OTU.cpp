@@ -5,9 +5,10 @@ namespace Rockwell_Library
 {
 	void OTU::Execute(double p_dTimeStep)
 	{
-		if (Input.Value == true)
-			Set_Property(Property.Value, false);
-
 		Output.Value = Input.Value;
+		Value.Value = false;
+
+		if (Input.Value == true)
+			Set_Property(Property.Value, Value);
 	}
 }

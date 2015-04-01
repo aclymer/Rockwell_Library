@@ -12,14 +12,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Advanced Math Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", false)]
-		
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]			
 	public ref class CPT : public MathBase
 	{
 	public:
 		
 		Rockwell_Library::CPT()
 		{
-			TypeDescription			= "CPT";
+			TypeDescription			= "Advanced Math Instructions";
 			Name					= "CPT";
 			Descriptor				= "Compute";
 			
@@ -41,6 +41,10 @@ namespace Rockwell_Library
 
 			Source_B.Visible		= true;
 			Source_B.Value			= "Address";
+
+			Value_B.Visible			= true;
+			
+			re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
 		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -67,11 +71,21 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override
 		{
 		}
 
+	private:
+
+		Regex^							re;
+		String^							l_ValToText;
+		ExpressionParser				parser;
+		System::Collections::Hashtable^	m_HashTable;
 	};
 }

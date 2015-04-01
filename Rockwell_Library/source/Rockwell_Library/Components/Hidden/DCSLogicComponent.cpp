@@ -79,6 +79,8 @@ namespace Rockwell_Library
 			}
 			m_ExecutionQueue.RemoveFirst();
 		}
-			
+		
+		if (m_PropertyDictionary.TryGetValue("S:1/15", l_Property))
+			(l_Property->ValueAsObject == (Object^)false ? true : l_Property->ValueAsObject = (Object^)false);
 	}
 }

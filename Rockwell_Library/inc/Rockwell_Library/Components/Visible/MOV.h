@@ -7,19 +7,19 @@ namespace Rockwell_Library
 {    
 	[IPS::Plugin::LibraryInfo("MOV", IPS::Plugin::Visibility::VISIBLE, "Property Copy")]
 	[IPS::Plugin::LibraryImage("MOV.png")]
-	[IPS::Plugin::LibrarySizeAttribute(200,120)]
+	[IPS::Plugin::LibrarySizeAttribute(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Move and Logical Instructions")]
 	[IPS::Plugin::Port("InputPort",	 Bool::BoolInputPort::typeid, -1,  0, -1,   0, 20, 13, 20, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 13, 20, "Red", false)]
-			
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]			
 	public ref class MOV : public DCSLogicComponent
 	{	
 	public:
 
 		Rockwell_Library::MOV()
 		{
-			TypeDescription			= "MOV";
+			TypeDescription			= "Move and Logical Instructions";
 			Name					= "MOV";
 			Descriptor				= "Move Word";
 				
@@ -92,7 +92,11 @@ namespace Rockwell_Library
 		}
 		
 	public:
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override
@@ -100,9 +104,10 @@ namespace Rockwell_Library
 		}
 
 	public:
-		      
-		IPS::Properties::Double	m_Value; 
-		IPS::Properties::Double	m_Dest_Value;       
+		   
+		System::Double							value;  
+		IPS::Properties::Double					m_Value; 
+		IPS::Properties::Double					m_Dest_Value;       
 		IPS::Properties::Text					m_Dest;
 		List<String^>							source_parsed;
 		List<String^>							dest_parsed;

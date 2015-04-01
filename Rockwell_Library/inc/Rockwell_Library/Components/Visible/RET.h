@@ -21,9 +21,9 @@ namespace Rockwell_Library
 
 		Rockwell_Library::RET()
 		{			
-			TypeDescription				= "RET";
-			Name						= "RET";
-			Descriptor					= "Return From Subroutine";
+			TypeDescription			= "Control Instructions";
+			Name					= "RET";
+			Descriptor				= "Return From Subroutine";
 			
 			Input.Visible			= true;
 			Input.Value				= false;
@@ -35,7 +35,11 @@ namespace Rockwell_Library
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);			
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

@@ -12,7 +12,7 @@ using namespace DCS::Ports::Integer;
 namespace Rockwell_Library {
 
 	public enum class TimerType { TON, TOF };
-
+	
 	public ref class Timer : public ITimer
 	{
 	public:
@@ -128,7 +128,11 @@ namespace Rockwell_Library {
 				return m_Input_Prev;
 			}
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual	void Step(double Ts)
 		{
 			EN.Value = Input.Value;

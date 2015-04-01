@@ -20,17 +20,26 @@ namespace Rockwell_Library
 
 	public:
 
-		DCSLogicComponent()
+		DCSLogicComponent::DCSLogicComponent()
 		{
 			DCS::DCSPropertyTextProvider::DCSPropertyTextProvider();
 
 			m_Project						= IPS::Server::IProject::GetInstance();
 			Input.Visible					= false;
+
 			Output.Visible					= false;
+
 			Property.Visible				= false;
+			Property.Value					= "Address";
+
 			Value.Visible					= false;	
+
 			ExecutionSequenceNumber.Visible = false;
+
 			TaskInclude.Visible				= false;
+
+			ShowSource.Visible				= true;
+			ShowSource.Value				= true;
 		}
 
 	public:
@@ -38,6 +47,19 @@ namespace Rockwell_Library
 		//
 		// General
 		//
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Show Source Text")]
+		[IPS::Properties::GridOrder(100)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		[IPS::Properties::CheckBoxAttribute()]
+		virtual property IPS::Properties::Bool% ShowSource
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_ShowSource;
+			}
+		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Input")]
@@ -107,56 +129,76 @@ namespace Rockwell_Library
 			}
 			catch(System::Exception^ e)
 			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Clone ID) Invalid Identifier: " + (String::IsNullOrEmpty(source) ? "-blank-" : source)));
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Clone Desc) Invalid Identifier: " + (String::IsNullOrEmpty(source) ? "-blank-" : source)));
+			}
+			
+			return false;
+		}
+
+		virtual bool CopyPropertyDescription(String^ source, String^ destination)
+		{	
+			try
+			{	
+				if (m_PropertyDictionary.TryGetValue(source, l_CloneSourceProperty))
+					if (dynamic_cast<DCS::Components::DCSComponentBase^>(l_CloneSourceProperty) != nullptr)
+						if (l_CloneDestComponent->UserDescription->Value != dynamic_cast<DCS::Components::DCSComponentBase^>(l_CloneSourceProperty)->UserDescription->Value)
+						{
+							l_CloneDestComponent->UserDescription->Value = dynamic_cast<DCS::Components::DCSComponentBase^>(l_CloneSourceProperty)->UserDescription->Value;
+
+							return true;
+						}
+			}
+			catch(System::Exception^ e)
+			{
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Copy Desc) Invalid Identifier: " + source));
 			}
 			
 			return false;
 		}
 		
 		virtual System::Object^ Get_Property(String^ source)
-		{	
-			try
-			{	
-				double Value;
-				
-				if (System::Double::TryParse(source, Value))
-					return (Object^) Value;
-				
-				return m_Project->GetComponent(source)->GetPropertyFromPropID("Value")->ValueAsObject;
-			}
-			catch(System::Exception^ e)
+		{		
+			l_Val = 0;
+			if (!System::Double::TryParse(source, l_Val))
 			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Get_Property) Invalid Identifier: " + source));
-			}
+				if (!m_PropertyDictionary.TryGetValue(source, l_Property))
+				{
+					l_Property = m_Project->GetComponent(source)->GetPropertyFromPropID("Value");
+					m_PropertyDictionary.Add(source, l_Property);
+				}
+				if (l_Property != nullptr)
+					return l_Property->ValueAsObject;
+				else
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + source));
 
-			return nullptr;
+			}
+						
+			return l_Val;
 		}
 		
-		virtual System::Void Set_Property(String^ destination, System::Object^ object)
+		virtual System::Void Set_Property(String^ destination, IPS::Core::Property% l_SourceProperty)
 		{
-			try
+			if (!m_PropertyDictionary.TryGetValue(destination, l_Property))
 			{
-				m_Project->GetComponent(destination)->GetPropertyFromPropID("Value")->ValueAsObject = object;
+				l_Property = m_Project->GetComponent(destination)->GetPropertyFromPropID("Value");
+				if (l_Property != nullptr)
+					m_PropertyDictionary.Add(destination, l_Property);
+				else
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + destination));
 			}
-			catch(System::Exception^ e)
-			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(e->Message, this->Identifier, "(Set_Property) Invalid Identifier: " + destination));
-			}
+
+			l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
 		}
 
-		void ParseAddress(List<String^>% parsed, String^ address)
+		bool ParseAddress(List<String^>% parsed, String^ address)
 		{
 			parsed.Clear();
-			try
-			{
-				Regex^ re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
-				if (re->IsMatch(address))
-					parsed.AddRange(re->Split(address));
-			}
-			catch (Exception^ ex)
-			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(address, this->Identifier, "Error in regular expression : " + ex->Message));
-			}
+			Regex^ re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
+
+			if (re->IsMatch(address))
+				parsed.AddRange(re->Split(address));
+
+			return re->IsMatch(address);
 		}
 		
 		virtual void ReadInputs() override
@@ -177,104 +219,130 @@ namespace Rockwell_Library
 			IPS::Plugin::ComponentBase::InitProperties();
 		}
 
-		static void step();
+		static void step(bool);
 		
-		static void Activate_Compound()
+		virtual void Activate_Compound()
 		{
-			LadderPageDictionary.Clear();
-			l_LinkList.Clear();
+		}
 
-			for each (IPS::Core::DrawingPage^ l_Page in m_Project->Pages)
+		static void PopulateIOPropertyList()
+		{
+			l_SystemIOPage = dynamic_cast<IPS::Core::DrawingPage^>(m_Project->FindPagesWithComponent(m_Project->GetComponent("S:0")->Identifier)[0]);
+			if (l_SystemIOPage != nullptr)
 			{
-				if (l_Page != nullptr && l_Page->UserDescription->Value->StartsWith("U:"))
+				for each (IPS::Core::Component^ m_Component in l_SystemIOPage->Components)
 				{
-					for each (IPS::Core::Component^ r_Component in l_Page->Components)
+					if (dynamic_cast<DCS::Components::Properties::PropertyBase^>(m_Component) != nullptr)
 					{
-						try
-						{
-							l_Component = dynamic_cast<DCSLogicComponent^>(r_Component);
-							
-							if (l_Component != nullptr && l_Component->TypeDescription == "Rung" && l_Component->InputPort->IsConnected == false)
-								LadderPageDictionary.Add(l_Page->UserDescription->Value, gcnew LinkedList<DCSLogicComponent^>(PopulateRungList(l_Component)));
-						
-						}
-						catch (Exception^ ex)
-						{
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", r_Component->Identifier, ex->Source + ex->Message));
-						}
-					}				
-					// Add Drawing Page Links to LinkList
-					for each (IPS::Core::Link^ l_Link in l_Page->Links)
-					{
-						try
-						{
-							l_BoolLink = dynamic_cast<DCS::Links::Bool_BoolLink^>(l_Link);
-							if (l_BoolLink != nullptr)
-							{
-								l_LinkList.AddLink(l_BoolLink);
-							}
-						}
-						catch(Exception^ ex)
-						{
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", l_Link->Identifier, ex->Source + ex->Message + "Error adding Link to LinkList."));
-						}
-					}					
+						if (!m_PropertyDictionary.ContainsKey(m_Component->Identifier->Value))
+							m_PropertyDictionary.Add(m_Component->Identifier->Value, dynamic_cast<DCS::Components::Properties::PropertyBase^>(m_Component)->GetPropertyFromPropID("Value"));
+					}
 				}
 			}
-				
-			m_ExecutionQueue.Clear();
 		}
 		
-	private:
+	protected:
 		
+		// Sort and fill LadderList starting with
+		// first Rung on page, then iterating through
+		// all the connected rungs. Get connected components
+		// for each Rung and insert them in the list 
+		// before the next rung. If a component is already
+		// on the list, move it to the end of that rung.
+		//////////////////////////////////////////////////
 		static LinkedList<DCSLogicComponent^>^ PopulateRungList(DCSLogicComponent^ l_FirstRung)
 		{
 			l_Ladder = gcnew LinkedList<DCSLogicComponent^>;
-			l_Ladder->AddFirst(l_Component);
+			l_Ladder->AddFirst(l_FirstRung);
 
 			LinkedListNode<DCSLogicComponent^>^ l_ThisRungItem = l_Ladder->First;
 
 			while (l_ThisRungItem->Value->PortByName("RungPort")->GetConnectedComponents()->Count > 0)
 			{
-				l_Ladder->AddLast(dynamic_cast<DCSLogicComponent^>(l_ThisRungItem->Value->PortByName("RungPort")->GetConnectedComponents()[0]));
-				l_ThisRungItem = l_ThisRungItem->Next;
+				try
+				{
+					l_Ladder->AddLast(dynamic_cast<DCSLogicComponent^>(l_ThisRungItem->Value->PortByName("RungPort")->GetConnectedComponents()[0]));
+					l_ThisRungItem = l_ThisRungItem->Next;
+				}
+				catch (Exception^ ex)
+				{
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, l_ThisRungItem->Value->Identifier, ex->Message + " Dangling OutLink: ReConnect or Delete.")); 
+				}
 			}
 
 			l_ThisRungItem = l_Ladder->First;
 			LinkedListNode<DCSLogicComponent^>^ l_NextRungItem = l_ThisRungItem->Next;
 
-			while (l_Ladder->Last->Value->TypeDescription != "END")
+			// Iterate through connected components until
+			// an END component is reached or throw an exception
+			// Every Ladder should have an END component added
+			// that is automatically placed by the original system.
+			////////////////////////////////////////////////////////
+			while (l_Ladder->Last->Value->Name != "END")
 			{	
+				if (l_ThisRungItem == nullptr)
+					break;
+
 				if (l_ThisRungItem == l_NextRungItem)
 					l_NextRungItem = l_ThisRungItem->Next;
 
-				IPS::Core::ComponentList^ l_ConnectedList = l_ThisRungItem->Value->PortByName("OutputPort")->GetConnectedComponents();
+				IPS::Core::ComponentList^ l_ConnectedList;
 
-				if (l_ConnectedList->Count > 0)
+				try
 				{
-					for each (DCSLogicComponent^ l_ConnectedComponent in l_ConnectedList)
+					l_ConnectedList = l_ThisRungItem->Value->PortByName("OutputPort")->GetConnectedComponents();
+
+					if (l_ConnectedList->Count > 0)
 					{
-						if (l_ThisRungItem->Value == l_ConnectedComponent)
+						for each (DCSLogicComponent^ l_ConnectedComponent in l_ConnectedList)
 						{
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", l_ConnectedComponent->Identifier, "Dangling OutLink: Connect EndPoint or Delete.")); 
-							break;
-						}
-						else
-						{
-							if (l_Ladder->Contains(l_ConnectedComponent))
+							if (l_ThisRungItem->Value == l_ConnectedComponent)
 							{
-								l_Ladder->Remove(l_ConnectedComponent);
+								IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", l_ConnectedComponent->Identifier, "Dangling OutLink: Connect EndPoint or Delete.")); 
+								break;
 							}
-						
-							if (l_NextRungItem != nullptr)
-								l_Ladder->AddBefore(l_NextRungItem, l_ConnectedComponent);
 							else
-								l_Ladder->AddLast(l_ConnectedComponent);
-						}
-					}						
+							{
+								if (l_Ladder->Contains(l_ConnectedComponent))
+								{
+									l_Ladder->Remove(l_ConnectedComponent);
+								}
+						
+								if (l_NextRungItem != nullptr)
+									l_Ladder->AddBefore(l_NextRungItem, l_ConnectedComponent);
+								else
+									l_Ladder->AddLast(l_ConnectedComponent);
+							}
+						}						
+					}
+				}
+				catch (Exception^ ex)
+				{
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, l_ThisRungItem->Value->Identifier, ex->Message + " Dangling OutLink: Connect EndPoint or Delete.")); 
 				}
 				
-				l_ThisRungItem = l_ThisRungItem->Next;				
+				// Catch a bad Rung-->Rung link
+				// If "End of List" and LastItem != "END"
+				/////////////////////////////////////////
+				if (l_ThisRungItem->Next == nullptr && l_ThisRungItem->Value->Name != "END")
+				{
+					try
+					{
+						while (l_ThisRungItem->Value->Name != "Rung")
+						{
+							l_ThisRungItem = l_ThisRungItem->Previous;
+						}
+
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", l_ThisRungItem->Value->Identifier, "Discontinuity in Rungs, END not reached, check RungLinks.")); 
+						break;
+					}
+					catch(Exception^ ex)
+					{
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, l_ThisRungItem->Value->Identifier, ex->Message + "Unknown Error in this Rung.")); 
+					}
+				}
+				else
+					l_ThisRungItem = l_ThisRungItem->Next;
 			}
 
 			return l_Ladder;
@@ -282,37 +350,39 @@ namespace Rockwell_Library
 
 	public:
 
-		IPS::Core::Page^								m_CurrentPage;
+		static System::Collections::Generic::Dictionary
+					<String^, IPS::Core::Property^>		m_PropertyDictionary;
 		static IPS::Server::IProject^					m_Project;
 
 		String^											TypeDescription;
 		String^											Name;
 		String^											Descriptor;
 
-		static Generic::Dictionary<String^ ,
-				LinkedList<DCSLogicComponent^>^>		LadderPageDictionary;
+		IPS::Properties::Bool							m_Input;
+		IPS::Properties::Bool							m_Value;
+		IPS::Properties::Bool							m_Output;
+		IPS::Properties::Bool							m_ShowSource;
+		IPS::Properties::Text							m_Property;
 
-		bool FindFirstRung(IPS::Core::Component^ component)
-		{
-			return true;
-		}
-
+		DCSInputPortBase^								InputPort;
+		DCSOutputPortBase^								OutputPort;
 
 	private:
-		
-		static int count								= 0;
-		static DCSLogicComponent^						l_Component;
-		static Generic::LinkedList<DCSLogicComponent^>	m_ExecutionQueue;
+
+		double											l_Val;
+		IPS::Properties::Double							pValue;
+		static IPS::Core::Property^						l_Property;
+		static IPS::Core::Property^						l_CloneSourceProperty;
+		static DCSLogicComponent^						l_CloneDestComponent;
+		static IPS::Core::DrawingPage^					l_SystemIOPage;
 		static IPS::Properties::Bool					l_Value;
+		static DCSLogicComponent^						l_Component;		
+		static DCS::Links::Bool_BoolLink^				l_BoolLink;
+
 		Bool::BoolInputPort^							l_BoolInputPort;
 		Bool::BoolOutputPort^							r_BoolOutputPort;
 		Bool::BoolOutputPort^							l_BoolOutputPort;
 		IPS::Core::LinkDrawingData^						l_LinkDrawingData;
-		IPS::Core::ComponentList						m_DCSLogicComponents;
-		String^											l_InitSubroutine;
-		static IPS::Core::LinkList						l_LinkList;
-		static DCS::Links::Bool_BoolLink^				l_BoolLink;		
-		static LinkedList<DCSLogicComponent^>^			l_Ladder;
 		
 		void InitCompoundProperties()
 		{
@@ -320,12 +390,12 @@ namespace Rockwell_Library
 		
 	protected:
 		
-			IPS::Properties::Bool						m_Input;
-			IPS::Properties::Bool						m_Output;
-			IPS::Properties::Bool						m_Value;
-			IPS::Properties::Text						m_Property;
-			DCSInputPortBase^							InputPort;
-			DCSOutputPortBase^							OutputPort;
+		static LinkedList<DCSLogicComponent^>^			l_Ladder;
+		static IPS::Core::LinkList						l_LinkList;	
+		static Generic::LinkedList<DCSLogicComponent^>	m_ExecutionQueue;
+		static IPS::Core::ComponentList					m_DCSLogicComponents;
+		static System::Collections::Generic::Dictionary
+			<String^, LinkedList<DCSLogicComponent^>^>	LadderPageDictionary;
 	};
 	
 }

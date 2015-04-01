@@ -11,7 +11,7 @@ namespace Rockwell_Library
 		if (Input.Value == true)
 		{
 			Value_B.Value	= Math::Abs(Value_A.Value);
-			Set_Property(Source_B.Value, Value_B.ValueAsObject);
+			Set_Property(Source_B.Value, Value_B);
 		}
 
 		Output.Value = Input.Value;

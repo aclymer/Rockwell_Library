@@ -18,6 +18,9 @@ namespace Rockwell_Library {
 		{
 			Instance = this;
 		}
+		l_FirstPass = true;
+		// Set the First Pass Status Bit
+		m_pProject->GetComponent("S:1/15")->GetPropertyFromPropID("Value")->ValueAsObject = l_FirstPass;
 	}
 	
 	System::Void DCSLogicTask::Unload()
@@ -57,6 +60,7 @@ namespace Rockwell_Library {
 			{
 				l_DCSLogicComponent->Activate_Compound();
 			}
+			DCSLogicComponent::PopulateIOPropertyList();
 		}
 		catch (Exception^ ex)
 		{
@@ -77,11 +81,16 @@ namespace Rockwell_Library {
 
 	System::Void DCSLogicTask::Step(System::Void)
 	{
+		try
+		{
+			if (l_FirstPass)
+				m_pProject->GetComponent("S:1/15")->GetPropertyFromPropID("Value")->ValueAsObject = false;
+			l_FirstPass = false;
 			DCSLogicComponent::step(AnimateLinks.Value);
-		/*
+		}
 		catch (Exception^ ex)
 		{
 			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", this->Identifier, "Unknown exception occured during DCSLogicTask::step event : " + ex->Message));
-		}*/
+		}
 	}
 }

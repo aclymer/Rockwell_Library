@@ -10,16 +10,16 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySizeAttribute(50,50)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Relay Type Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 50, 100, "Red", false)]
-		
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 50, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 100, 100, "Red", false)]
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
 	public ref class XIO : public DCSLogicComponent
 	{
 	public:
 		
 		Rockwell_Library::XIO()
 		{
-			TypeDescription			= "XIO";
+			TypeDescription			= "Relay Type Instructions";
 			Name					= "XIO";
 			Descriptor				= "Examine If Open";
 			
@@ -37,17 +37,19 @@ namespace Rockwell_Library
 			Value.Value				= false;
 
 			Property.Visible		= true;
+			Property.Value			= "Address";
 		}
 				
 		//
 		// Methods
 		//
+		
+		virtual void Activate_Compound() override;
 
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override
 		{
 		}
-
 	};
 }

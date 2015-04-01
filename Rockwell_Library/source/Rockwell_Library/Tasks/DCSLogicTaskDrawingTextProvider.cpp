@@ -16,30 +16,28 @@ namespace Rockwell_Library {
 	String^ DCSLogicTaskDrawingTextProvider::SplitString(String^ stringToSplit, int width)
 	{		
 		String^ splitstring = "";
+
 		if(stringToSplit->Length > width)
 		{
+			int counter = 0;
 
-				int counter = 0;
-
-				for each(System::Char l_char in stringToSplit->ToCharArray())
+			for each(System::Char l_char in stringToSplit->ToCharArray())
+			{
+				counter++;
+				if(counter > 20)
 				{
-						counter++;
-						if(counter > 20)
-						{
-								if(l_char == ' ')
-								{
-										l_char = '\n';
-										counter = 0;
-								}
-						}
-		 
-						splitstring += l_char.ToString();
+					if(l_char == ' ')
+					{
+							l_char = '\n';
+							counter = 0;
+					}
 				}
+		 
+				splitstring += l_char.ToString();
+			}
 		}
 		else
-		{
 				splitstring = stringToSplit;
-		}
 
 		return splitstring;
 	}
@@ -58,15 +56,17 @@ namespace Rockwell_Library {
 
 				returnDrawingTexts->Add( l_RungName );
 			}
-			else if (l_pDCSLogicComponent->ShowSource.Value == true && l_pDCSLogicComponent->TypeDescription == "Relay Type Instructions")
+			else if (l_pDCSLogicComponent->ShowSource.Value == true &&
+					(l_pDCSLogicComponent->TypeDescription == "Relay Type Instructions" ||
+					 l_pDCSLogicComponent->Name == "LBL" ||
+					 l_pDCSLogicComponent->Name == "JMP"))
 			{
-				String^ string;
 				for each (Char character in l_pDCSLogicComponent->Property.Value->ToCharArray())
 				{
 					if (character == '/' || character == '.')
 					{
 						character = '\n';
-						string += character.ToString();
+						string = character.ToString();
 						string += character.ToString();
 					}
 					string += character.ToString();
@@ -77,9 +77,27 @@ namespace Rockwell_Library {
 
 				returnDrawingTexts->Add( l_DescriptionDrawingData );
 			}
+			else if (l_pDCSLogicComponent->TypeDescription == "Advanced Math Instructions")
+			{
+				string =	((Char)'\n').ToString();
+				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
+				string +=	((Char)'\n').ToString();		
+				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	"<";
+				string +=	((Char)'\n').ToString();
+				string +=	((Char)'\n').ToString();
+				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
+				string +=	((Char)'\n').ToString();		
+				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
+				string +=	"<";	
+
+				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
+				l_DescriptionDrawingData.Text			= string;
+
+				returnDrawingTexts->Add( l_DescriptionDrawingData );
+			}
 			else if (l_pDCSLogicComponent->TypeDescription == "Comparison Instructions")
 			{
-				String^		string;
 				string =	((Char)'\n').ToString();
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
@@ -99,25 +117,52 @@ namespace Rockwell_Library {
 			}
 			else if (l_pDCSLogicComponent->TypeDescription == "Math Instructions")
 			{
-				String^		string;
-				string +=	((Char)'\n').ToString();
-				string +=	((Char)'\n').ToString();
-				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
-				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
-				string +=	"<";
-				string +=	((Char)'\n').ToString();
-				string +=	((Char)'\n').ToString();
-				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
-				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
-				string +=	"<";
-				string +=	((Char)'\n').ToString();
-				string +=	((Char)'\n').ToString();
+				if (l_pDCSLogicComponent->Name == "CLR")
+				{
+					string =	((Char)'\n').ToString();
+					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
+					string +=	((Char)'\n').ToString();		
+					string +=	((System::Int32^)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject)->ToString()->PadLeft(PAD);
+					string +=	"<";
+					string +=	((Char)'\n').ToString();
+				}
+				else
+				{
+					string =	((Char)'\n').ToString();
+					string +=	((Char)'\n').ToString();
+					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
+					string +=	((Char)'\n').ToString();		
+					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
+					string +=	"<";
+					string +=	((Char)'\n').ToString();
+					string +=	((Char)'\n').ToString();
+					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
+					string +=	((Char)'\n').ToString();		
+					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
+					string +=	"<";
+					string +=	((Char)'\n').ToString();
+					string +=	((Char)'\n').ToString();
+					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
+					string +=	((Char)'\n').ToString();		
+					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject)->ToString()->PadLeft(PAD);
+					string +=	"<";	
+				}
+
+				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
+				l_DescriptionDrawingData.Text			= string;
+
+				returnDrawingTexts->Add( l_DescriptionDrawingData );
+			}
+			else if (l_pDCSLogicComponent->TypeDescription == "File Manipulation Instructions")
+			{
+				string =	((Char)'\n').ToString();		
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
+				string +=	((Char)'\n').ToString();	
+				string +=	((Char)'\n').ToString();
+				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Dest")->ValueAsObject)->PadLeft(PAD);
+				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject)->ToString()->PadLeft(PAD);
-				string +=	"<";	
+				string +=	((System::Int32^)l_pDCSLogicComponent->GetPropertyFromPropID("Length")->ValueAsObject)->ToString()->PadLeft(PAD);	
 
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
 				l_DescriptionDrawingData.Text			= string;
@@ -126,7 +171,6 @@ namespace Rockwell_Library {
 			}
 			else if (l_pDCSLogicComponent->Name == "MOV")
 			{
-				String^		string;
 				string =	((Char)'\n').ToString();		
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
@@ -146,7 +190,6 @@ namespace Rockwell_Library {
 			}
 			else if (l_pDCSLogicComponent->Name == "TON")
 			{
-				String^		string;
 				string =	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();	
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);

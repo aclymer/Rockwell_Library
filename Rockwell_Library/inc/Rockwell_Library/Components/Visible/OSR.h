@@ -11,15 +11,15 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Relay Type Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 25, 100, "Red", false)]
-		
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 50, 100, "Red", false)]
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
 	public ref class OSR : public DCSLogicComponent
 	{
 	public:
 		
 		Rockwell_Library::OSR()
 		{
-			TypeDescription			= "OSR";
+			TypeDescription			= "Relay Type Instructions";
 			Name					= "OSR";
 			Descriptor				= "One Shot Rising";
 			
@@ -43,6 +43,10 @@ namespace Rockwell_Library
 		// Methods
 		//
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

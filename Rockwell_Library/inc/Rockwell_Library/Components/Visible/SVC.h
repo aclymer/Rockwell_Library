@@ -14,8 +14,8 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibrarySizeAttribute(200,100)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Communications Instructions")]
-	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1, 0, 50, 25, 100, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 25, 100, "Red", false)]
+	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1, 0, 25, 13, 100, "Green", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 25, 13, 100, "Red", false)]
 		
 	public ref class SVC : public DCSLogicComponent
 	{
@@ -23,7 +23,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::SVC()
 		{
-			TypeDescription			= "SVC";
+			TypeDescription			= "Communications Instructions";
 			Name					= "SVC";
 			Descriptor				= "Service Communications";
 			
@@ -42,6 +42,10 @@ namespace Rockwell_Library
 		// Methods
 		//
 				
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override

@@ -1,16 +1,19 @@
 #pragma once
 #include "Ports.h"
+#include <string>
 #include "Rockwell_Library/Components/Hidden/DCSLogicComponent.h"
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
 
 using namespace System;
 using namespace IPS::Server;
 using namespace DCS::Ports;
+using namespace info::lundin::Math;
 
 namespace Rockwell_Library
 {
 	[IPS::Plugin::LibraryInfo("MathBase", IPS::Plugin::Visibility::HIDDEN, "MathBase")]
-	public ref class MathBase : public DCSLogicComponent 
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]	
+	public ref class MathBase : public DCSLogicComponent
 	{
 	public:
 		
@@ -26,7 +29,7 @@ namespace Rockwell_Library
 
 			Value_A.Visible			= false;
 
-			Value_B.Visible			= false;
+			Value_B.Visible			= false;			
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -80,12 +83,12 @@ namespace Rockwell_Library
 		//
 		// Methods
 		//
-
+			
 	public: 
 			
-			IPS::Properties::Text	m_Source_A;
-			IPS::Properties::Double	m_Value_A;
-			IPS::Properties::Text	m_Source_B;
-			IPS::Properties::Double	m_Value_B;
+			IPS::Properties::Text			m_Source_A;
+			IPS::Properties::Double			m_Value_A;
+			IPS::Properties::Text			m_Source_B;
+			IPS::Properties::Double			m_Value_B;
 	};
 }

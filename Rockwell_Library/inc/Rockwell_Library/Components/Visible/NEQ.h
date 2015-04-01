@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::NEQ()
 		{
-			TypeDescription			= "NEQ";
+			TypeDescription			= "Comparison Instructions";
 			Name					= "NEQ";
 			Descriptor				= "Equal";
 			
@@ -45,7 +45,11 @@ namespace Rockwell_Library
 			Value_B.Visible			= true;
 			Value_B.Value			= 0;
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

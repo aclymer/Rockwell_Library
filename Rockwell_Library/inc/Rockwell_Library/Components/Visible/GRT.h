@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::GRT()
 		{
-			TypeDescription			= "GRT";
+			TypeDescription			= "Comparison Instructions";
 			Name					= "GRT";
 			Descriptor				= "Greater Than";
 			
@@ -45,7 +45,11 @@ namespace Rockwell_Library
 			Value_B.Visible			= true;
 			Value_B.Value			= 0;
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

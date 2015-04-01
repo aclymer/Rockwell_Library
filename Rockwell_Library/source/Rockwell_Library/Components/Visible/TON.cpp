@@ -15,11 +15,13 @@ namespace Rockwell_Library
 			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
 		}
 
-		TON::Set_Property(Property.Value + "/TT",  TT.Value);
-		TON::Set_Property(Property.Value + "/EN",  Output.Value);
-		TON::Set_Property(Property.Value + "/DN",  DN.Value);
-		TON::Set_Property(Property.Value + ".ACC", ACC.ValueAsObject);
+		Set_Property(Property.Value + "/TT",  TT);
+		Set_Property(Property.Value + "/EN",  Output);
+		Set_Property(Property.Value + "/DN",  DN);
+		Set_Property(Property.Value + ".ACC", ACC);
 		
 		Output.Value = Input.Value;
+
+		IPS::Plugin::DrawingTextEventArgs().Empty;
 	}
 }

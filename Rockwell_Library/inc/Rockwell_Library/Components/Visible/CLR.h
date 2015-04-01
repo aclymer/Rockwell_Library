@@ -12,14 +12,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Math Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 25, 13, 100, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 25, 25, 100, "Red", false)]
-	
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
 	public ref class CLR : public DCSLogicComponent
 	{	
 	public:
 
 		Rockwell_Library::CLR()
 		{
-			TypeDescription			= "CLR";
+			TypeDescription			= "Math Instructions";
 			Name					= "CLR";
 			Descriptor				= "Clear";
 				
@@ -65,7 +65,11 @@ namespace Rockwell_Library
 		}
 		
 	public:			
-				
+			
+		virtual void Activate_Compound() override
+		{			
+		}
+		
 		virtual void Execute(double p_dTimeStep) override;
 		
 		virtual void Step(double dDt) override
@@ -75,5 +79,6 @@ namespace Rockwell_Library
 	public:
 		
 		IPS::Properties::Integer		m_Value;
+		IPS::Core::Property^			l_Property;
 	};    
 }

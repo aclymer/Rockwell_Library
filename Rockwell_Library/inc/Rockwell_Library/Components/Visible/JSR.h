@@ -25,7 +25,7 @@ namespace Rockwell_Library
 
 		Rockwell_Library::JSR()
 		{			
-			TypeDescription				= "JSR";
+			TypeDescription				= "Control Instructions";
 			Name						= "JSR";
 			Descriptor					= "Jump To Subroutine";
 			
@@ -40,7 +40,7 @@ namespace Rockwell_Library
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
 			Property.Visible		= true;
-			Property.Value			= "U:2";
+			Property.Value			= "Address";
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -55,11 +55,10 @@ namespace Rockwell_Library
 			}
 		}
 		
-		virtual System::Void InitProperties() override
-		{
-			IPS::Plugin::ComponentBase::InitProperties();
+		virtual void Activate_Compound() override
+		{			
 		}
-
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override

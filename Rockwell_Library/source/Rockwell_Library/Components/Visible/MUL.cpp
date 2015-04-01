@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		if (Input.Value == true)
 		{
 			Value.Value = Value_A.Value * Value_B.Value;
-			Set_Property(Property.Value, Value.ValueAsObject);
+			Set_Property(Property.Value, Value);
 		}
 
 		Output.Value = Input.Value;

@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::ADD()
 		{
-			TypeDescription			= "ADD";
+			TypeDescription			= "Math Instructions";
 			Name					= "ADD";
 			Descriptor				= "Add";
 			
@@ -76,6 +76,10 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override

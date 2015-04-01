@@ -27,7 +27,7 @@ namespace Rockwell_Library
 				else
 					Output.Value = false;
 
-				Set_Property(Property.Value, Value.ValueAsObject);
+				Set_Property(Property.Value, Value);
 			}
 		}
 		else if (Value_A.Value > Value_B.Value)
@@ -39,7 +39,7 @@ namespace Rockwell_Library
 				else
 					Output.Value = true;
 
-				Set_Property(Property.Value, Value.ValueAsObject);
+				Set_Property(Property.Value, Value);
 			}
 		}
 		else

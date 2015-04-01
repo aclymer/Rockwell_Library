@@ -29,6 +29,8 @@ namespace Rockwell_Library {
 
 	private:
 
+		String^							SplitString(String^, int);
+		String^							string;
 		DCSLogicComponent^				l_pDCSLogicComponent;
 	};
 

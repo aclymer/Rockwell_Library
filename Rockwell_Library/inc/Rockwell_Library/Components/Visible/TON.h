@@ -13,7 +13,6 @@ using namespace DCS::Ports;
 namespace Rockwell_Library
 {	
 	[IPS::Plugin::LibraryInfo("TON", IPS::Plugin::Visibility::VISIBLE, "Timer On Delay")]
-	[IPS::Plugin::DrawingTextProvider(DCSLogicTaskDrawingTextProvider::typeid)]
 	[IPS::Plugin::LibraryImage("TON.png")]
 	[IPS::Plugin::LibrarySize(200,125)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
@@ -21,14 +20,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
 	[IPS::Plugin::Port("OutputPort",Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 13, 20, "Red", false)]
 	[IPS::Plugin::Port("DNPort",	Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 13, 20, "Red", false)]
-
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]
 	public ref class TON : public DCSLogicComponent, ITimer
 	{
 	public:
 
 		TON()
 		{
-			TypeDescription			= "TON";
+			TypeDescription			= "Timer and Counter Instructions";
 			Name					= "TON";
 			Descriptor				= "Timer On Delay";
 			
@@ -78,16 +77,6 @@ namespace Rockwell_Library
 			{
 				return m_Property;
 			}
-			void set(IPS::Properties::Text% text)
-			{
-				m_Property				= text;				
-				m_EN_Dest.Value			= m_Property.Value + "/EN";
-				m_TT_Dest.Value			= m_Property.Value + "/TT";
-				m_DN_Dest.Value			= m_Property.Value + "/DN";
-				m_ACC_Dest.Value		= m_Property.Value + ".ACC";
-				m_Timebase_Source.Value = m_Property.Value + ".BASE";
-				m_Preset_Source.Value	= m_Property.Value + ".PRE";
-			}
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -118,6 +107,7 @@ namespace Rockwell_Library
 		[IPS::Properties::DisplayName("Accum")]
 		[IPS::Properties::GridOrder(30)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Timer"})]
+		[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]
 		virtual property IPS::Properties::Double% ACC
 		{
 			IPS::Properties::Double% get()
@@ -173,7 +163,11 @@ namespace Rockwell_Library
 				return m_Value;
 			}
 		}
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		void CountUp(double Ts)
 		{
 			// Increment Counter (sec)

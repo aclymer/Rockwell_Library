@@ -10,6 +10,6 @@ namespace Rockwell_Library
 		if (Input.Value == true && Value.Value == false)
 			Output.Value = true;
 
-		Set_Property(Property.Value, Input.ValueAsObject);
+		Set_Property(Property.Value, Input);
 	}
 }

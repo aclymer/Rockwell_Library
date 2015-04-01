@@ -98,6 +98,8 @@
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\FLL.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\DIV.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\MUL.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\LBL.h" />
+    <ClInclude Include="inc\Rockwell_Library\Components\Visible\JMP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AssemblyInfo.cpp">
@@ -153,6 +155,8 @@
     <ClCompile Include="source\Rockwell_Library\Components\Visible\FLL.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\DIV.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\MUL.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\LBL.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Components\Visible\JMP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rockwell_Library.rc" />

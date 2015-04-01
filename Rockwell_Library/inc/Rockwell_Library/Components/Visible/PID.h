@@ -19,7 +19,7 @@ namespace Rockwell_Library
 		
 		Rockwell_Library::PID()
 		{
-			TypeDescription			= "PID";
+			TypeDescription			= "PID Control";
 			Name					= "PID";
 			Descriptor				= "Proportional/Integral/Derivative";
 			
@@ -97,6 +97,10 @@ namespace Rockwell_Library
 			}
 		}
 		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;		
 		
 		virtual void Step(double dDt) override

@@ -12,14 +12,14 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Relay Type Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 50, 25, 100, "Red", false)]
-		
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]	
 	public ref class OTE : public DCSLogicComponent
 	{
 	public:
 		
 		Rockwell_Library::OTE()
 		{
-			TypeDescription			= "OTE";
+			TypeDescription			= "Relay Type Instructions";
 			Name					= "OTE";
 			Descriptor				= "Output Energize";
 			
@@ -37,12 +37,17 @@ namespace Rockwell_Library
 			Value.Value				= false;
 
 			Property.Visible		= true;
+			Property.Value			= "Address";
 		}
 
 		//
 		// Methods
 		//
-
+		
+		virtual void Activate_Compound() override
+		{			
+		}
+	
 		virtual void Execute(double) override;
 		
 		virtual void Step(double dDt) override
