@@ -90,7 +90,7 @@ namespace Rockwell_Library {
 		}
 		catch (Exception^ ex)
 		{
-			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", this->Identifier, "Unknown exception occured during DCSLogicTask::step event : " + ex->Message));
+			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Unknown exception occured during DCSLogicTask::step() : " + ex->Source + ex->Message));
 		}
 	}
 }

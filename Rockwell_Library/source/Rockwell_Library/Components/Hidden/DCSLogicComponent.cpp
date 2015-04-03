@@ -33,7 +33,7 @@ namespace Rockwell_Library
 	}
 	
 	void DCSLogicComponent::step(bool l_AnimateLinks)
-	{	
+	{
 		l_Ladder = gcnew LinkedList<DCSLogicComponent^>();
 
 		try
@@ -50,17 +50,26 @@ namespace Rockwell_Library
 		{
 			IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", l_Component->Identifier, ex->Message));
 		}
-		while (m_ExecutionQueue.Count > 0)
+		
+		if (m_ExecutionQueue.Count > 0)
 		{
-			m_ExecutionQueue.First->Value->Execute(m_Project->TimeStep);
-
-			if (l_AnimateLinks)
+			l_ThisNode = m_ExecutionQueue.First;
+			l_ThisNode->Value->Execute(m_Project->TimeStep);
+					
+			do
 			{
+				l_Component = l_ThisNode->Value;
+
+				// Write Component ID to Console if true (Debuging)
+				Diagnostics::Debug::WriteLineIf(DCSLogicTask::m_ExecID.Value, l_Component->Identifier->Value);
+			
+				l_Component->Execute(m_Project->TimeStep);
+
 				try
 				{
-					for each(l_BoolLink in m_ExecutionQueue.First->Value->PortByName("OutputPort")->OutLinks)
+					for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
 					{
-						if ((bool)l_BoolLink->FromProperty->ValueAsObject)
+						if (l_AnimateLinks && (bool)l_BoolLink->FromProperty->ValueAsObject)
 						{
 							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 2.0;
 							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Cyan;
@@ -74,12 +83,16 @@ namespace Rockwell_Library
 				}
 				catch(Exception^ ex)
 				{
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", l_Component->Identifier, ex->Message));
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", l_BoolLink->Identifier, ex->Message));
 				}
-			}
-			m_ExecutionQueue.RemoveFirst();
+
+				l_ThisNode = l_ThisNode->Next;
+
+			} while (l_ThisNode != nullptr);
+
+			m_ExecutionQueue.Clear();
 		}
-		
+
 		if (m_PropertyDictionary.TryGetValue("S:1/15", l_Property))
 			(l_Property->ValueAsObject == (Object^)false ? true : l_Property->ValueAsObject = (Object^)false);
 	}

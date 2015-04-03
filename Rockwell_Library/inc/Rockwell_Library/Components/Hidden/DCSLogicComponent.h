@@ -40,6 +40,9 @@ namespace Rockwell_Library
 
 			ShowSource.Visible				= true;
 			ShowSource.Value				= true;
+
+			UpdateValueText.Visible			= true;
+			UpdateValueText.Value			= false;
 		}
 
 	public:
@@ -61,6 +64,18 @@ namespace Rockwell_Library
 			}
 		}
 		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Update Value Text")]
+		[IPS::Properties::GridOrder(101)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		virtual property IPS::Properties::Bool% UpdateValueText
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_UpdateValueText;
+			}
+		}
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Input")]
 		[IPS::Properties::GridOrder(0)]
@@ -108,7 +123,7 @@ namespace Rockwell_Library
 				return m_Value;
 			}
 		}
-		
+
 		//
 		// Methods
 		//
@@ -118,6 +133,9 @@ namespace Rockwell_Library
 		
 		virtual bool CloneRemoteDescription(String^ source)
 		{	
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
 			try
 			{				
 				if (this->UserDescription->Value != m_Project->GetComponent(source)->UserDescription->Value)
@@ -137,6 +155,12 @@ namespace Rockwell_Library
 
 		virtual bool CopyPropertyDescription(String^ source, String^ destination)
 		{	
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
+			if (destination->StartsWith("#"))
+				destination = destination->Remove(0,1);
+
 			try
 			{	
 				if (m_PropertyDictionary.TryGetValue(source, l_CloneSourceProperty))
@@ -158,6 +182,9 @@ namespace Rockwell_Library
 		
 		virtual System::Object^ Get_Property(String^ source)
 		{		
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
 			l_Val = 0;
 			if (!System::Double::TryParse(source, l_Val))
 			{
@@ -178,6 +205,9 @@ namespace Rockwell_Library
 		
 		virtual System::Void Set_Property(String^ destination, IPS::Core::Property% l_SourceProperty)
 		{
+			if (destination->StartsWith("#"))
+				destination = destination->Remove(0,1);
+
 			if (!m_PropertyDictionary.TryGetValue(destination, l_Property))
 			{
 				l_Property = m_Project->GetComponent(destination)->GetPropertyFromPropID("Value");
@@ -192,6 +222,9 @@ namespace Rockwell_Library
 
 		bool ParseAddress(List<String^>% parsed, String^ address)
 		{
+			if (address->StartsWith("#"))
+				address = address->Remove(0,1);
+
 			parsed.Clear();
 			Regex^ re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
 
@@ -208,6 +241,14 @@ namespace Rockwell_Library
 
 		virtual void Execute(double p_dTimeStep)
 		{
+			if (DCSLogicTask::m_UpdateTextValues.Value)
+			{					
+				this->UpdateObservers(gcnew IPS::Plugin::DrawingTextEventArgs());
+				return;
+			}
+
+			if (this->UpdateValueText.Value)
+				this->UpdateObservers(gcnew IPS::Plugin::DrawingTextEventArgs());
 		}
 		
 		virtual void Step(double dDt) override
@@ -369,6 +410,7 @@ namespace Rockwell_Library
 
 	private:
 
+		IPS::Properties::Bool							m_UpdateValueText;
 		double											l_Val;
 		IPS::Properties::Double							pValue;
 		static IPS::Core::Property^						l_Property;
@@ -396,6 +438,7 @@ namespace Rockwell_Library
 		static IPS::Core::ComponentList					m_DCSLogicComponents;
 		static System::Collections::Generic::Dictionary
 			<String^, LinkedList<DCSLogicComponent^>^>	LadderPageDictionary;
+		static LinkedListNode<DCSLogicComponent^>^		l_ThisNode;
 	};
 	
 }

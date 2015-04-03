@@ -24,8 +24,8 @@ namespace Rockwell_Library
 				{
 					source_string	= source_parsed[1] + source_parsed[2] + ":" + (start + i).ToString() + source_parsed[4] + (source_parsed.Count < 6 ? "" : source_parsed[5]);
 					dest_string		= dest_parsed[1]   + dest_parsed[2]   + ":" + (end + i).ToString() + dest_parsed[4] + (dest_parsed.Count < 6 ? "" : dest_parsed[5]);
-
-					Set_Property(dest_string, *dynamic_cast<IPS::Core::Property^>(Get_Property(source_string)));
+					Dest_Value.ValueAsObject = Get_Property(source_string);
+					Set_Property(dest_string, Dest_Value);
 				}
 			}
 		}

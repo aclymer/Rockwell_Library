@@ -6,6 +6,9 @@ namespace Rockwell_Library
 {
 	void CPT::Execute(double p_dTimeStep)
 	{
+		try
+		{
+
 		l_ValToText = Source_B.Value;
 
 		for each (System::Text::RegularExpressions::Match^ l_thisMatch in re->Matches(Source_B.Value))
@@ -16,8 +19,6 @@ namespace Rockwell_Library
 
 		l_ValToText = l_ValToText->Replace("|", "/");
 	
-		try
-		{
 			Value_B.Value = parser.Parse(l_ValToText, m_HashTable);
 			Set_Property(Source_A.Value, Value_B);
 		}
