@@ -7,17 +7,21 @@ namespace Rockwell_Library
 	{
 		if (Input.Value)
 		{
-			if (ParseAddress(dest_parsed, Dest.Value)) 
+			try
 			{
-				if (dest_parsed[1] == "ST")
+				if (Dest.Value->Contains("ST"))
 					CopyPropertyDescription(Property.Value, Dest.Value);					
-				else if (dest_parsed[1] != "C")
-					Set_Property(Dest.Value, Value);				
+				else if (!Dest.Value->Contains("C"))
+					Set_Property(Dest.Value, Value);	
+				else
+				{
+					Value.Value = double::Parse(Property.Value);
+					Set_Property(Dest.Value, Value);
+				}
 			}
-			else
+			catch(Exception^ ex)
 			{
-				Value.Value = double::Parse(Property.Value);
-				Set_Property(Dest.Value, Value);
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
 			}
 		}
 

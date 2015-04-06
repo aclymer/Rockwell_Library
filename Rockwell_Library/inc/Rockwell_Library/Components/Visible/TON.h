@@ -52,7 +52,7 @@ namespace Rockwell_Library
 			DNPort					= dynamic_cast<BoolOutputPort^>(PortByName("DNPort"));
 			DNPort->SetAssociatedProperty(%m_Done);
 
-			TT.Visible				= false;
+			TT.Visible				= true;
 			TT.Value				= false;
 
 			ACC.Visible				= true;

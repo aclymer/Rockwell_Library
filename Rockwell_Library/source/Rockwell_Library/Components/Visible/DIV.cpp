@@ -7,9 +7,9 @@ namespace Rockwell_Library
 	{
 		try
 		{
-			Value.Value		= dynamic_cast<IPS::Properties::Double^>(Get_Property(Property.Value))->Value;
-			Value_A.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(Source_A.Value))->Value;
-			Value_B.Value	= dynamic_cast<IPS::Properties::Double^>(Get_Property(Source_B.Value))->Value;
+			Value.ValueAsObject		= Get_Property(Property.Value);
+			Value_A.ValueAsObject	= Get_Property(Source_A.Value);
+			Value_B.ValueAsObject	= Get_Property(Source_B.Value);
 		}
 		catch(Exception^ ex)
 		{

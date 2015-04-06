@@ -92,6 +92,8 @@ namespace Rockwell_Library
 
 	public:
 		
+		String^							source_string;
+		String^							dest_string;
 		IPS::Properties::Text			m_Dest;
 		IPS::Properties::Double			m_Dest_Value;
 		IPS::Properties::Integer		m_Length;

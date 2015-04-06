@@ -22,6 +22,6 @@ namespace Rockwell_Library
 		
 		Output.Value = Input.Value;
 
-		IPS::Plugin::DrawingTextEventArgs().Empty;
+		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }

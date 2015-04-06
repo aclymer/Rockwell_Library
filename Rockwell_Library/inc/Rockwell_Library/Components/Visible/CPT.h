@@ -40,7 +40,7 @@ namespace Rockwell_Library
 			Value_A.Value			= 0;
 
 			Source_B.Visible		= true;
-			Source_B.Value			= "Address";
+			Source_B.Value			= "Expression";
 
 			Value_B.Visible			= true;
 			

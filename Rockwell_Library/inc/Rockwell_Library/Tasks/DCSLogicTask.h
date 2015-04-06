@@ -24,9 +24,15 @@ namespace Rockwell_Library {
 
 			AnimateLinks.Visible			= true;
 			AnimateLinks.Value				= false;
+			
+			ExecID.Visible					= true;
+			ExecID.Value					= false;
 
-			ShowSource.Visible				= true;
-			ShowSource.Value				= false;
+			UpdateTextValues.Visible		= true;
+			UpdateTextValues.Value			= false;
+
+			RegExString.Visible				= true;
+			RegExString.Value				= "#?([A-Z]{1,2})((?:\\d+){0,3})?(:)([0-9]+)([./])?([\\dA-Z])?";
 
 			l_FirstPass						= true;
 		}			
@@ -34,12 +40,23 @@ namespace Rockwell_Library {
 		virtual System::Void InitProperties()					override;
 		virtual System::Void Load(IPS::Core::Project^  project) override;
 		virtual System::Void Unload()							override;
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Update Component Text")]
+		[IPS::Properties::GridOrder(100)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		virtual property IPS::Properties::Bool% UpdateTextValues
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_UpdateTextValues;
+			}
+		}
 				
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Animate Links")]
 		[IPS::Properties::GridOrder(10)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
-		[IPS::Properties::CheckBox()]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Debug"})]
 		virtual property IPS::Properties::Bool% AnimateLinks
 		{
 			IPS::Properties::Bool% get()
@@ -49,15 +66,26 @@ namespace Rockwell_Library {
 		}		
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("Show Source Text (all)")]
-		[IPS::Properties::GridOrder(100)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
-		[IPS::Properties::CheckBox()]
-		virtual property IPS::Properties::Bool% ShowSource
+		[IPS::Properties::DisplayName("Output Executed IDs")]
+		[IPS::Properties::GridOrder(1000)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Debug"})]
+		virtual property IPS::Properties::Bool% ExecID
 		{
 			IPS::Properties::Bool% get()
 			{
-				return m_ShowSource;
+				return m_ExecID;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Regular Expression")]
+		[IPS::Properties::GridOrder(2000)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Debug"})]
+		virtual property IPS::Properties::Text% RegExString
+		{
+			IPS::Properties::Text% get()
+			{
+				return m_RegExString;
 			}
 		}
 		
@@ -70,16 +98,18 @@ namespace Rockwell_Library {
 		System::Void 							Activate(System::Void);
 		System::Void 							Deactivate(System::Void);
 
-		static IPS::Properties::Bool			m_ShowSource;
 		IPS::Core::EventFunction^				m_pActivateEventHandler;
 		IPS::Core::EventFunction^				m_pDeactivateEventHandler;
 		IPS::Core::EventFunction^				m_pStepEventHandler;
 								
 	public:
 		
+		static IPS::Properties::Text			m_RegExString;
+		static IPS::Properties::Bool			m_UpdateTextValues;
 		IPS::Core::Project^						m_pProject;
 		static DCSLogicTask^					Instance;
-		IPS::Properties::Bool					m_AnimateLinks;
+		static IPS::Properties::Bool			m_ExecID;
+		static IPS::Properties::Bool			m_AnimateLinks;
 		IPS::Core::ComponentList				m_DCSLogicComponents;
 	};	
 

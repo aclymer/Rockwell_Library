@@ -37,7 +37,7 @@ namespace Rockwell_Library
 			Property.Value			= "Address";
 
 			Length.Visible			= true;
-			Length.Value			= 0;
+			Length.Value			= 1;
 
 			Dest.Visible			= true;
 			Dest.Value				= "Address";
@@ -97,5 +97,9 @@ namespace Rockwell_Library
 		IPS::Properties::Integer		m_Length;
 		IPS::Properties::Double			m_Value;
 		List<String^>					dest_parsed;
+
+	private:
+
+		String^							dest_string;
 	};    
 }

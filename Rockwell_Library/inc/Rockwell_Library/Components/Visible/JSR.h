@@ -65,5 +65,9 @@ namespace Rockwell_Library
 		{
 		}
 
+	private:
+
+		DCSLogicComponent^						l_Component;
+		LinkedListNode<DCSLogicComponent^>^		l_NextNode;
 	};
 }

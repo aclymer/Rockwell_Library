@@ -88,9 +88,6 @@ namespace Rockwell_Library
 
 	public:
 
-		IPS::Properties::Text		m_Source_A;
 		IPS::Properties::Double		m_Value;
-		IPS::Properties::Double		m_Value_A;
-		IPS::Properties::Double		m_Value_B;
 	};
 }

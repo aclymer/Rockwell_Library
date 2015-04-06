@@ -1,6 +1,7 @@
 #pragma once
 #include "Ports.h"
 #include "Stdafx.h"
+#include <bitset>
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
 #include "Rockwell_Library/Tasks/DCSLogicTaskDrawingTextProvider.h"
 
@@ -40,6 +41,9 @@ namespace Rockwell_Library
 
 			ShowSource.Visible				= true;
 			ShowSource.Value				= true;
+
+			UpdateValueText.Visible			= true;
+			UpdateValueText.Value			= false;
 		}
 
 	public:
@@ -61,6 +65,18 @@ namespace Rockwell_Library
 			}
 		}
 		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Update Value Text")]
+		[IPS::Properties::GridOrder(101)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		virtual property IPS::Properties::Bool% UpdateValueText
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_UpdateValueText;
+			}
+		}
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Input")]
 		[IPS::Properties::GridOrder(0)]
@@ -108,7 +124,7 @@ namespace Rockwell_Library
 				return m_Value;
 			}
 		}
-		
+
 		//
 		// Methods
 		//
@@ -118,6 +134,9 @@ namespace Rockwell_Library
 		
 		virtual bool CloneRemoteDescription(String^ source)
 		{	
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
 			try
 			{				
 				if (this->UserDescription->Value != m_Project->GetComponent(source)->UserDescription->Value)
@@ -137,6 +156,12 @@ namespace Rockwell_Library
 
 		virtual bool CopyPropertyDescription(String^ source, String^ destination)
 		{	
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
+			if (destination->StartsWith("#"))
+				destination = destination->Remove(0,1);
+
 			try
 			{	
 				if (m_PropertyDictionary.TryGetValue(source, l_CloneSourceProperty))
@@ -158,7 +183,10 @@ namespace Rockwell_Library
 		
 		virtual System::Object^ Get_Property(String^ source)
 		{		
-			l_Val = 0;
+			if (source->StartsWith("#"))
+				source = source->Remove(0,1);
+
+			l_Val = 0.0;
 			if (!System::Double::TryParse(source, l_Val))
 			{
 				if (!m_PropertyDictionary.TryGetValue(source, l_Property))
@@ -170,7 +198,6 @@ namespace Rockwell_Library
 					return l_Property->ValueAsObject;
 				else
 					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + source));
-
 			}
 						
 			return l_Val;
@@ -178,22 +205,41 @@ namespace Rockwell_Library
 		
 		virtual System::Void Set_Property(String^ destination, IPS::Core::Property% l_SourceProperty)
 		{
-			if (!m_PropertyDictionary.TryGetValue(destination, l_Property))
+			try
 			{
-				l_Property = m_Project->GetComponent(destination)->GetPropertyFromPropID("Value");
-				if (l_Property != nullptr)
-					m_PropertyDictionary.Add(destination, l_Property);
-				else
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + destination));
-			}
+				if (destination->StartsWith("#"))
+					destination = destination->Remove(0,1);
 
-			l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
+				if (!m_PropertyDictionary.TryGetValue(destination, l_Property))
+				{
+					l_Property = m_Project->GetComponent(destination)->GetPropertyFromPropID("Value");
+					if (l_Property != nullptr)
+						m_PropertyDictionary.Add(destination, l_Property);
+					else
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + destination));
+				}
+
+				if (l_Property == nullptr)
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Set_Property) Invalid Identifier: " + destination));
+
+				l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
+
+				if (destination->StartsWith("N") || destination->StartsWith("B"))
+					BitSet(destination);
+			}
+			catch(Exception^ ex)
+			{
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message)); 
+			}
 		}
 
 		bool ParseAddress(List<String^>% parsed, String^ address)
 		{
+			if (address->StartsWith("#"))
+				address = address->Remove(0,1);
+
 			parsed.Clear();
-			Regex^ re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
+			Regex^ re = gcnew Regex(DCSLogicTask::m_RegExString.Value);
 
 			if (re->IsMatch(address))
 				parsed.AddRange(re->Split(address));
@@ -208,6 +254,14 @@ namespace Rockwell_Library
 
 		virtual void Execute(double p_dTimeStep)
 		{
+			if (DCSLogicTask::m_UpdateTextValues.Value)
+			{					
+				this->UpdateObservers(gcnew IPS::Plugin::DrawingTextEventArgs());
+				return;
+			}
+
+			if (this->UpdateValueText.Value)
+				this->UpdateObservers(gcnew IPS::Plugin::DrawingTextEventArgs());
 		}
 		
 		virtual void Step(double dDt) override
@@ -220,6 +274,61 @@ namespace Rockwell_Library
 		}
 
 		static void step(bool);
+
+		static void BitSet(String^ file)
+		{	
+			try
+			{	
+				// Only bits and integers can use this function
+				if (file->StartsWith("N") || file->StartsWith("B"))
+				{
+					std::bitset<16> l_Bitset;
+
+					if (file->Contains("/"))
+						l_Text.Value = file->Remove(file->IndexOf("/"));			
+					else if (file->Contains("."))
+						return; //l_Text.Value = file->Remove(file->IndexOf("."));
+					else
+					{
+						if (m_PropertyDictionary.TryGetValue(file, l_Property))
+						{
+							l_Bitset = (int) dynamic_cast<IPS::Properties::Double^>(l_Property)->Value;
+
+							for (int i = 0; i < 16; i++)
+							{
+								if (m_PropertyDictionary.TryGetValue(file + "/" + i.ToString(), l_Property))
+									dynamic_cast<IPS::Properties::Bool^>(l_Property)->Value = l_Bitset[i];
+							}
+						}
+
+						return;
+					}
+
+					if (m_PropertyDictionary.TryGetValue(l_Text.Value, l_Property))
+					{
+						l_Bitset = (int) dynamic_cast<IPS::Properties::Double^>(l_Property)->Value;
+
+						for (int i = 0; i < 16; i++)
+						{
+							if (m_PropertyDictionary.TryGetValue(file + "/" + i.ToString(), l_Property))
+								l_Bitset[i] = dynamic_cast<IPS::Properties::Bool^>(l_Property)->Value;
+						}
+
+						m_PropertyDictionary.TryGetValue(l_Text.Value, l_Property);
+
+						dynamic_cast<IPS::Properties::Double^>(l_Property)->Value = l_Bitset.to_ulong();
+					}
+				}
+				else
+					return;
+
+			}
+			catch(Exception^ ex)
+			{
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::GeneralError(ex->Source, file, ex->Message)); 
+			}
+		}
+
 		
 		virtual void Activate_Compound()
 		{
@@ -369,8 +478,10 @@ namespace Rockwell_Library
 
 	private:
 
-		double											l_Val;
+		System::Double											l_Val;
+		IPS::Properties::Bool							m_UpdateValueText;
 		IPS::Properties::Double							pValue;
+		static IPS::Properties::Text					l_Text;
 		static IPS::Core::Property^						l_Property;
 		static IPS::Core::Property^						l_CloneSourceProperty;
 		static DCSLogicComponent^						l_CloneDestComponent;
@@ -396,6 +507,7 @@ namespace Rockwell_Library
 		static IPS::Core::ComponentList					m_DCSLogicComponents;
 		static System::Collections::Generic::Dictionary
 			<String^, LinkedList<DCSLogicComponent^>^>	LadderPageDictionary;
+		static LinkedListNode<DCSLogicComponent^>^		l_ThisNode;
 	};
 	
 }

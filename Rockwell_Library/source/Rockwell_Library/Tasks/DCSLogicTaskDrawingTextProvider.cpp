@@ -17,6 +17,9 @@ namespace Rockwell_Library {
 	{		
 		String^ splitstring = "";
 
+		if (stringToSplit == nullptr)
+			return stringToSplit;
+
 		if(stringToSplit->Length > width)
 		{
 			int counter = 0;
@@ -28,8 +31,13 @@ namespace Rockwell_Library {
 				{
 					if(l_char == ' ')
 					{
-							l_char = '\n';
-							counter = 0;
+						l_char = '\n';
+						counter = 0;
+					}
+					else
+					{
+						splitstring += ((Char)('\n')).ToString();
+						counter = 0;
 					}
 				}
 		 
@@ -61,12 +69,13 @@ namespace Rockwell_Library {
 					 l_pDCSLogicComponent->Name == "LBL" ||
 					 l_pDCSLogicComponent->Name == "JMP"))
 			{
+				string = "";
 				for each (Char character in l_pDCSLogicComponent->Property.Value->ToCharArray())
 				{
 					if (character == '/' || character == '.')
 					{
 						character = '\n';
-						string = character.ToString();
+						string += character.ToString();
 						string += character.ToString();
 					}
 					string += character.ToString();
@@ -82,13 +91,13 @@ namespace Rockwell_Library {
 				string =	((Char)'\n').ToString();
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
 				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();
-				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
+				string +=	(SplitString((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject, 21))->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
 				string +=	"<";	
 
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
@@ -101,13 +110,13 @@ namespace Rockwell_Library {
 				string =	((Char)'\n').ToString();
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
 				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
 				string +=	"<";
 
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
@@ -132,19 +141,19 @@ namespace Rockwell_Library {
 					string +=	((Char)'\n').ToString();
 					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_A")->ValueAsObject)->PadLeft(PAD);
 					string +=	((Char)'\n').ToString();		
-					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject)->ToString()->PadLeft(PAD);
+					string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 					string +=	"<";
 					string +=	((Char)'\n').ToString();
 					string +=	((Char)'\n').ToString();
 					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
 					string +=	((Char)'\n').ToString();		
-					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject)->ToString()->PadLeft(PAD);	
+					string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_B")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
 					string +=	"<";
 					string +=	((Char)'\n').ToString();
 					string +=	((Char)'\n').ToString();
 					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
 					string +=	((Char)'\n').ToString();		
-					string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject)->ToString()->PadLeft(PAD);
+					string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 					string +=	"<";	
 				}
 
@@ -174,13 +183,13 @@ namespace Rockwell_Library {
 				string =	((Char)'\n').ToString();		
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
 				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();	
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Dest")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Dest_Value")->ValueAsObject)->ToString()->PadLeft(PAD);	
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Dest_Value")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
 				string +=	"<";
 
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
@@ -194,14 +203,14 @@ namespace Rockwell_Library {
 				string +=	((Char)'\n').ToString();	
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Timebase")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Timebase")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
 				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("Preset")->ValueAsObject)->ToString()->PadLeft(PAD);
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Preset")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
 				string +=	((Char)'\n').ToString();		
-				string +=	((System::Double^)l_pDCSLogicComponent->GetPropertyFromPropID("ACC")->ValueAsObject)->ToString()->PadLeft(PAD);	
+				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("ACC")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
 				string +=	"<";
 
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;

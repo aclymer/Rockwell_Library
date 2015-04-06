@@ -5,27 +5,27 @@ namespace Rockwell_Library
 {
 	void FLL::Execute(double p_dTimeStep)
 	{
-		if (Property.Value->StartsWith("#"))
-			Property.Value = Property.Value->Remove(0,1);
-		if (Dest.Value->StartsWith("#"))
-			Dest.Value = Dest.Value->Remove(0,1);
-
 		if (Input.Value)
 		{
+			if (Length.Value < 1)
+				Length.Value = 1;
+
 			ParseAddress(dest_parsed, Dest.Value);
-			Value.Value = dynamic_cast<IPS::Properties::Double^>(Get_Property(Property.Value))->Value;
+			Value.ValueAsObject = Get_Property(Property.Value);
+			dest_string = gcnew String("");
+
 			for (int i = 0; i < Length.Value; i++)
 			{
-				int j = 1;
+				int j = 0;
 				for (; j < dest_parsed.Count - 1; j++)
 				{
-					dest_parsed[0] += dest_parsed[j];
+					dest_string += dest_parsed[j];
 				}
 				Int16 currentWord;
 				if (Int16::TryParse(dest_parsed[++j], currentWord))
 				{
-					dest_parsed[0] += (currentWord + i).ToString();
-					Set_Property(dest_parsed[0], Value);
+					dest_string += (currentWord + i).ToString();
+					Set_Property(dest_string, Value);
 				}
 			}
 

@@ -19,5 +19,7 @@ namespace Rockwell_Library
 			Output.Value = Input.Value;
 		else
 			Output.Value = false;
+
+		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }
