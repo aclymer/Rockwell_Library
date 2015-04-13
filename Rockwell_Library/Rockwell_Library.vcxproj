@@ -201,24 +201,16 @@ copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DCS">
       <HintPath>..\..\..\Library\DCS\DCS\DCS.dll</HintPath>
     </Reference>
     <Reference Include="info.lundin.Math">
       <HintPath>..\..\info.lundin.Math.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
-    <Reference Include="System">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\JMP.h" />
@@ -248,6 +240,7 @@ copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\LEQ.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\NEQ.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\TON.h" />
+    <ClInclude Include="inc\Rockwell_Library\DCSLogicLink.h" />
     <ClInclude Include="inc\Rockwell_Library\Links\DCSLogicLink.h" />
     <ClInclude Include="inc\Rockwell_Library\Properties\CompoundProperty.h" />
     <ClInclude Include="inc\Rockwell_Library\Properties\CompoundStringProperty.h" />

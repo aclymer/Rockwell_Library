@@ -71,7 +71,7 @@ namespace Rockwell_Library
 						if (l_BoolLink->FromProperty == nullptr)
 							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Dangling Link", l_BoolLink->Identifier, "Link StartPort is not connected."));
 						else if (l_BoolLink->ToProperty == nullptr)
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Dangling Link", l_BoolLink->Identifier, "Link StartPort is not connected."));
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Dangling Link", l_BoolLink->Identifier, "Link EndPort is not connected."));
 						else
 							l_LinkList.AddLink(l_BoolLink);
 					}

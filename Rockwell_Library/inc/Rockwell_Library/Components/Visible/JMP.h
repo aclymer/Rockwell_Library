@@ -34,7 +34,7 @@ namespace Rockwell_Library
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
 			Property.Visible		= true;
-			Property.Value			= "Label (Q#:###)";
+			Property.Value			= "Label";
 		}
 
 		//
@@ -45,7 +45,23 @@ namespace Rockwell_Library
 		{	
 			try
 			{
-				m_Component = dynamic_cast<DCSLogicComponent^>(m_Project->GetComponent(Property.Value));
+				if (m_Component == nullptr || m_Component->Property.Value != this->Property.Value)
+				{
+					for each (IPS::Core::Component^ l_CoreComponent in m_Project->GetAllComponents())
+					{
+						m_Component = dynamic_cast<DCSLogicComponent^>(l_CoreComponent);
+						if (m_Component != nullptr)
+						{
+							if (m_Component->Name == "LBL")
+							{
+								if (m_Component->Property.Value == this->Property.Value)
+									break;
+								else
+									m_Component = nullptr;
+							}
+						}
+					}
+				}
 			}
 			catch(Exception^ ex)
 			{

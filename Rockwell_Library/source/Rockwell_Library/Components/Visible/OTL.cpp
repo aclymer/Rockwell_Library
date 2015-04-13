@@ -5,9 +5,9 @@ namespace Rockwell_Library
 {
 	void OTL::Execute(double p_dTimeStep)
 	{	
-		Output.Value = Input.Value;
-
-		if (Input.Value == true)
+		if (Input.Value)
 			Set_Property(Property.Value, Input);
+
+		Output.Value = Input.Value;
 	}
 }

@@ -70,7 +70,8 @@ namespace Rockwell_Library {
 					 l_pDCSLogicComponent->Name == "JMP"))
 			{
 				string = "";
-				for each (Char character in l_pDCSLogicComponent->Property.Value->ToCharArray())
+				Char character;
+				for each (character in l_pDCSLogicComponent->Property.Value->ToCharArray())
 				{
 					if (character == '/' || character == '.')
 					{
@@ -79,7 +80,14 @@ namespace Rockwell_Library {
 						string += character.ToString();
 					}
 					string += character.ToString();
-				}				
+				}	
+
+				if (!string->Contains("\n"))
+				{
+					character = '\n';
+					string += character.ToString();
+					string += character.ToString();
+				}
 				
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
 				l_DescriptionDrawingData.Text			= string;
@@ -112,6 +120,17 @@ namespace Rockwell_Library {
 				string +=	((Char)'\n').ToString();		
 				string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value_A")->ValueAsObject), 4))->ToString()->PadLeft(PAD);
 				string +=	"<";
+
+				if (l_pDCSLogicComponent->Name == "LIM")
+				{
+					string +=	((Char)'\n').ToString();
+					string +=	((Char)'\n').ToString();
+					string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
+					string +=	((Char)'\n').ToString();		
+					string +=	((System::Double^)Math::Round(((double)l_pDCSLogicComponent->GetPropertyFromPropID("Value")->ValueAsObject), 4))->ToString()->PadLeft(PAD);	
+					string +=	"<";
+				}
+
 				string +=	((Char)'\n').ToString();
 				string +=	((Char)'\n').ToString();
 				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Source_B")->ValueAsObject)->PadLeft(PAD);
@@ -173,6 +192,17 @@ namespace Rockwell_Library {
 				string +=	((Char)'\n').ToString();		
 				string +=	((System::Int32^)l_pDCSLogicComponent->GetPropertyFromPropID("Length")->ValueAsObject)->ToString()->PadLeft(PAD);	
 
+				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
+				l_DescriptionDrawingData.Text			= string;
+
+				returnDrawingTexts->Add( l_DescriptionDrawingData );
+			}
+			else if (l_pDCSLogicComponent->Name == "JSR")
+			{
+				string =	((Char)'\n').ToString();
+				string +=	((Char)'\n').ToString();		
+				string +=	((String^)l_pDCSLogicComponent->GetPropertyFromPropID("Property")->ValueAsObject)->PadLeft(PAD);
+				
 				l_DescriptionDrawingData.Location		= IPS::Plugin::TextLocation::Center;
 				l_DescriptionDrawingData.Text			= string;
 

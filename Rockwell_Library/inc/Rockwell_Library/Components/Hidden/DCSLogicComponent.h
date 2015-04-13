@@ -184,23 +184,56 @@ namespace Rockwell_Library
 		virtual System::Object^ Get_Property(String^ source)
 		{		
 			if (source->StartsWith("#"))
-				source = source->Remove(0,1);
+				source	= source->Remove(0,1);
 
-			l_Val = 0.0;
-			if (!System::Double::TryParse(source, l_Val))
+			source		= source->Replace(" ", "");
+
+			if (source->Contains("["))
 			{
-				if (!m_PropertyDictionary.TryGetValue(source, l_Property))
+				Regex^ re	= gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./]{0,1})([\\dA-Z]{0,4})");
+
+				Match^ l_thisMatch = re->Match(source);
+
+				if (l_thisMatch->Value != nullptr)
 				{
-					l_Property = m_Project->GetComponent(source)->GetPropertyFromPropID("Value");
-					m_PropertyDictionary.Add(source, l_Property);
+					l_IPSDoubleVal.ValueAsObject = Get_Property(l_thisMatch->Value);
+					source	= source->Replace(l_thisMatch->Value, l_IPSDoubleVal.Value.ToString());
+					source	= source->Replace("[","");
+					source	= source->Replace("]","");
 				}
-				if (l_Property != nullptr)
-					return l_Property->ValueAsObject;
 				else
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + source));
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + l_thisMatch->Value));
+				
+			}
+
+			l_DoubleVal = 0.0;
+			if (!System::Double::TryParse(source, l_DoubleVal))
+			{
+				try
+				{
+					if (!m_PropertyDictionary.TryGetValue(source, l_Property))
+					{
+						m_Component = m_Project->GetComponent(source);
+
+						if (m_Component != nullptr)
+						{
+							l_Property = m_Component->GetPropertyFromPropID("Value");
+							m_PropertyDictionary.Add(source, l_Property);
+						}
+						else
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Component does not exist: " + source));
+					}
+
+					if (l_Property != nullptr)
+						return l_Property->ValueAsObject;
+				}
+				catch(Exception^ ex)
+				{
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + source + "\n" + ex->Message + ex->Source));
+				}
 			}
 						
-			return l_Val;
+			return l_DoubleVal;
 		}
 		
 		virtual System::Void Set_Property(String^ destination, IPS::Core::Property% l_SourceProperty)
@@ -209,42 +242,83 @@ namespace Rockwell_Library
 			{
 				if (destination->StartsWith("#"))
 					destination = destination->Remove(0,1);
+				
+				destination		= destination->Replace(" ", "");
+
+				if (destination->Contains("["))
+				{
+					Regex^ re	= gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./]{0,1})([\\dA-Z]{0,4})");
+
+					Match^ l_thisMatch = re->Match(destination);
+
+					if (l_thisMatch->Value != nullptr)
+					{
+						l_IPSDoubleVal.ValueAsObject = Get_Property(l_thisMatch->Value);
+						destination	= destination->Replace(l_thisMatch->Value, l_IPSDoubleVal.Value.ToString());
+						destination	= destination->Replace("[","");
+						destination	= destination->Replace("]","");
+					}
+					else
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Set_Property) Invalid Identifier: " + l_thisMatch->Value));
+
+				}
 
 				if (!m_PropertyDictionary.TryGetValue(destination, l_Property))
 				{
-					l_Property = m_Project->GetComponent(destination)->GetPropertyFromPropID("Value");
-					if (l_Property != nullptr)
-						m_PropertyDictionary.Add(destination, l_Property);
+					m_Component = m_Project->GetComponent(destination);
+
+					if (m_Component != nullptr)
+					{
+						l_Property = m_Component->GetPropertyFromPropID("Value");
+
+						if (l_Property != nullptr)
+							m_PropertyDictionary.Add(destination, l_Property);
+					}
 					else
-						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Get_Property) Invalid Identifier: " + destination));
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Set_Property) Component does not exist: " + destination));
 				}
-
-				if (l_Property == nullptr)
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "(Set_Property) Invalid Identifier: " + destination));
-
-				l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
+				else
+					l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
 
 				if (destination->StartsWith("N") || destination->StartsWith("B"))
 					BitSet(destination);
 			}
 			catch(Exception^ ex)
 			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message)); 
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, ex->Message + ex->Source)); 
 			}
 		}
 
 		bool ParseAddress(List<String^>% parsed, String^ address)
 		{
+			Diagnostics::Debug::WriteLineIf(!String::IsNullOrEmpty(address), address);
+			
+			Regex^ re = gcnew Regex(DCSLogicTask::m_RegExString.Value);
+
 			if (address->StartsWith("#"))
 				address = address->Remove(0,1);
 
+			Match^ l_Match = re->Match(address);
+
 			parsed.Clear();
-			Regex^ re = gcnew Regex(DCSLogicTask::m_RegExString.Value);
 
-			if (re->IsMatch(address))
-				parsed.AddRange(re->Split(address));
-
-			return re->IsMatch(address);
+			if (l_Match->Success)
+			{
+				parsed.AddRange(re->Split(l_Match->Value));
+				if (parsed.Count > 0)
+				{
+					for (int i = 0; i < parsed.Count; i++)
+					{
+						Diagnostics::Debug::WriteLineIf(!String::IsNullOrEmpty(parsed[i]), parsed[i]);
+						if (String::IsNullOrEmpty(parsed[i]))
+							parsed.RemoveAt(i);				
+					}
+										
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		virtual void ReadInputs() override
@@ -375,7 +449,7 @@ namespace Rockwell_Library
 				}
 				catch (Exception^ ex)
 				{
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, l_ThisRungItem->Value->Identifier, ex->Message + " Dangling OutLink: ReConnect or Delete.")); 
+					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, l_ThisRungItem->Value->Identifier, ex->Message + "(RungPort) Dangling OutLink: ReConnect or Delete.")); 
 				}
 			}
 
@@ -478,16 +552,18 @@ namespace Rockwell_Library
 
 	private:
 
-		System::Double											l_Val;
 		IPS::Properties::Bool							m_UpdateValueText;
 		IPS::Properties::Double							pValue;
+		static System::Double							l_DoubleVal;
+		static IPS::Properties::Double					l_IPSDoubleVal;
 		static IPS::Properties::Text					l_Text;
 		static IPS::Core::Property^						l_Property;
 		static IPS::Core::Property^						l_CloneSourceProperty;
 		static DCSLogicComponent^						l_CloneDestComponent;
 		static IPS::Core::DrawingPage^					l_SystemIOPage;
 		static IPS::Properties::Bool					l_Value;
-		static DCSLogicComponent^						l_Component;		
+		static DCSLogicComponent^						l_Component;
+		static IPS::Core::Component^					m_Component;
 		static DCS::Links::Bool_BoolLink^				l_BoolLink;
 
 		Bool::BoolInputPort^							l_BoolInputPort;

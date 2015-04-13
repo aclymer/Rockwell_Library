@@ -11,5 +11,7 @@ namespace Rockwell_Library
 		Value_B.ValueAsObject	= Get_Property(Source_B.Value);
 		*/
 		Output.Value = Input.Value;
+
+		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }

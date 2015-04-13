@@ -11,7 +11,7 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Advanced Math Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 20, 13, 20, "Green", false)]
-	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 20, 13, 20, "Red", false)]
+	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 25, 20, "Red", false)]
 	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]			
 	public ref class CPT : public MathBase
 	{
@@ -37,12 +37,13 @@ namespace Rockwell_Library
 			Source_A.Value			= "Address";
 
 			Value_A.Visible			= true;
-			Value_A.Value			= 0;
+			Value_A.Value			= 0.0;
 
 			Source_B.Visible		= true;
 			Source_B.Value			= "Expression";
 
 			Value_B.Visible			= true;
+			Value_B.Value			= 0.0;
 			
 			re = gcnew Regex("(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./])?([\\dA-Z])?");
 		}

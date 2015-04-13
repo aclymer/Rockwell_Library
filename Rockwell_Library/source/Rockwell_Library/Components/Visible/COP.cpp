@@ -13,41 +13,56 @@ namespace Rockwell_Library
 		if (Input.Value)
 		{
 			try
-			{
-				ParseAddress(source_parsed, Property.Value);
-				ParseAddress(dest_parsed, Dest.Value);
-
+			{	
 				if (Dest.Value->Contains("ST"))
-					m_Project->GetComponent(Dest.Value)->UserDescription->Value = m_Project->GetComponent(Property.Value)->UserDescription->Value;
-			
+				{					
+					m_Project->GetComponent(Dest.Value->Replace("#",""))->UserDescription->Value = m_Project->GetComponent(Property.Value->Replace("#",""))->UserDescription->Value;
+				}
 				else if (!Dest.Value->Contains("C"))
 				{
-					source_string = gcnew String("");
-					dest_string = gcnew String("");
+					source_parsed.Clear();
+					dest_parsed.Clear();
+
+					source_parsed.Add(Property.Value->Remove(Property.Value->LastIndexOfAny(splitArray) + 1));
+					dest_parsed.Add(Dest.Value->Remove(Dest.Value->LastIndexOfAny(splitArray) + 1));
+
+					source_parsed.Add(Property.Value->Substring(Property.Value->LastIndexOfAny(splitArray) + 1));
+					dest_parsed.Add(Dest.Value->Substring(Dest.Value->LastIndexOfAny(splitArray) + 1));
+					
+					if (source_parsed[0]->StartsWith("#"))
+						source_parsed[0]	= source_parsed[0]->Remove(0,1);
+					
+					if (dest_parsed[0]->StartsWith("#"))
+						dest_parsed[0]		= dest_parsed[0]->Remove(0,1);
+
 					Int16 start, end;
-					Int16::TryParse(source_parsed[4], start);
-					Int16::TryParse(dest_parsed[4], end);
+					Int16::TryParse(source_parsed[1], start);
+					Int16::TryParse(dest_parsed[1], end);
+
 					for (int i = 0; i < Length.Value; i++)
 					{
-						source_parsed[4] = (start + i).ToString();
-						for (int j = 0; j < source_parsed.Count; j++)
-							source_string	+= source_parsed[j];
+						source_string		= source_parsed[0] + (start + i).ToString();
+						dest_string			= dest_parsed[0] + (end + i).ToString();
 
-						dest_parsed[4] = (end + i).ToString();
-						for (int k = 0; k < dest_parsed.Count; k++)
-							dest_string		+= dest_parsed[k];
-
-						Dest_Value.ValueAsObject = Get_Property(source_string);
-						Set_Property(dest_string, Dest_Value);
+						if (m_PropertyDictionary.ContainsKey(source_string))
+							Dest_Value.ValueAsObject = Get_Property(source_string);
+						else
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Property does not exist: " + source_string));
+						
+						if (m_PropertyDictionary.ContainsKey(dest_string))
+							Set_Property(dest_string, Dest_Value);
+						else
+							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Property does not exist: " + dest_string));
 					}
 				}
 			}
 			catch(Exception^ ex)
 			{
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, ex->Message));
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, ex->Message + ex->Source));
 			}
 		}
 
 		Output.Value = Input.Value;
+		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }

@@ -35,7 +35,7 @@ namespace Rockwell_Library
 			OutputPort->SetAssociatedProperty(%m_Output);
 			
 			Property.Visible		= true;
-			Property.Value			= this->Identifier->Value;
+			Property.Value			= "Label";
 		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -47,20 +47,6 @@ namespace Rockwell_Library
 			IPS::Properties::Text% get() override
 			{
 				return m_Property;
-			}
-			void set(IPS::Properties::Text% value)
-			{
-				try
-				{
-					if (this->Identifier->Value != value.Value)
-						this->Identifier->Value = value.Value;
-				}
-				catch(Exception^ ex)
-				{
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError(ex->Source, this->Identifier, "Label Already Exists : " + value.Value + ex->Message));
-				}
-				
-				m_Property.Value = this->Identifier->Value;
 			}
 		}
 		

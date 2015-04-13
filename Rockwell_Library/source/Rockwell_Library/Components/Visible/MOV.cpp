@@ -12,7 +12,10 @@ namespace Rockwell_Library
 				if (Dest.Value->Contains("ST"))
 					CopyPropertyDescription(Property.Value, Dest.Value);					
 				else if (!Dest.Value->Contains("C"))
+				{
+					Value.ValueAsObject = Get_Property(Property.Value);
 					Set_Property(Dest.Value, Value);	
+				}
 				else
 				{
 					Value.Value = double::Parse(Property.Value);
@@ -25,6 +28,10 @@ namespace Rockwell_Library
 			}
 		}
 
+		Dest_Value.ValueAsObject = Get_Property(Dest.Value);
+
 		Output.Value = Input.Value;
+
+		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }

@@ -7,8 +7,13 @@ namespace Rockwell_Library
 	{
 		Output.Value = false;
 
-		if (Input.Value == true && Value.Value == false)
-			Output.Value = true;
+		if (Input.Value)
+		{
+			Value.ValueAsObject = Get_Property(Property.Value);
+
+			if (!Value.Value)
+				Output.Value = true;
+		}
 
 		Set_Property(Property.Value, Input);
 	}

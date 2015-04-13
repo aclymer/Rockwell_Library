@@ -40,6 +40,11 @@ namespace Rockwell_Library
 
 			Dest.Visible			= true;
 			Dest_Value.Visible		= false;
+
+			splitArray				= gcnew array<Char>(3);
+			splitArray[0]			= ':';
+			splitArray[1]			= '.';
+			splitArray[2]			= '/';
 		}
 			
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
@@ -92,6 +97,7 @@ namespace Rockwell_Library
 
 	public:
 		
+		array<Char>^					splitArray;
 		String^							source_string;
 		String^							dest_string;
 		IPS::Properties::Text			m_Dest;

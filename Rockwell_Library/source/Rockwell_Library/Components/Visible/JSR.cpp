@@ -21,6 +21,8 @@ namespace Rockwell_Library
 					m_ExecutionQueue.AddBefore(l_NextNode, gcnew LinkedListNode<DCSLogicComponent^>(l_Component));
 				}
 			}
+			else
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Ladder not found: " + Property.Value));			
 		}
 
 		Output.Value = Input.Value;

@@ -10,6 +10,8 @@ namespace Rockwell_Library {
 	
 	[IPS::Plugin::LibraryInfo("Rockwell DCS Logic Task", IPS::Plugin::Visibility::VISIBLE, "")]
 	[IPS::Plugin::LibraryImage("Rockwell_DCSLogic_Task.png")]
+	[IPS::Plugin::LibrarySizeAttribute(100,100)]
+	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	public ref class DCSLogicTask : public IPS::Task::TaskBase
 	{
 	public: 
@@ -33,6 +35,7 @@ namespace Rockwell_Library {
 
 			RegExString.Visible				= true;
 			RegExString.Value				= "#?([A-Z]{1,2})((?:\\d+){0,3})?(:)([0-9]+)([./])?([\\dA-Z])?";
+			//RegExString.Value				= "(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./]{0,1})([\\dA-Z]{0,4})";
 
 			l_FirstPass						= true;
 		}			
@@ -44,7 +47,7 @@ namespace Rockwell_Library {
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Update Component Text")]
 		[IPS::Properties::GridOrder(100)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"General"})]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Text Options"})]
 		virtual property IPS::Properties::Bool% UpdateTextValues
 		{
 			IPS::Properties::Bool% get()
