@@ -9,4 +9,9 @@ namespace Rockwell_Library
 
 		Output.Value = Input.Value;
 	}
+
+	void OTE::Activate_Compound()
+	{		
+		CloneRemoteDescription(Property.Value);
+	}
 }

@@ -3,6 +3,8 @@
 #include "Rockwell_Library/Components/Hidden/DCSLogicComponent.h"
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
 
+using namespace DCS::Components::Properties;
+
 namespace Rockwell_Library
 {    
 	[IPS::Plugin::LibraryInfo("COP", IPS::Plugin::Visibility::VISIBLE, "Copy File")]
@@ -86,7 +88,7 @@ namespace Rockwell_Library
 	public:			
 				
 		virtual void Activate_Compound() override
-		{			
+		{
 		}
 	
 		virtual void Execute(double p_dTimeStep) override;
@@ -108,5 +110,9 @@ namespace Rockwell_Library
 		IPS::Core::Component^			m_SourceComponent;
 		IPS::Core::Component^			m_DestComponent;
 		IPS::Core::Property^			m_TransferProperty;
+
+	private:
+
+		IPS::Properties::Text			m_StatusText;
 	};    
 }

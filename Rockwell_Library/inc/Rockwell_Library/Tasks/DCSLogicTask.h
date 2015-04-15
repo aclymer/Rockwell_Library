@@ -38,6 +38,9 @@ namespace Rockwell_Library {
 			//RegExString.Value				= "(#)?([A-Z]{1,2})((?:\\d+){0,3}?):([0-9]+)([./]{0,1})([\\dA-Z]{0,4})";
 
 			l_FirstPass						= true;
+
+			RunTestLadder.Visible			= true;
+			RunTestLadder.Value				= false;
 		}			
 		
 		virtual System::Void InitProperties()					override;
@@ -92,6 +95,18 @@ namespace Rockwell_Library {
 			}
 		}
 		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Run Test Ladder")]
+		[IPS::Properties::GridOrder(3000)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Debug"})]
+		virtual property IPS::Properties::Bool% RunTestLadder
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_RunTestLadder;
+			}
+		}
+		
 	private:
 			
 		static bool								l_FirstPass;
@@ -107,13 +122,14 @@ namespace Rockwell_Library {
 								
 	public:
 		
+		static IPS::Properties::Bool			m_RunTestLadder;
 		static IPS::Properties::Text			m_RegExString;
 		static IPS::Properties::Bool			m_UpdateTextValues;
 		IPS::Core::Project^						m_pProject;
 		static DCSLogicTask^					Instance;
 		static IPS::Properties::Bool			m_ExecID;
 		static IPS::Properties::Bool			m_AnimateLinks;
-		IPS::Core::ComponentList				m_DCSLogicComponents;
+		static IPS::Core::ComponentList			m_DCSLogicComponents;
 	};	
 
 	

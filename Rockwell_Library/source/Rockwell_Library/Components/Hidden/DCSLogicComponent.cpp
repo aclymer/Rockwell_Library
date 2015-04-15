@@ -38,6 +38,14 @@ namespace Rockwell_Library
 
 		try
 		{
+			if (DCSLogicTask::m_RunTestLadder.Value && LadderPageDictionary.TryGetValue("U:50", l_Ladder)) 
+			{
+				for each (l_Component in l_Ladder)
+				{
+					m_ExecutionQueue.AddLast(l_Component);
+				}
+			}
+
 			if (LadderPageDictionary.TryGetValue("U:2", l_Ladder))
 			{		
 				for each (l_Component in l_Ladder)
@@ -54,7 +62,9 @@ namespace Rockwell_Library
 		if (m_ExecutionQueue.Count > 0)
 		{
 			l_ThisNode = m_ExecutionQueue.First;
-			l_ThisNode->Value->Execute(m_Project->TimeStep);
+			
+			if (l_ThisNode->Value->Input.Value)
+				l_ThisNode->Value->Execute(m_Project->TimeStep);
 					
 			do
 			{
@@ -62,29 +72,35 @@ namespace Rockwell_Library
 
 				// Write Component ID to Console if true (Debuging)
 				Diagnostics::Debug::WriteLineIf(DCSLogicTask::m_ExecID.Value, l_Component->Identifier->Value);
-			
-				l_Component->Execute(m_Project->TimeStep);
-
-				try
+			/*
+				if (l_Component->Input.Value)
 				{
-					for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
+				*/
+					l_Component->Execute(m_Project->TimeStep);
+
+					try
 					{
-						if (l_AnimateLinks && (bool)l_BoolLink->FromProperty->ValueAsObject)
+						for each(l_BoolLink in l_Component->PortByName("OutputPort")->OutLinks)
 						{
-							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 2.0;
-							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Cyan;
-						}
-						else
-						{
-							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 1.0;
-							l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Blue;
+							if (l_AnimateLinks && (bool)l_BoolLink->FromProperty->ValueAsObject)
+							{
+								l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 2.0;
+								l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Cyan;
+							}
+							else
+							{
+								l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Width = 1.0;
+								l_BoolLink->DrawingDatas->GetLinkDrawingDatas()[0]->Color = System::Drawing::Color::Blue;
+							}
+
+							l_BoolLink->GetPropertyPair()->TransferProperties();
 						}
 					}
-				}
-				catch(Exception^ ex)
-				{
-					IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", l_BoolLink->Identifier, ex->Message));
-				}
+					catch(Exception^ ex)
+					{
+						IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("blabla", l_BoolLink->Identifier, ex->Message));
+					}
+				//}
 
 				l_ThisNode = l_ThisNode->Next;
 

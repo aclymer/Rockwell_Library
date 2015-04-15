@@ -44,9 +44,7 @@ namespace Rockwell_Library
 		// Methods
 		//
 		
-		virtual void Activate_Compound() override
-		{			
-		}
+		virtual void Activate_Compound() override;
 	
 		virtual void Execute(double) override;
 		

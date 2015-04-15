@@ -32,6 +32,8 @@ namespace Rockwell_Library
 			Value_B.Visible			= false;			
 		}
 
+		virtual ~MathBase(){};
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Source A")]
 		[IPS::Properties::GridOrder(10)]

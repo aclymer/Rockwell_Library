@@ -15,8 +15,9 @@ namespace Rockwell_Library
 			try
 			{	
 				if (Dest.Value->Contains("ST"))
-				{					
-					m_Project->GetComponent(Dest.Value->Replace("#",""))->UserDescription->Value = m_Project->GetComponent(Property.Value->Replace("#",""))->UserDescription->Value;
+				{
+					m_StatusText.ValueAsObject = Get_Property(Property.Value);
+					Set_Property(Dest.Value, m_StatusText);
 				}
 				else if (!Dest.Value->Contains("C"))
 				{
@@ -63,6 +64,7 @@ namespace Rockwell_Library
 		}
 
 		Output.Value = Input.Value;
+
 		DCSLogicComponent::Execute(p_dTimeStep);
 	}
 }

@@ -42,7 +42,7 @@ namespace Rockwell_Library
 			Dest.Visible			= true;
 			Dest.Value				= "Address";
 		}
-			
+					
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
 		[IPS::Properties::GridOrder(101)]

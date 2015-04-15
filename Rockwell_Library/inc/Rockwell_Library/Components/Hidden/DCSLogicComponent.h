@@ -46,6 +46,8 @@ namespace Rockwell_Library
 			UpdateValueText.Value			= false;
 		}
 
+		virtual ~DCSLogicComponent(){};
+
 	public:
 		
 		//
@@ -414,7 +416,7 @@ namespace Rockwell_Library
 			if (l_SystemIOPage != nullptr)
 			{
 				for each (IPS::Core::Component^ m_Component in l_SystemIOPage->Components)
-				{
+				{		
 					if (dynamic_cast<DCS::Components::Properties::PropertyBase^>(m_Component) != nullptr)
 					{
 						if (!m_PropertyDictionary.ContainsKey(m_Component->Identifier->Value))
