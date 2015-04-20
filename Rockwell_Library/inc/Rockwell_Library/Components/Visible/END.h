@@ -17,48 +17,48 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "End Instruction")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1, 0, 50, 25, 100, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 50, 25, 100, "Red", false)]
-		
+
 	public ref class END : public DCSLogicComponent
 	{
 	public:
-		
+
 		Rockwell_Library::END()
 		{
 			TypeDescription			= "End Instruction";
 			Name					= "END";
 			Descriptor				= "End Instruction";
-			
+
 			Input.Visible			= true;
 			Input.Value				= false;
 			InputPort				= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
 			InputPort->SetAssociatedProperty(%m_Input);
-			
+
 			Output.Visible			= true;
 			Output.Value			= false;
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
-			OutputPort->SetAssociatedProperty(%m_Input);			
+			OutputPort->SetAssociatedProperty(%m_Input);
 		}
 
 		//
 		// Methods
 		//
-				
+
 		virtual void Activate_Compound() override
-		{	
+		{
 			IPS::Core::DrawingPage^ l_Page = dynamic_cast<IPS::Core::DrawingPage^>(m_Project->FindPagesWithComponent(this->Identifier)[0]);
 
 			for each (IPS::Core::Component^ r_Component in l_Page->Components)
 			{
 				l_Component = dynamic_cast<DCSLogicComponent^>(r_Component);
-							
+
 				if (l_Component != nullptr && l_Component->Name == "Rung" && l_Component->InputPort->IsConnected == false)
 				{
 					if (LadderPageDictionary.ContainsKey(l_Page->UserDescription->Value))
 						LadderPageDictionary.Remove(l_Page->UserDescription->Value);
-					
-					LadderPageDictionary.Add(l_Page->UserDescription->Value, gcnew LinkedList<DCSLogicComponent^>(PopulateRungList(l_Component)));											
+
+					LadderPageDictionary.Add(l_Page->UserDescription->Value, gcnew LinkedList<DCSLogicComponent^>(PopulateRungList(l_Component)));
 				}
-			}				
+			}
 
 			// Add Drawing Page Links to LinkList
 			for each (IPS::Core::Link^ l_Link in l_Page->Links)
@@ -83,15 +83,15 @@ namespace Rockwell_Library
 				}
 			}
 		}
-	
+
 		virtual void Execute(double p_dTimeStep) override;
-		
+
 		virtual void Step(double dDt) override
 		{
 		}
 
 	private:
-		
+
 		DCSLogicComponent^						l_Component;
 		DCSLogicLink^							l_BoolLink;
 	};

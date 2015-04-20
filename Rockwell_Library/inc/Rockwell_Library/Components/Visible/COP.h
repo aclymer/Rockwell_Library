@@ -6,7 +6,7 @@
 using namespace DCS::Components::Properties;
 
 namespace Rockwell_Library
-{    
+{
 	[IPS::Plugin::LibraryInfo("COP", IPS::Plugin::Visibility::VISIBLE, "Copy File")]
 	[IPS::Plugin::LibraryImage("COP.png")]
 	[IPS::Plugin::LibrarySizeAttribute(200,125)]
@@ -14,9 +14,9 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "File Manipulation Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid,  -1,  0, -1,   0, 20, 13, 25, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 100, 20, 25, 25, "Red",  false)]
-	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]		
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]
 	public ref class COP : public DCSLogicComponent
-	{	
+	{
 	public:
 
 		Rockwell_Library::COP()
@@ -24,17 +24,17 @@ namespace Rockwell_Library
 			TypeDescription			= "File Manipulation Instructions";
 			Name					= "COP";
 			Descriptor				= "Copy File";
-				
+
 			Input.Visible			= true;
 			Input.Value				= false;
 			InputPort				= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
 			InputPort->SetAssociatedProperty(%m_Input);
-			
+
 			Output.Visible			= true;
 			Output.Value			= false;
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
-			
+
 			Property.Visible		= true;
 
 			Length.Visible			= true;
@@ -48,7 +48,7 @@ namespace Rockwell_Library
 			splitArray[1]			= '.';
 			splitArray[2]			= '/';
 		}
-			
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Destination")]
 		[IPS::Properties::GridOrder(135)]
@@ -60,7 +60,7 @@ namespace Rockwell_Library
 				return m_Dest;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
 		[IPS::Properties::GridOrder(136)]
@@ -72,7 +72,7 @@ namespace Rockwell_Library
 				return m_Dest_Value;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Length")]
 		[IPS::Properties::GridOrder(140)]
@@ -84,21 +84,21 @@ namespace Rockwell_Library
 				return m_Length;
 			}
 		}
-		
-	public:			
-				
+
+	public:
+
 		virtual void Activate_Compound() override
 		{
 		}
-	
+
 		virtual void Execute(double p_dTimeStep) override;
-		
+
 		virtual void Step(double dDt) override
 		{
 		}
 
 	public:
-		
+
 		array<Char>^					splitArray;
 		String^							source_string;
 		String^							dest_string;
@@ -114,5 +114,5 @@ namespace Rockwell_Library
 	private:
 
 		IPS::Properties::Text			m_StatusText;
-	};    
+	};
 }

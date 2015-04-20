@@ -1,42 +1,6 @@
-﻿  DCSLogicComponent.cpp
-  ABS.cpp
-  ADD.cpp
-  CLR.cpp
-  COP.cpp
-  CPT.cpp
-  DIV.cpp
-  END.cpp
-  EQU.cpp
-  FLL.cpp
-  GEQ.cpp
-  GRT.cpp
-  JSR.cpp
-  LEQ.cpp
-  LES.cpp
-  LIM.cpp
-  MOV.cpp
-  MUL.cpp
-  NEQ.cpp
-  Node.cpp
-  Generating Code...
-  Compiling...
-  OSR.cpp
-  OTE.cpp
-  OTL.cpp
-  OTU.cpp
-  PID.cpp
-  RET.cpp
-  Rung.cpp
-  SUB.cpp
-  SVC.cpp
-  TON.cpp
-  XIC.cpp
-  XIO.cpp
-  DCSLogicTask.cpp
-  DCSLogicTaskDrawingTextProvider.cpp
-  Generating Code...
+﻿  PID.cpp
   LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-  Rockwell_Library.vcxproj -> C:\Projects\USNRGML - Marsh Landing Simulator\Marsh_Landing.project\Solutions\Rockwell_Library\Rockwell_Library\.\Rockwell_Library.dll
+  Rockwell_Library.vcxproj -> C:\Projects\Marsh Landing Simulator\Slave Projects\SCR.project\Solutions\Rockwell_Library\Rockwell_Library\.\Rockwell_Library.dll
   The directory is not empty.
   A subdirectory or file ..\..\LibraryReload\Rockwell_Library\Rockwell_Library already exists.
           1 file(s) copied.
@@ -53,7 +17,9 @@
   .\Images\FLL.png
   .\Images\GEQ.png
   .\Images\GRT.png
+  .\Images\JMP.png
   .\Images\JSR.png
+  .\Images\LBL.png
   .\Images\LEQ.png
   .\Images\LES.png
   .\Images\LIM.png
@@ -68,11 +34,13 @@
   .\Images\OTU.png
   .\Images\PID.png
   .\Images\RET.png
+  .\Images\Rockwell_DCSLogic_Task.png
   .\Images\Rockwell_Library.png
   .\Images\Rung.png
   .\Images\SUB.png
   .\Images\SVC.png
   .\Images\TON.png
+  .\Images\T_Property.png
   .\Images\XIC.png
   .\Images\XIO.png
-         34 file(s) copied.
+         38 file(s) copied.

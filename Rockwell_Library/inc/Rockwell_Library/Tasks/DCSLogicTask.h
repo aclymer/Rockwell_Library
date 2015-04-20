@@ -5,16 +5,15 @@ using namespace System;
 using namespace System::Collections;
 
 namespace Rockwell_Library {
-
 	ref class DCSLogicComponent;
-	
+
 	[IPS::Plugin::LibraryInfo("Rockwell DCS Logic Task", IPS::Plugin::Visibility::VISIBLE, "")]
 	[IPS::Plugin::LibraryImage("Rockwell_DCSLogic_Task.png")]
 	[IPS::Plugin::LibrarySizeAttribute(100,100)]
 	[IPS::Plugin::LibraryRelativeSizeAttribute(false)]
 	public ref class DCSLogicTask : public IPS::Task::TaskBase
 	{
-	public: 
+	public:
 
 		DCSLogicTask()
 		{
@@ -26,7 +25,7 @@ namespace Rockwell_Library {
 
 			AnimateLinks.Visible			= true;
 			AnimateLinks.Value				= false;
-			
+
 			ExecID.Visible					= true;
 			ExecID.Value					= false;
 
@@ -41,12 +40,12 @@ namespace Rockwell_Library {
 
 			RunTestLadder.Visible			= true;
 			RunTestLadder.Value				= false;
-		}			
-		
+		}
+
 		virtual System::Void InitProperties()					override;
 		virtual System::Void Load(IPS::Core::Project^  project) override;
 		virtual System::Void Unload()							override;
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Update Component Text")]
 		[IPS::Properties::GridOrder(100)]
@@ -58,7 +57,7 @@ namespace Rockwell_Library {
 				return m_UpdateTextValues;
 			}
 		}
-				
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Animate Links")]
 		[IPS::Properties::GridOrder(10)]
@@ -69,8 +68,8 @@ namespace Rockwell_Library {
 			{
 				return m_AnimateLinks;
 			}
-		}		
-		
+		}
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Output Executed IDs")]
 		[IPS::Properties::GridOrder(1000)]
@@ -82,7 +81,7 @@ namespace Rockwell_Library {
 				return m_ExecID;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Regular Expression")]
 		[IPS::Properties::GridOrder(2000)]
@@ -94,7 +93,7 @@ namespace Rockwell_Library {
 				return m_RegExString;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Run Test Ladder")]
 		[IPS::Properties::GridOrder(3000)]
@@ -106,9 +105,9 @@ namespace Rockwell_Library {
 				return m_RunTestLadder;
 			}
 		}
-		
+
 	private:
-			
+
 		static bool								l_FirstPass;
 		System::Void							LoadEvents();
 		System::Void							UnloadEvents();
@@ -119,9 +118,9 @@ namespace Rockwell_Library {
 		IPS::Core::EventFunction^				m_pActivateEventHandler;
 		IPS::Core::EventFunction^				m_pDeactivateEventHandler;
 		IPS::Core::EventFunction^				m_pStepEventHandler;
-								
+
 	public:
-		
+
 		static IPS::Properties::Bool			m_RunTestLadder;
 		static IPS::Properties::Text			m_RegExString;
 		static IPS::Properties::Bool			m_UpdateTextValues;
@@ -130,7 +129,5 @@ namespace Rockwell_Library {
 		static IPS::Properties::Bool			m_ExecID;
 		static IPS::Properties::Bool			m_AnimateLinks;
 		static IPS::Core::ComponentList			m_DCSLogicComponents;
-	};	
-
-	
+	};
 }

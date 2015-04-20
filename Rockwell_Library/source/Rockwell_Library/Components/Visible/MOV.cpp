@@ -10,11 +10,11 @@ namespace Rockwell_Library
 			try
 			{
 				if (Dest.Value->Contains("ST"))
-					CopyPropertyDescription(Property.Value, Dest.Value);					
+					CopyPropertyDescription(Property.Value, Dest.Value);
 				else if (!Dest.Value->Contains("C"))
 				{
 					Value.ValueAsObject = Get_Property(Property.Value);
-					Set_Property(Dest.Value, Value);	
+					Set_Property(Dest.Value, Value);
 				}
 				else
 				{

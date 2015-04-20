@@ -240,10 +240,7 @@ copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\LEQ.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\NEQ.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\TON.h" />
-    <ClInclude Include="inc\Rockwell_Library\DCSLogicLink.h" />
-    <ClInclude Include="inc\Rockwell_Library\Links\DCSLogicLink.h" />
-    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundProperty.h" />
-    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundStringProperty.h" />
+    <ClInclude Include="inc\Rockwell_Library\Properties\T_Property.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\Rung.h" />
     <ClInclude Include="inc\Rockwell_Library\Tasks\DCSLogicTask.h" />
     <ClInclude Include="inc\Ports.h" />
@@ -286,6 +283,7 @@ copy .\Images\*.* ..\..\LibraryReload\$(SolutionName)\$(ProjectName)
     <ClCompile Include="source\Rockwell_Library\Components\Visible\NEQ.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\TON.cpp" />
     <ClCompile Include="source\Rockwell_Library\Links\DCSLogicLink.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Properties\T_Property.cpp" />
     <ClCompile Include="source\Rockwell_Library\Tasks\DCSLogicTask.cpp" />
     <ClCompile Include="source\AssemblyInfo.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\MOV.cpp" />

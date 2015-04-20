@@ -35,21 +35,15 @@ namespace Rockwell_Library
 			Output.Visible			= true;
 			Output.Value			= false;
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
-			OutputPort->SetAssociatedProperty(%m_Input);			
+			OutputPort->SetAssociatedProperty(%m_Output);			
 		}
 
 		//
 		// Methods
 		//
-		
-		virtual void Activate_Compound() override
-		{			
-		}
 			
-		virtual void Execute(double p_dTimeStep) override
-		{
-		}
-		
+		virtual void Execute(double p_dTimeStep) override;
+
 		virtual void Step(double dDt) override
 		{
 		}

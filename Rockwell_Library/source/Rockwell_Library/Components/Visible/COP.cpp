@@ -13,7 +13,7 @@ namespace Rockwell_Library
 		if (Input.Value)
 		{
 			try
-			{	
+			{
 				if (Dest.Value->Contains("ST"))
 				{
 					m_StatusText.ValueAsObject = Get_Property(Property.Value);
@@ -29,10 +29,10 @@ namespace Rockwell_Library
 
 					source_parsed.Add(Property.Value->Substring(Property.Value->LastIndexOfAny(splitArray) + 1));
 					dest_parsed.Add(Dest.Value->Substring(Dest.Value->LastIndexOfAny(splitArray) + 1));
-					
+
 					if (source_parsed[0]->StartsWith("#"))
 						source_parsed[0]	= source_parsed[0]->Remove(0,1);
-					
+
 					if (dest_parsed[0]->StartsWith("#"))
 						dest_parsed[0]		= dest_parsed[0]->Remove(0,1);
 
@@ -49,7 +49,7 @@ namespace Rockwell_Library
 							Dest_Value.ValueAsObject = Get_Property(source_string);
 						else
 							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Property does not exist: " + source_string));
-						
+
 						if (m_PropertyDictionary.ContainsKey(dest_string))
 							Set_Property(dest_string, Dest_Value);
 						else

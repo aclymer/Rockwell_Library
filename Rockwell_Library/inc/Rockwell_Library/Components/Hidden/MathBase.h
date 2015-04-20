@@ -12,11 +12,11 @@ using namespace info::lundin::Math;
 namespace Rockwell_Library
 {
 	[IPS::Plugin::LibraryInfo("MathBase", IPS::Plugin::Visibility::HIDDEN, "MathBase")]
-	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]	
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]
 	public ref class MathBase : public DCSLogicComponent
 	{
 	public:
-		
+
 		MathBase()
 		{
 			TypeDescription			= "MathBase";
@@ -29,7 +29,7 @@ namespace Rockwell_Library
 
 			Value_A.Visible			= false;
 
-			Value_B.Visible			= false;			
+			Value_B.Visible			= false;
 		}
 
 		virtual ~MathBase(){};
@@ -45,7 +45,7 @@ namespace Rockwell_Library
 				return m_Source_A;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
 		[IPS::Properties::GridOrder(20)]
@@ -57,7 +57,7 @@ namespace Rockwell_Library
 				return m_Value_A;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Source B")]
 		[IPS::Properties::GridOrder(30)]
@@ -69,7 +69,7 @@ namespace Rockwell_Library
 				return m_Source_B;
 			}
 		}
-		
+
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Value")]
 		[IPS::Properties::GridOrder(40)]
@@ -81,16 +81,16 @@ namespace Rockwell_Library
 				return m_Value_B;
 			}
 		}
-		
+
 		//
 		// Methods
 		//
-			
-	public: 
-			
-			IPS::Properties::Text			m_Source_A;
-			IPS::Properties::Double			m_Value_A;
-			IPS::Properties::Text			m_Source_B;
-			IPS::Properties::Double			m_Value_B;
+
+	public:
+
+		IPS::Properties::Text			m_Source_A;
+		IPS::Properties::Double			m_Value_A;
+		IPS::Properties::Text			m_Source_B;
+		IPS::Properties::Double			m_Value_B;
 	};
 }

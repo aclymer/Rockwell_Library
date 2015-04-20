@@ -19,7 +19,7 @@ Class IPS.Core.IPSVersion: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     System.Version Version : Public, Static
-    System.String VersionString = 8.1.0.2387 : Public, Static, Literal, HasDefault
+    System.String VersionString = 8.1.0.2407 : Public, Static, Literal, HasDefault
   Properties:
     System.String VersionStringWithSP 'get ' : 
   Methods:
@@ -682,6 +682,7 @@ Interface IPS.Core.LinkDrawingData: AutoLayout, AnsiClass, Class, Public, ClassS
     System.Drawing.Drawing2D.DashStyle Pattern 'get set' : 
     System.Drawing.Color Color 'get set' : 
     Single Width 'get set' : 
+    Boolean IsBridge 'get set' : 
     Boolean IsAcrossPages 'get set' : 
     Boolean IsOnStartPage 'get set' : 
     IPS.Core.ComponentDrawingData ViewTo 'get set' : 
@@ -698,6 +699,8 @@ Interface IPS.Core.LinkDrawingData: AutoLayout, AnsiClass, Class, Public, ClassS
     set_IsOnStartPage(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     get_IsAcrossPages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     set_IsAcrossPages(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_IsBridge(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_IsBridge(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     get_Width(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     set_Width(Single): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
     get_Color(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
@@ -885,6 +888,13 @@ Class IPS.Core.ApplicationIdleEventArgs: AutoLayout, AnsiClass, Class, Public, B
 Class IPS.Core.ForceUpdateEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :IPS.Core.EventArgs
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class IPS.Core.PageEventArgs: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :IPS.Core.EventArgs
+    Void .ctor(IPS.Core.Page): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    IPS.Core.Page Page 'get ' : 
+  Methods:
+    get_Page(): PrivateScope, Public, HideBySig, SpecialName
 Interface IPS.Core.Task: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
   Interfaces:
     IPS.Core.Element
@@ -978,8 +988,16 @@ Class IPS.Core.SettingsEvent: AutoLayout, AnsiClass, Class, Public, Sealed, Befo
     Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
     BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
     EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class IPS.Core.PageEvent: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(PageEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(PageEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
 Interface IPS.Core.Events: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
   Methods:
+    RemovePageClosedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     AddActivateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     RemoveActivateEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     AddDeactivateEvent(Task, EventFunction): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
@@ -1062,6 +1080,9 @@ Interface IPS.Core.Events: AutoLayout, AnsiClass, Class, Public, ClassSemanticsM
     RemoveDataReferenceChangedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     AddSettingsChangedEvent(Task, SettingsEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     RemoveSettingsChangedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPageOpenedEvent(Task, PageEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    RemovePageOpenedEvent(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    AddPageClosedEvent(Task, PageEvent): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
 Interface IPS.Core.Port: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
   Interfaces:
     System.ICloneable
@@ -1379,6 +1400,7 @@ Interface IPS.Core.Project: AutoLayout, AnsiClass, Class, Public, ClassSemantics
     System.String LibraryPath 'get ' : 
     System.String ProjectRootPath 'get ' : 
   Methods:
+    NewLink(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     NewLink(Port, Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     NewPortExposerLink(Port): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     AddLink(Link): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
@@ -1391,6 +1413,7 @@ Interface IPS.Core.Project: AutoLayout, AnsiClass, Class, Public, ClassSemantics
     GetAllLinks(LinkList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     GetAllLinks(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     GetAllUnmanagedLinks(LinkList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllLinksOnOpenPages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     NewTask(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     AddTask(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     RemoveTask(Task): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
@@ -1497,8 +1520,8 @@ Interface IPS.Core.Project: AutoLayout, AnsiClass, Class, Public, ClassSemantics
     GetAllComponents(ComponentList IsImplicitlyDereferenced, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     GetAllComponents(ComponentList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     GetAllComponents(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    GetAllComponentsOnOpenPages(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     GetAllUnmanagedComponents(ComponentList IsImplicitlyDereferenced): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
-    NewLink(Type): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
 Class IPS.Core.FlownexSEDotNet: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

@@ -8,12 +8,12 @@ namespace Rockwell_Library
 		if (Input.Value)
 		{
 			//DCSLogicComponent::JumpToSubroutine(Property.Value);
-			
+
 			//l_Ladder = gcnew LinkedList<DCSLogicComponent^>();
 			//m_ExecutionQueue.RemoveFirst();
 
 			if (LadderPageDictionary.TryGetValue(Property.Value, l_Ladder))
-			{		
+			{
 				l_NextNode = l_ThisNode->Next;
 
 				for each (l_Component in l_Ladder)
@@ -22,7 +22,7 @@ namespace Rockwell_Library
 				}
 			}
 			else
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Ladder not found: " + Property.Value));			
+				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Ladder not found: " + Property.Value));
 		}
 
 		Output.Value = Input.Value;

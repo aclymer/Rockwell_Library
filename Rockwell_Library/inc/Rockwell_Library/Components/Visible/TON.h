@@ -165,7 +165,9 @@ namespace Rockwell_Library
 		}
 		
 		virtual void Activate_Compound() override
-		{			
+		{
+			Timebase.ValueAsObject	= Get_Property(Property.Value + ".BASE");
+			Preset.ValueAsObject	= Get_Property(Property.Value + ".PRE");	
 		}
 	
 		void CountUp(double Ts)

@@ -42,12 +42,6 @@
     <ClInclude Include="inc\Ports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundProperty.h">
-      <Filter>Header Files\Rockwell_Library\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Rockwell_Library\Properties\CompoundStringProperty.h">
-      <Filter>Header Files\Rockwell_Library\Properties</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Rockwell_Library\Tasks\DCSLogicTask.h">
       <Filter>Header Files\Rockwell_Library\Tasks</Filter>
     </ClInclude>
@@ -91,7 +85,6 @@
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\ABS.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\LIM.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\PID.h" />
-    <ClInclude Include="inc\Rockwell_Library\Links\DCSLogicLink.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\SVC.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\END.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\CLR.h" />
@@ -100,7 +93,10 @@
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\MUL.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\LBL.h" />
     <ClInclude Include="inc\Rockwell_Library\Components\Visible\JMP.h" />
-    <ClInclude Include="inc\Rockwell_Library\DCSLogicLink.h">
+    <ClInclude Include="inc\Rockwell_Library\Properties\T_Property.h">
+      <Filter>Header Files\Rockwell_Library\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Rockwell_Library\Links\DCSLogicLink.h">
       <Filter>Header Files\Rockwell_Library</Filter>
     </ClInclude>
   </ItemGroup>
@@ -160,6 +156,7 @@
     <ClCompile Include="source\Rockwell_Library\Components\Visible\MUL.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\LBL.cpp" />
     <ClCompile Include="source\Rockwell_Library\Components\Visible\JMP.cpp" />
+    <ClCompile Include="source\Rockwell_Library\Properties\T_Property.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rockwell_Library.rc" />

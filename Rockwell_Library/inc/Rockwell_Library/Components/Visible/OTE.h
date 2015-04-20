@@ -12,27 +12,27 @@ namespace Rockwell_Library
 	[IPS::Plugin::LibraryCategory("Ladder Logic", "Relay Type Instructions")]
 	[IPS::Plugin::Port("InputPort", Bool::BoolInputPort::typeid, -1, 0, -1, 0, 50, 25, 100, "Green", false)]
 	[IPS::Plugin::Port("OutputPort", Bool::BoolOutputPort::typeid, 0, -1, -1, 88, 50, 25, 100, "Red", false)]
-	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]	
+	[IPS::Plugin::DrawingTextProviderAttribute(DCSLogicTaskDrawingTextProvider::typeid)]
 	public ref class OTE : public DCSLogicComponent
 	{
 	public:
-		
+
 		Rockwell_Library::OTE()
 		{
 			TypeDescription			= "Relay Type Instructions";
 			Name					= "OTE";
 			Descriptor				= "Output Energize";
-			
+
 			Input.Visible			= true;
 			Input.Value				= false;
 			InputPort				= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
 			InputPort->SetAssociatedProperty(%m_Input);
-			
+
 			Output.Visible			= true;
 			Output.Value			= false;
 			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
-			
+
 			Value.Visible			= true;
 			Value.Value				= false;
 
@@ -43,14 +43,25 @@ namespace Rockwell_Library
 		//
 		// Methods
 		//
-		
+
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Dest")]
+		[IPS::Properties::GridOrder(100)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Components"})]
+		virtual property IPS::Properties::Text% Property
+		{
+			IPS::Properties::Text% get() override
+			{
+				return m_Property;
+			}
+		}
+
 		virtual void Activate_Compound() override;
-	
+
 		virtual void Execute(double) override;
-		
+
 		virtual void Step(double dDt) override
 		{
 		}
-
 	};
 }
