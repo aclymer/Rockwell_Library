@@ -20,33 +20,19 @@ namespace Rockwell_Library
 
 			if (Value_A.Value <= Value_B.Value)
 			{
-				if (Input.Value == true)
-				{
-					if (Value_A.Value <= Value.Value && Value.Value <= Value_B.Value)
-						Output.Value = true;
-					else
-						Output.Value = false;
-
-					Set_Property(Property.Value, Value);
-				}
+				if (Value_A.Value <= Value.Value && Value.Value <= Value_B.Value)
+					Output.Value = true;
+				else
+					Output.Value = false;
 			}
 			else if (Value_A.Value > Value_B.Value)
 			{
-				if (Input.Value == true)
-				{
-					if (Value_A.Value < Value.Value && Value.Value < Value_B.Value)
-						Output.Value = false;
-					else
-						Output.Value = true;
-
-					Set_Property(Property.Value, Value);
-				}
+				if (Value_A.Value < Value.Value && Value.Value < Value_B.Value)
+					Output.Value = false;
+				else
+					Output.Value = true;
 			}
-			else
-				IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("Input Error: ", this->Identifier, "Low Limit must be less than or equal to High Limit"));
 		}
-
-		Output.Value			= Input.Value;
 
 		DCSLogicComponent::Execute(p_dTimeStep);
 	}

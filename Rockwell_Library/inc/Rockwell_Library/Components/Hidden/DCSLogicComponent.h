@@ -279,7 +279,7 @@ namespace Rockwell_Library
 				else
 					l_Property->ValueAsObject = l_SourceProperty.ValueAsObject;
 
-				if (destination->StartsWith("N") || destination->StartsWith("B"))
+				if (this->Name != "PID" && (destination->StartsWith("N") || destination->StartsWith("B")))
 					BitSet(destination);
 			}
 			catch(Exception^ ex)
@@ -370,7 +370,7 @@ namespace Rockwell_Library
 							for (int i = 0; i < 16; i++)
 							{
 								if (m_PropertyDictionary.TryGetValue(file + "/" + i.ToString(), l_Property))
-									dynamic_cast<IPS::Properties::Bool^>(l_Property)->Value = l_Bitset[i];
+									l_Property->ValueAsObject = (bool) l_Bitset[i];
 							}
 						}
 
@@ -379,17 +379,17 @@ namespace Rockwell_Library
 
 					if (m_PropertyDictionary.TryGetValue(l_Text.Value, l_Property))
 					{
-						l_Bitset = (int) dynamic_cast<IPS::Properties::Double^>(l_Property)->Value;
+						l_Bitset = 0;
 
 						for (int i = 0; i < 16; i++)
 						{
-							if (m_PropertyDictionary.TryGetValue(file + "/" + i.ToString(), l_Property))
-								l_Bitset[i] = dynamic_cast<IPS::Properties::Bool^>(l_Property)->Value;
+							if (m_PropertyDictionary.TryGetValue(l_Text.Value + "/" + i.ToString(), l_Property))
+								l_Bitset[i] = (bool) l_Property->ValueAsObject;
 						}
 
 						m_PropertyDictionary.TryGetValue(l_Text.Value, l_Property);
 
-						dynamic_cast<IPS::Properties::Double^>(l_Property)->Value = l_Bitset.to_ulong();
+						l_Property->ValueAsObject = (double) l_Bitset.to_ulong();
 					}
 				}
 				else

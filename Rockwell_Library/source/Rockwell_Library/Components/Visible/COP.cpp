@@ -45,15 +45,9 @@ namespace Rockwell_Library
 						source_string		= source_parsed[0] + (start + i).ToString();
 						dest_string			= dest_parsed[0] + (end + i).ToString();
 
-						if (m_PropertyDictionary.ContainsKey(source_string))
-							Dest_Value.ValueAsObject = Get_Property(source_string);
-						else
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Property does not exist: " + source_string));
+						Dest_Value.ValueAsObject = Get_Property(source_string);
 
-						if (m_PropertyDictionary.ContainsKey(dest_string))
-							Set_Property(dest_string, Dest_Value);
-						else
-							IPS::Errors::ErrorSystem::Report(gcnew IPS::Errors::ElementError("", this->Identifier, "Property does not exist: " + dest_string));
+						Set_Property(dest_string, Dest_Value);
 					}
 				}
 			}

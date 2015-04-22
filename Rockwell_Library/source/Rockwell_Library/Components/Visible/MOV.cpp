@@ -28,9 +28,9 @@ namespace Rockwell_Library
 			}
 		}
 
-		Dest_Value.ValueAsObject = Get_Property(Dest.Value);
-
-		Output.Value = Input.Value;
+		Dest_Value.ValueAsObject	= Get_Property(Dest.Value);
+		Value.ValueAsObject			= Get_Property(Property.Value);
+		Output.Value				= Input.Value;
 
 		DCSLogicComponent::Execute(p_dTimeStep);
 	}

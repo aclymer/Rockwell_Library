@@ -96,10 +96,10 @@ namespace Rockwell_Library
 		IPS::Properties::Text			m_Dest;
 		IPS::Properties::Integer		m_Length;
 		IPS::Properties::Double			m_Value;
-		List<String^>					dest_parsed;
 
 	private:
 
 		String^							dest_string;
+		Int16							currentWord;
 	};    
 }

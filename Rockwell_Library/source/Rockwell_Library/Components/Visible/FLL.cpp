@@ -7,28 +7,22 @@ namespace Rockwell_Library
 	{
 		if (Input.Value)
 		{
+			dest_string = Dest.Value;
+
 			if (Length.Value < 1)
 				Length.Value = 1;
 
-			ParseAddress(dest_parsed, Dest.Value);
+			if (dest_string->StartsWith("#"))
+				dest_string = dest_string->Replace("#","");
+
+			currentWord.Parse(dest_string->Split(':')[1]);
+			dest_string = dest_string->Split(':')[0] + ":";
 			Value.ValueAsObject = Get_Property(Property.Value);
-			dest_string = gcnew String("");
 
-			for (int i = 0; i < Length.Value; i++)
+			for (int i = currentWord; i < currentWord + Length.Value - 1; i++)
 			{
-				int j = 0;
-				for (; j < dest_parsed.Count - 1; j++)
-				{
-					dest_string += dest_parsed[j];
-				}
-				Int16 currentWord;
-				if (Int16::TryParse(dest_parsed[++j], currentWord))
-				{
-					dest_string += (currentWord + i).ToString();
-					Set_Property(dest_string, Value);
-				}
+				Set_Property(dest_string + i.ToString(), Value);
 			}
-
 		}
 
 		Output.Value = Input.Value;
