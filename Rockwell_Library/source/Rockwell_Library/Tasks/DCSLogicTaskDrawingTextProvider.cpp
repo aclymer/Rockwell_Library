@@ -135,7 +135,7 @@ namespace Rockwell_Library
 						string +=	((Char)'\n').ToString();
 						string +=	l_pDCSLogicComponent->Property.Value->PadLeft(PAD);
 						string +=	((Char)'\n').ToString();		
-						string +=	Math::Round((l_pDCSLogicComponent->Value.Value), 4).ToString()->PadLeft(PAD);	
+						string +=	Math::Round((dynamic_cast<MathBase^>(l_pDCSLogicComponent)->Value.Value), 4).ToString()->PadLeft(PAD);	
 						string +=	"<";
 					}
 

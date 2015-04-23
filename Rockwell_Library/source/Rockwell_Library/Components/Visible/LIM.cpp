@@ -5,6 +5,8 @@ namespace Rockwell_Library
 {
 	void LIM::Execute(double p_dTimeStep)
 	{
+		Output.Value = Input.Value;
+
 		if (Input.Value)
 		{
 			try
@@ -27,7 +29,7 @@ namespace Rockwell_Library
 			}
 			else if (Value_A.Value > Value_B.Value)
 			{
-				if (Value_A.Value < Value.Value && Value.Value < Value_B.Value)
+				if (Value_B.Value < Value.Value && Value.Value < Value_A.Value)
 					Output.Value = false;
 				else
 					Output.Value = true;

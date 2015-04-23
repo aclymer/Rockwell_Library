@@ -1,11 +1,12 @@
 #include "Stdafx.h"
 #include "Rockwell_Library/Components/Visible/CPT.h"
-//#include "Rockwell_Library/Components/Hidden/Equation.h"
 
 namespace Rockwell_Library
 {
 	void CPT::Execute(double p_dTimeStep)
 	{
+		Value_A.ValueAsObject	= Get_Property(Source_A.Value);
+
 		if (Input.Value)
 		{
 			try
@@ -51,8 +52,6 @@ namespace Rockwell_Library
 			}
 			
 			Set_Property(Source_A.Value, Value_B);
-
-			Value_A.ValueAsObject	= Get_Property(Source_A.Value);
 		}
 
 		Output.Value				= Input.Value;

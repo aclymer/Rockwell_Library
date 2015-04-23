@@ -192,11 +192,12 @@ namespace Rockwell_Library
 			if (Input.Value == true && ACC.Value < Preset.Value)
 			{
 				CountUp(Ts);
-				if (ACC.Value >= Preset.Value)
-				{
-					TT.Value	= false;
-					DN.Value	= true;
-				}
+			}
+
+			if (ACC.Value >= Preset.Value)
+			{
+				TT.Value	= false;
+				DN.Value	= true;
 			}
 
 			Value.Value	= Input.Value;

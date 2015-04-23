@@ -36,8 +36,7 @@ namespace Rockwell_Library
 			Property.Visible		= true;
 			Property.Value			= "Address";
 
-			Value.Visible			= true;
-			Value.Value				= 0;
+			Value.Visible			= false;
 
 			PV_Source.Visible		= true;
 			PV_Source.Value			= "Address";
@@ -529,8 +528,16 @@ namespace Rockwell_Library
 			// Output = Kc * [Error + (E)dt / Ti + Td * D(-PV)/df] + bias
 			//////////////////////////////////////////////////////////////
 			m_PV_Value.ValueAsObject	= Get_Property(PV_Source.Value);									// Process Variable
-			m_Setpoint.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
+
+			if (CM.Value)				// MAnual Mode (CM = 0)
+				m_Setpoint.Value		= CV.Value;
+			else
+				m_Setpoint.ValueAsObject= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
+
 			m_Error.Value				= (CM.Value ? PV.Value - Setpoint.Value : Setpoint.Value - PV.Value);
+
+			if (abs(m_Error.Value) <= Deadband.Value)
+				m_Error.Value = 0.0;
 
 			// Anti-Windup
 			if (UL.Value == false && LL.Value == false)
@@ -538,7 +545,12 @@ namespace Rockwell_Library
 
 			Int_Sum.Value				= m_Integral / Ti.Value;
 			m_Deriv.Value				= (m_Error_prev.Value - m_Error.Value) / dDt;
-			CV.Value					= Kc.Value * (m_Error.Value + Int_Sum.Value  + Td.Value * m_Deriv.Value) + FFb.Value;
+
+			if (Input.Value == false)
+				Int_Sum.Value			= 0.0;
+
+			if (CM.Value == false)		// Auto Mode (CM = 0)
+				CV.Value				= Kc.Value * (m_Error.Value + Int_Sum.Value  + Td.Value * m_Deriv.Value) + FFb.Value;
 		
 			m_Slope.Value				= (Omax.Value - Omin.Value) / (Smax.Value - Smin.Value);
 			m_Offset.Value				= Omin.Value - Smin.Value * m_Slope.Value;
