@@ -9,7 +9,8 @@ namespace Rockwell_Library
 
 		if (Input.Value == true)
 			Set_Property(Property.Value, Value);
-
-		Output.Value	= Input.Value;
+		
+		Value.ValueAsObject	= Get_Property(Property.Value);
+		Output.Value		= Input.Value;
 	}
 }

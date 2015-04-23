@@ -7,7 +7,8 @@ namespace Rockwell_Library
 	{
 		Set_Property(Property.Value, Input);
 
-		Output.Value = Input.Value;
+		Value.ValueAsObject	= Get_Property(Property.Value);
+		Output.Value		= Input.Value;
 	}
 
 	void OTE::Activate_Compound()
