@@ -406,6 +406,10 @@ namespace Rockwell_Library
 			this->l_InLinks = this->InputPort->InLinks;
 		}
 
+		virtual void Deactivate_Compound()
+		{
+		}
+
 		static void PopulateIOPropertyList()
 		{
 			l_SystemIOPage = dynamic_cast<IPS::Core::DrawingPage^>(m_Project->FindPagesWithComponent(m_Project->GetComponent("S:0")->Identifier)[0]);

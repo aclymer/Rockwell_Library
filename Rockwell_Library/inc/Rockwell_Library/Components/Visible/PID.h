@@ -19,64 +19,67 @@ namespace Rockwell_Library
 
 		Rockwell_Library::PID()
 		{
-			TypeDescription			= "PID Control";
-			Name					= "PID";
-			Descriptor				= "Proportional/Integral/Derivative";
+			TypeDescription				= "PID Control";
+			Name						= "PID";
+			Descriptor					= "Proportional/Integral/Derivative";
 
-			Input.Visible			= true;
-			Input.Value				= false;
-			InputPort				= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
+			Input.Visible				= true;
+			Input.Value					= false;
+			InputPort					= dynamic_cast<Bool::BoolInputPort^>(PortByName("InputPort"));
 			InputPort->SetAssociatedProperty(%m_Input);
-
-			Output.Visible			= true;
-			Output.Value			= false;
-			OutputPort				= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
+				
+			Output.Visible				= true;
+			Output.Value				= false;
+			OutputPort					= dynamic_cast<Bool::BoolOutputPort^>(PortByName("OutputPort"));
 			OutputPort->SetAssociatedProperty(%m_Output);
 
-			Property.Visible		= true;
-			Property.Value			= "Address";
+			Property.Visible			= true;
+			Property.Value				= "Address";
+			
+			Value.Visible				= false;
 
-			Value.Visible			= false;
+			PV_Source.Visible			= true;
+			PV_Source.Value				= "Address";
 
-			PV_Source.Visible		= true;
-			PV_Source.Value			= "Address";
+			CV_Source.Visible			= true;
+			CV_Source.Value				= "Address";
 
-			CV_Source.Visible		= true;
-			CV_Source.Value			= "Address";
+			SPV.Visible					= true;
+			SPV.Value					= 0;
 
-			PV.Visible				= true;
-			PV.Value				= 0;
+			CV.Visible					= true;
+			CV.Value					= 0;
 
-			CV.Visible				= true;
-			CV.Value				= 0;
+			Length.Visible				= true;
+			Length.Value				= 0;
 
-			Length.Visible			= true;
-			Length.Value			= 0;
+			AM.Visible					= true;
+			AM.Value					= 1;
 
-			AM.Visible				= true;
-			AM.Value				= 1;
+			CM.Visible					= true;
+			CM.Value					= true;
 
-			CM.Visible				= true;
-			CM.Value				= true;
+			Setpoint.Visible			= true;
+			Setpoint.Value				= 0;
 
-			Setpoint.Visible		= true;
-			Setpoint.Value			= 0;
+			Omax.Visible				= true;
+			Omax.Value					= 16383;
 
-			Omax.Visible			= true;
-			Omax.Value				= 16383;
+			Omin.Visible				= true;
+			Omin.Value					= 0;
 
-			Omin.Visible			= true;
-			Omin.Value				= 0;
+			LL.Visible					= true;
+			LL.Value					= false;
 
-			LL.Visible				= true;
-			LL.Value				= false;
-
-			UL.Visible				= true;
-			UL.Value				= false;
+			UL.Visible					= true;
+			UL.Value					= false;
 						
-			m_BaseElement.Value		= "Address";
+			m_BaseElement.Value			= "Address";
 
-			m_Bitset				= new std::bitset<16>(0);
+			m_BaseWord					= 0;
+				
+			ControlBlock.Visible		= false;
+			ControlBlock.Value			= 0;
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
@@ -126,8 +129,72 @@ namespace Rockwell_Library
 				return m_Length;
 			}
 		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Value")]
+		[IPS::Properties::GridOrder(299)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Double% ControlBlock
+		{
+			IPS::Properties::Double% get()
+			{
+				std::bitset<16> m_Bitset= (unsigned long) m_ControlBlock.Value;
+				m_Bitset[0]				= TM.Value;
+				m_Bitset[1] 			= AM.Value;
+				m_Bitset[2] 			= CM.Value;
+				m_Bitset[3] 			= OL.Value;
+				m_Bitset[4] 			= RG.Value;
+				m_Bitset[5] 			= SC.Value;
+				m_Bitset[6] 			= TF.Value;
+				m_Bitset[7] 			= DA.Value;
+				m_Bitset[8] 			= DB.Value;
+				m_Bitset[9] 			= UL.Value;
+				m_Bitset[10] 			= LL.Value;
+				m_Bitset[11] 			= SP.Value;
+				m_Bitset[12] 			= PV.Value;
+				m_Bitset[13] 			= DN.Value;
+				m_Bitset[14] 			= RA.Value;
+				m_Bitset[15] 			= EN.Value;
+				m_ControlBlock.Value	= (double) m_Bitset.to_ulong();
 
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+				return m_ControlBlock;
+			}	
+			void set(IPS::Properties::Double% value)
+			{
+				m_ControlBlock.Value	= value.Value;				
+				std::bitset<16> m_Bitset= (unsigned long) value.Value;
+				TM.Value				= m_Bitset[0];
+				AM.Value     			= m_Bitset[1];
+				CM.Value     			= m_Bitset[2];
+				OL.Value     			= m_Bitset[3];
+				RG.Value     			= m_Bitset[4];
+				SC.Value     			= m_Bitset[5];
+				TF.Value    			= m_Bitset[6];
+				DA.Value     			= m_Bitset[7];
+				DB.Value     			= m_Bitset[8];
+				UL.Value     			= m_Bitset[9];
+				LL.Value     			= m_Bitset[10];
+				SP.Value     			= m_Bitset[11];
+				SPV.Value    			= m_Bitset[12];
+				DN.Value     			= m_Bitset[13];
+				RA.Value     			= m_Bitset[14];
+				EN.Value     			= m_Bitset[15];
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("STI Mode")]
+		[IPS::Properties::GridOrder(300)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% TM
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_TM;
+			}
+		}
+
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Manual Mode")]
 		[IPS::Properties::GridOrder(301)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -135,19 +202,11 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_AM.Value				= m_Bitset->at(1);
 				return m_AM;
-			}	
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(1)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Control Mode")]
 		[IPS::Properties::GridOrder(302)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -155,19 +214,11 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_CM.Value				= m_Bitset->at(2);
 				return m_CM;
-			}	
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(2)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Output Limiting")]
 		[IPS::Properties::GridOrder(303)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -175,19 +226,11 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_OL.Value				= m_Bitset->at(3);
 				return m_OL;
-			}		
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(3)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Reset/Gain Enhancement")]
 		[IPS::Properties::GridOrder(304)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -195,19 +238,47 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_RG.Value				= m_Bitset->at(4);
 				return m_RG;
-			}	
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(4)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Scale Setpoint Flag")]
+		[IPS::Properties::GridOrder(305)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% SC
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_SC;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Loop Update Too Fast")]
+		[IPS::Properties::GridOrder(306)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% TF
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_TF;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Derivative Rate Action")]
+		[IPS::Properties::GridOrder(307)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% DA
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_DA;
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Deadband")]
 		[IPS::Properties::GridOrder(308)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -215,19 +286,11 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_DB.Value				= m_Bitset->at(8);
 				return m_DB;
-			}	
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(8)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 		
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Output Alarm Upper Limit")]
 		[IPS::Properties::GridOrder(309)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -235,19 +298,11 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_UL.Value				= m_Bitset->at(9);
 				return m_UL;
-			}			
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(9)			= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("Output Alarm Lower Limit")]
 		[IPS::Properties::GridOrder(310)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -255,19 +310,59 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_LL.Value				= m_Bitset->at(10);
 				return m_LL;
-			}			
-			void set(IPS::Properties::Bool% value)
+			}
+		}
+		
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("Setpoint Out Of Range")]
+		[IPS::Properties::GridOrder(311)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% SP
+		{
+			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(10)		= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
+				return m_SP;
 			}
 		}
 
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("PV Out Of Range")]
+		[IPS::Properties::GridOrder(312)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% PV
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_PV;
+			}
+		}
+
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("PID Done")]
+		[IPS::Properties::GridOrder(313)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% DN
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_DN;
+			}
+		}
+
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
+		[IPS::Properties::DisplayName("PID Rational Approximation")]
+		[IPS::Properties::GridOrder(314)]
+		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
+		virtual property IPS::Properties::Bool% RA
+		{
+			IPS::Properties::Bool% get()
+			{
+				return m_RA;
+			}
+		}
+
+		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
 		[IPS::Properties::DisplayName("PID Enable")]
 		[IPS::Properties::GridOrder(315)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
@@ -275,15 +370,7 @@ namespace Rockwell_Library
 		{
 			IPS::Properties::Bool% get()
 			{
-				if (m_Bitset != nullptr)
-					m_EN.Value				= m_Bitset->at(15);
 				return m_EN;
-			}			
-			void set(IPS::Properties::Bool% value)
-			{
-				if (m_Bitset != nullptr)
-					m_Bitset->at(15)		= value.Value;
-				m_ControlBlock.Value	= (double) m_Bitset->to_ullong();				
 			}
 		}
 
@@ -428,11 +515,11 @@ namespace Rockwell_Library
 		[IPS::Properties::DisplayName("Scaled PV (%)")]
 		[IPS::Properties::GridOrder(414)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Parameters"})]
-		virtual property IPS::Properties::Double% Scaled_PV
+		virtual property IPS::Properties::Double% SPV
 		{
 			IPS::Properties::Double% get()
 			{
-				return m_Scaled_PV;
+				return m_SPV;
 			}
 		}
 
@@ -473,18 +560,6 @@ namespace Rockwell_Library
 		}
 
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
-		[IPS::Properties::DisplayName("PV")]
-		[IPS::Properties::GridOrder(423)]
-		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Parameters"})]
-		virtual property IPS::Properties::Double% PV
-		{
-			IPS::Properties::Double% get()
-			{
-				return m_PV_Value;
-			}
-		}
-
-		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::STATIC)]
 		[IPS::Properties::DisplayName("CV")]
 		[IPS::Properties::GridOrder(424)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Parameters"})]
@@ -498,26 +573,32 @@ namespace Rockwell_Library
 		
 		virtual void Activate_Compound() override
 		{
-			m_BaseWord = m_BaseWord.Parse(Property.Value->Split(':')[1]);
-			
-			*m_Bitset					= (unsigned long long) m_ControlBlock.Value;
+			m_BaseWord					= m_BaseWord.Parse(Property.Value->Split(':')[1]);			
 			m_BaseElement.Value			= Property.Value->Split(':')[0] + ":";
-			m_ControlBlock.ValueAsObject= Get_Property(m_BaseElement.Value + (m_BaseWord + 0 ).ToString());	// Control Block
-			m_Setpoint.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
-			m_Kc.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 3 ).ToString()) / (10.0 + RG.Value * 90.0);	// Controller Gain
-			m_Ti.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 4 ).ToString()) / (10.0 + RG.Value * 90.0);	// Reset
-			m_Td.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 5 ).ToString()) / 100.0;	// Rate
-			m_FFb.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 6 ).ToString());	// Feed Forward Bias
-			m_Smax.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 7 ).ToString());	// Setpoint Max
-			m_Smin.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 8 ).ToString());	// Setpoint Min
-			m_Deadband.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 9 ).ToString());	// Deadband
-			m_Omax.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 11).ToString());	// Output Max (CV%)
-			m_Omin.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 12).ToString());	// Output Min (CV%)
-			m_LoopUpdate.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 13).ToString());	// Loop Update
-			m_Scaled_PV.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 14).ToString());	// Scaled PV
-			m_SE.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 15).ToString());	// Scaled PV
-			m_PV_Value.ValueAsObject	= Get_Property(PV_Source.Value);									// Process Variable
-			m_CV_Value.ValueAsObject	= Get_Property(CV_Source.Value);									// Controlled Variable (CV%)
+			ControlBlock.Value			= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 0 ).ToString());			// Control Block
+			Setpoint.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());						// Setpoint
+			Kc.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 3 ).ToString()) / (10.0 + RG.Value * 90.0);	// Controller Gain
+			Ti.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 4 ).ToString()) / (10.0 + RG.Value * 90.0);	// Reset
+			Td.Value					= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 5 ).ToString()) / 100.0;	// Rate
+			FFb.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 6 ).ToString());	// Feed Forward Bias
+			Smax.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 7 ).ToString());	// Setpoint Max
+			Smin.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 8 ).ToString());	// Setpoint Min
+			Deadband.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 9 ).ToString());	// Deadband
+			Omax.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 11).ToString());	// Output Max (CV%)
+			Omin.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 12).ToString());	// Output Min (CV%)
+			LoopUpdate.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 13).ToString());	// Loop Update
+			SPV.ValueAsObject			= Get_Property(PV_Source.Value);									// Process Variable
+			CV.ValueAsObject			= Get_Property(CV_Source.Value);									// Controlled Variable (CV%)
+
+			if (Smax.Value == 0 && Smin.Value == 0)
+				SC.Value				= true;
+			else
+				SC.Value				= false;			
+		}
+
+		virtual void Deactivate_Compound() override
+		{
+			Set_Property(Property.Value, ControlBlock);
 		}
 
 		virtual void Execute(double) override;
@@ -527,93 +608,161 @@ namespace Rockwell_Library
 			// Equation: 
 			// Output = Kc * [Error + (E)dt / Ti + Td * D(-PV)/df] + bias
 			//////////////////////////////////////////////////////////////
-			m_PV_Value.ValueAsObject	= Get_Property(PV_Source.Value);									// Process Variable
-
-			if (CM.Value)				// MAnual Mode (CM = 0)
+			SPV.ValueAsObject			= Get_Property(PV_Source.Value);									// Process Variable
+			
+			if (SC.Value)
+			{
+				if (Setpoint.Value < 0)
+					Setpoint.Value		= 0.0;
+				else if (Setpoint.Value > 16383.0)
+					Setpoint.Value		= 16383.0;
+				
+				if (SPV.Value < 0)
+					SPV.Value			= 0.0;
+				else if (SPV.Value > 16383.0)
+					SPV.Value			= 16383.0;		
+			}
+			else
+			{
+				if (Setpoint.Value < Smin.Value)
+					Setpoint.Value		= Smin.Value;
+				else if (Setpoint.Value > Smax.Value)
+					Setpoint.Value		= Smax.Value;
+				
+				if (SPV.Value < Smin.Value)
+					SPV.Value			= Smin.Value;
+				else if (SPV.Value > Smax.Value)
+					SPV.Value			= Smax.Value;				
+			}
+			
+			if (AM.Value)				// MAnual Mode (AM = 0)
 				m_Setpoint.Value		= CV.Value;
 			else
 				m_Setpoint.ValueAsObject= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
 
-			m_Error.Value				= (CM.Value ? PV.Value - Setpoint.Value : Setpoint.Value - PV.Value);
+			SE.Value					= (CM.Value ? SPV.Value - Setpoint.Value : Setpoint.Value - SPV.Value);
 
-			if (abs(m_Error.Value) <= Deadband.Value)
-				m_Error.Value = 0.0;
-
+			if (abs(SE.Value) <= Deadband.Value)
+				SE.Value = 0.0;
+			
 			// Anti-Windup
 			if (UL.Value == false && LL.Value == false)
-				m_Integral.Value		= m_Integral.Value + m_Error.Value * dDt;
+				m_Integral.Value	   += SE.Value * dDt;
 
-			Int_Sum.Value				= m_Integral / Ti.Value;
-			m_Deriv.Value				= (m_Error_prev.Value - m_Error.Value) / dDt;
+			Int_Sum.Value				= m_Integral.Value / Ti.Value;
+			m_Deriv.Value				= (m_Error_prev.Value - SE.Value) / dDt;
 
 			if (Input.Value == false)
-				Int_Sum.Value			= 0.0;
+				m_Integral.Value		= 0.0;
 
-			if (CM.Value == false)		// Auto Mode (CM = 0)
-				CV.Value				= Kc.Value * (m_Error.Value + Int_Sum.Value  + Td.Value * m_Deriv.Value) + FFb.Value;
+			if (AM.Value == false)		// Auto Mode (AM = 0)
+				CV.Value				= Kc.Value * (SE.Value + Int_Sum.Value  + Td.Value * m_Deriv.Value) + FFb.Value;
 		
-			m_Slope.Value				= (Omax.Value - Omin.Value) / (Smax.Value - Smin.Value);
-			m_Offset.Value				= Omin.Value - Smin.Value * m_Slope.Value;
-			m_Error_prev.Value			= m_Error.Value;
-			SE.Value					= (m_Error.Value * m_Slope.Value) + m_Offset.Value;
-			Scaled_PV.Value				= (PV.Value * m_Slope.Value) + m_Offset.Value;
-			CV_Output.Value				= (CV.Value * m_Slope.Value) + m_Offset.Value;
-			LoopUpdate.Value			= dDt / 0.01;
+			m_Error_prev.Value			= SE.Value;
+			CV_Output.Value				= CV.Value / 163.84;
+			LoopUpdate.Value			= dDt;
+
+			// Output Limiting and Alarm
+			if (CV_Output.Value > Omax.Value)
+			{
+				if (OL.Value)
+					CV.Value			= (Smax.Value - Smin.Value) * Omax.Value / 100;
+
+				UL.Value				= true;
+				LL.Value				= false;
+			}
+			else if (CV_Output.Value < Omin.Value)
+			{
+				if (OL.Value)
+					CV.Value			= (Smax.Value - Smin.Value) * Omin.Value / 100;
+
+				UL.Value				= false;
+				LL.Value				= true;
+			}
+			else
+			{
+				UL.Value				= false;
+				LL.Value				= false;
+			}	
+
+			if (SC.Value)
+			{
+				if (CV.Value < 0)
+					CV.Value			= 0.0;
+				else if (CV.Value > 16383.0)
+					CV.Value			= 16383.0;
+			}
+			else
+			{	
+				if (CV.Value < Smin.Value)
+					CV.Value			= Smin.Value;
+				else if (CV.Value > Smax.Value)
+					CV.Value			= Smax.Value;
+			}	
+
+			Set_Property(CV_Source.Value, CV);
+			Set_Property(Property.Value, m_ControlBlock);
+			Set_Property(m_BaseElement.Value + (m_BaseWord + 16).ToString(), CV_Output);		
 		}
 
 	public:
 		
-		IPS::Properties::Double		m_ControlBlock;
-		IPS::Properties::Double		m_Length;
-		IPS::Properties::Double		m_Value;
-		IPS::Properties::Text		m_PV_Source;
-		IPS::Properties::Text		m_CV_Source;
-		IPS::Properties::Double		m_PV_Value;
-		IPS::Properties::Double		m_CV_Value;
-		IPS::Properties::Bool		m_AM;
+		IPS::Properties::Double			m_ControlBlock;
+		IPS::Properties::Double			m_Length;
+		IPS::Properties::Double			m_Value;
+		IPS::Properties::Text			m_PV_Source;
+		IPS::Properties::Text			m_CV_Source;
+		IPS::Properties::Double			m_PV_Value;
+		IPS::Properties::Double			m_CV_Value;
 
 	private:
 
-		int							m_BaseWord;
-		std::bitset<16>*			m_Bitset;
-		IPS::Properties::Text		m_BaseElement;
-		IPS::Properties::Double		m_Setpoint;
-		IPS::Properties::Double		m_Error;
-		IPS::Properties::Double		m_Kc;
-		IPS::Properties::Double		m_Ti;
-		IPS::Properties::Double		m_Td;
-		IPS::Properties::Double		m_FFb;
-		IPS::Properties::Double		m_Smax;
-		IPS::Properties::Double		m_Smin;
-		IPS::Properties::Double		m_Deadband;
-		IPS::Properties::Double		m_Omax;
-		IPS::Properties::Double		m_Omin;
-		IPS::Properties::Double		m_LoopUpdate;
-		IPS::Properties::Double		m_Scaled_PV;
-		IPS::Properties::Double		m_SE;
-		IPS::Properties::Double		m_CV_Output;
-		IPS::Properties::Double		m_Integral;
-		IPS::Properties::Double		m_Int_Sum;
-		IPS::Properties::Double		m_Deriv;
-		IPS::Properties::Double		m_PV_Prev;
-		IPS::Properties::Double		m_Error_prev;
+		int								m_BaseWord;
+		IPS::Properties::Text			m_BaseElement;
+		IPS::Properties::Double			m_Setpoint;
+		IPS::Properties::Double			m_Error;
+		IPS::Properties::Double			m_Kc;
+		IPS::Properties::Double			m_Ti;
+		IPS::Properties::Double			m_Td;
+		IPS::Properties::Double			m_FFb;
+		IPS::Properties::Double			m_Smax;
+		IPS::Properties::Double			m_Smin;
+		IPS::Properties::Double			m_Deadband;
+		IPS::Properties::Double			m_Omax;
+		IPS::Properties::Double			m_Omin;
+		IPS::Properties::Double			m_LoopUpdate;
+		IPS::Properties::Double			m_SPV;
+		IPS::Properties::Double			m_SE;
+		IPS::Properties::Double			m_CV_Output;
+		IPS::Properties::Double			m_Integral;
+		IPS::Properties::Double			m_Int_Sum;
+		IPS::Properties::Double			m_Deriv;
+		IPS::Properties::Double			m_PV_Prev;
+		IPS::Properties::Double			m_Error_prev;
 		
 				
-		IPS::Properties::Double		m_Slope;
-		IPS::Properties::Double		m_Offset;
+		IPS::Properties::Double			m_Slope;
+		IPS::Properties::Double			m_Offset;
 
 		//
 		// Control Block Bits
 		//
 
-		IPS::Properties::Bool		m_CM;
-		IPS::Properties::Bool		m_OL;
-		IPS::Properties::Bool		m_RG;
-		IPS::Properties::Bool		m_DB;
-		IPS::Properties::Bool		m_DA;
-		IPS::Properties::Bool		m_LL;
-		IPS::Properties::Bool		m_UL;
-		IPS::Properties::Bool		m_EN;
-
+		  IPS::Properties::Bool			m_TM;
+		  IPS::Properties::Bool			m_AM;
+		  IPS::Properties::Bool			m_CM;
+		  IPS::Properties::Bool			m_OL;
+		  IPS::Properties::Bool			m_RG;
+		  IPS::Properties::Bool			m_SC;
+		  IPS::Properties::Bool			m_TF;
+		  IPS::Properties::Bool			m_DA;
+		  IPS::Properties::Bool			m_DB;
+		  IPS::Properties::Bool			m_UL;
+		  IPS::Properties::Bool			m_LL;
+		  IPS::Properties::Bool			m_SP;
+		  IPS::Properties::Bool			m_PV;
+		  IPS::Properties::Bool			m_DN;
+		  IPS::Properties::Bool			m_RA;
+		  IPS::Properties::Bool			m_EN;
 	};
 }

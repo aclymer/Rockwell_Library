@@ -72,6 +72,13 @@ namespace Rockwell_Library {
 	{
 		try
 		{
+			DCS::DCSPropertyTextProvider::DCSPropertyTextProvider();		
+			m_DCSLogicComponents.Clear();
+			this->FilterComponents(DCSLogicComponent::typeid, m_DCSLogicComponents);
+			for each (DCSLogicComponent^ l_DCSLogicComponent in m_DCSLogicComponents)
+			{
+				l_DCSLogicComponent->Deactivate_Compound();
+			}
 		}
 		catch (Exception^ ex)
 		{
