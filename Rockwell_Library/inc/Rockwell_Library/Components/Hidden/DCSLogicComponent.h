@@ -4,6 +4,7 @@
 #include <bitset>
 #include "Rockwell_Library/Tasks/DCSLogicTask.h"
 #include "Rockwell_Library/Tasks/DCSLogicTaskDrawingTextProvider.h"
+#include "Rockwell_Library/Components/Hidden/SortComponentByYPos.h"
 
 using namespace System;
 using namespace System::Reflection;
@@ -43,6 +44,8 @@ namespace Rockwell_Library
 
 			UpdateValueText.Visible			= true;
 			UpdateValueText.Value			= false;
+
+			m_CompareYPos					= gcnew SortComponentByYPos();
 		}
 
 		virtual ~DCSLogicComponent(){};
@@ -476,9 +479,11 @@ namespace Rockwell_Library
 				try
 				{
 					l_ConnectedList = l_ThisRungItem->Value->PortByName("OutputPort")->GetConnectedComponents();
-
+					
 					if (l_ConnectedList->Count > 0)
 					{
+						l_ConnectedList->Sort(m_CompareYPos);
+
 						for each (DCSLogicComponent^ l_ConnectedComponent in l_ConnectedList)
 						{
 							if (l_ThisRungItem->Value == l_ConnectedComponent)
@@ -554,6 +559,7 @@ namespace Rockwell_Library
 
 	private:
 
+		static Generic::Comparer<IPS::Core::Component^>^m_CompareYPos;
 		IPS::Properties::Bool							m_UpdateValueText;
 		IPS::Properties::Double							pValue;
 		static System::Double							l_DoubleVal;

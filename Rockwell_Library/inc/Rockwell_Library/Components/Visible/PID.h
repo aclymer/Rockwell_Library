@@ -183,7 +183,7 @@ namespace Rockwell_Library
 		}
 		
 		[IPS::Properties::PropertyUsage(IPS::Properties::UseProperty::DYNAMIC)]
-		[IPS::Properties::DisplayName("STI Mode")]
+		[IPS::Properties::DisplayName("Timed Mode")]
 		[IPS::Properties::GridOrder(300)]
 		[IPS::Properties::GridCategory(gcnew cli::array< System::String^  >(1) {"Control Block"})]
 		virtual property IPS::Properties::Bool% TM
@@ -586,11 +586,11 @@ namespace Rockwell_Library
 			Deadband.ValueAsObject		= Get_Property(m_BaseElement.Value + (m_BaseWord + 9 ).ToString());	// Deadband
 			Omax.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 11).ToString());	// Output Max (CV%)
 			Omin.ValueAsObject			= Get_Property(m_BaseElement.Value + (m_BaseWord + 12).ToString());	// Output Min (CV%)
-			LoopUpdate.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 13).ToString());	// Loop Update
+			LoopUpdate.Value			= (double) Get_Property(m_BaseElement.Value + (m_BaseWord + 13).ToString()) / 100;	// Loop Update
 			SPV.ValueAsObject			= Get_Property(PV_Source.Value);									// Process Variable
 			CV.ValueAsObject			= Get_Property(CV_Source.Value);									// Controlled Variable (CV%)
 
-			if (Smax.Value == 0 && Smin.Value == 0)
+			if (Smax.Value == Smin.Value)
 				SC.Value				= true;
 			else
 				SC.Value				= false;			
@@ -634,39 +634,48 @@ namespace Rockwell_Library
 				else if (SPV.Value > Smax.Value)
 					SPV.Value			= Smax.Value;				
 			}
-			
-			if (AM.Value)				// MAnual Mode (AM = 0)
-				m_Setpoint.Value		= CV.Value;
-			else
-				m_Setpoint.ValueAsObject= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
+
+			m_Setpoint.ValueAsObject	= Get_Property(m_BaseElement.Value + (m_BaseWord + 2 ).ToString());	// Setpoint
 
 			SE.Value					= (CM.Value ? SPV.Value - Setpoint.Value : Setpoint.Value - SPV.Value);
 
 			if (abs(SE.Value) <= Deadband.Value)
-				SE.Value = 0.0;
-			
+			{
+				if (SE.Value * m_Error_prev < 0)
+				{
+					DB.Value				= true;
+					SE.Value				= 0.0;
+				}
+			}
+			else
+				DB.Value					= false;
+
 			// Anti-Windup
 			if (UL.Value == false && LL.Value == false)
-				m_Integral.Value	   += SE.Value * dDt;
+				m_Integral.Value	   += SE.Value * (dDt / LoopUpdate.Value);
 
 			Int_Sum.Value				= m_Integral.Value / Ti.Value;
-			m_Deriv.Value				= (m_Error_prev.Value - SE.Value) / dDt;
+			m_Deriv.Value				= (m_Error_prev.Value - SE.Value) / (dDt / LoopUpdate.Value);
 
 			if (Input.Value == false)
 				m_Integral.Value		= 0.0;
 
 			if (AM.Value == false)		// Auto Mode (AM = 0)
 				CV.Value				= Kc.Value * (SE.Value + Int_Sum.Value  + Td.Value * m_Deriv.Value) + FFb.Value;
-		
+			else
+				CV.Value				= Setpoint.Value;
+
 			m_Error_prev.Value			= SE.Value;
 			CV_Output.Value				= CV.Value / 163.84;
-			LoopUpdate.Value			= dDt;
 
 			// Output Limiting and Alarm
 			if (CV_Output.Value > Omax.Value)
 			{
 				if (OL.Value)
+				{
 					CV.Value			= (Smax.Value - Smin.Value) * Omax.Value / 100;
+					CV_Output.Value		= Omax.Value;
+				}
 
 				UL.Value				= true;
 				LL.Value				= false;
@@ -674,12 +683,15 @@ namespace Rockwell_Library
 			else if (CV_Output.Value < Omin.Value)
 			{
 				if (OL.Value)
+				{
 					CV.Value			= (Smax.Value - Smin.Value) * Omin.Value / 100;
+					CV_Output.Value		= Omin.Value;
+				}
 
 				UL.Value				= false;
 				LL.Value				= true;
 			}
-			else
+			else if (Omin.Value < CV_Output.Value && CV_Output.Value < Omax.Value)
 			{
 				UL.Value				= false;
 				LL.Value				= false;
